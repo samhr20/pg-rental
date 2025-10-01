@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import AdminIcon from '../../public/svg/Admin.svg?react';
 import ArrowIcon from '../../public/svg/Arrow.svg?react';
 import BookingIcon from '../../public/svg/Booking.svg?react';
@@ -14,19 +15,19 @@ import TenantIcon from '../../public/svg/Tenant.svg?react';
 const leftBar = () => {
 
   const NavigationButton = [
-    { icon: AdminIcon, text: 'Dashboard' },
-    { icon: AdminIcon, text: 'Admin Management' },
-    { icon: PropertyIcon, text: 'Properties' },
-    { icon: BookingIcon, text: 'Bookings' },
-    { icon: PartnerIcon, text: 'Partner' },
-    { icon: TenantIcon, text: 'Tenants' },
-    { icon: PaymentsIcon, text: 'Transaction & Payouts' },
-    { icon: ComplaintIcon, text: 'Complaints' },
-    { icon: ReportIcon, text: 'Promotion & Ads' },
-    { icon: ReportIcon, text: 'Membership & Plan' },
-    { icon: ChatsIcon, text: 'Message/Notification' },
-    { icon: SettingIcon, text: 'Setting & Confirguation' },
-    { icon: LogoutIcon, text: 'Logout' },
+    { Icon: AdminIcon, text: 'Dashboard', path: '/' },
+    { Icon: AdminIcon, text: 'Admin Management', path: '/admin-management' },
+    { Icon: PropertyIcon, text: 'Properties', path: '/properties' }, 
+    { Icon: BookingIcon, text: 'Bookings', path: '/bookings' },
+    { Icon: PartnerIcon, text: 'Partner', path: '/partner' },
+    { Icon: TenantIcon, text: 'Tenants' , path: '/tenants'},
+    { Icon: PaymentsIcon, text: 'Transaction & Payouts' , path: '/transaction'},
+    { Icon: ComplaintIcon, text: 'Complaints', path: '/complaints' },
+    { Icon: ReportIcon, text: 'Promotion & Ads', path: '/promotion' },
+    { Icon: ReportIcon, text: 'Membership & Plan' , path: '/plan'},
+    { Icon: ChatsIcon, text: 'Message/Notification' , path: '/notification'},
+    { Icon: SettingIcon, text: 'Setting & Confirguation' , path: '/setting'},
+    { Icon: LogoutIcon, text: 'Logout', path: '/logout' },
 
   ];
 
@@ -36,15 +37,26 @@ const leftBar = () => {
       <h1 className='text-[45.47px] text-[#FF6A00]'>Aashiyana</h1>
       <div className="w-[242px] h-[644px]">
 
-        {NavigationButton.map((Item, key) => {
-          return <span key={key} className=' group flex items-center justify-between cursor-pointer hover:bg-[#FF6A00] p-[10px] rounded-[10px] hover:text-white'>
+        {NavigationButton.map((item, key) => (
+          <NavLink
+            key={key}
+            to={item.path}
+            className={({ isActive }) =>
+              `group flex items-center justify-between cursor-pointer p-[10px] rounded-[10px] my-1 transition-colors duration-200 ${isActive
+                ? 'bg-[#FF6A00] text-white' 
+                : 'text-gray-700 hover:bg-[#ff6a0041]'
+              }`
+            }
+          >
+            <item.Icon className={`h-[18px] w-[18px] ${( isActive ) => isActive ? 'text-white' : 'text-gray-600 group-hover:text-[#FF6A00]'
+              }`} />
 
-            <Item.icon className='h-[18px] w-[18px] fill-current  group-hover:fill-white' />
-            <p className='text-start text-[15px]' >{Item.text}</p>
-            <ArrowIcon className="h-[15px] w-[10px] " />
-          </span>
+            <p className='flex-1 text-start text-[15px] mx-4'>{item.text}</p>
 
-        })}
+            <ArrowIcon className={`h-[15px] w-[10px] ${( isActive ) => isActive ? 'text-white' : 'text-gray-600 group-hover:text-[#FF6A00]'
+              }`} />
+          </NavLink>
+        ))}
 
 
 

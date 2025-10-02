@@ -17,13 +17,13 @@ import Logout from './components/Logout'
 
 const App = () => {
   return (
-    <div className="bg-[#F9F9F9] flex h-screen p-[20px] ">
+    <div className="bg-[#F9F9F9] h-screen flex p-[20px] ">
       <Leftbar />
-      <div>
+      <div className='flex-grow px-6'>
         <Navbar />
-        <main className="flex-grow p-6">
+        <main className="">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard  />} />
             <Route path="/admin-management" element={<AdminManagement />} />
             <Route path="/properties" element={<Properties/>} />
             <Route path="/bookings" element={<Bookings/>} />

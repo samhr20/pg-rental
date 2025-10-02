@@ -17,44 +17,51 @@ const leftBar = () => {
   const NavigationButton = [
     { Icon: AdminIcon, text: 'Dashboard', path: '/' },
     { Icon: AdminIcon, text: 'Admin Management', path: '/admin-management' },
-    { Icon: PropertyIcon, text: 'Properties', path: '/properties' }, 
+    { Icon: PropertyIcon, text: 'Properties', path: '/properties' },
     { Icon: BookingIcon, text: 'Bookings', path: '/bookings' },
     { Icon: PartnerIcon, text: 'Partner', path: '/partner' },
-    { Icon: TenantIcon, text: 'Tenants' , path: '/tenants'},
-    { Icon: PaymentsIcon, text: 'Transaction & Payouts' , path: '/transaction'},
+    { Icon: TenantIcon, text: 'Tenants', path: '/tenants' },
+    { Icon: PaymentsIcon, text: 'Transaction & Payouts', path: '/transaction' },
     { Icon: ComplaintIcon, text: 'Complaints', path: '/complaints' },
     { Icon: ReportIcon, text: 'Promotion & Ads', path: '/promotion' },
-    { Icon: ReportIcon, text: 'Membership & Plan' , path: '/plan'},
-    { Icon: ChatsIcon, text: 'Message/Notification' , path: '/notification'},
-    { Icon: SettingIcon, text: 'Setting & Confirguation' , path: '/setting'},
+    { Icon: ReportIcon, text: 'Membership & Plan', path: '/plan' },
+    { Icon: ChatsIcon, text: 'Message/Notification', path: '/notification' },
+    { Icon: SettingIcon, text: 'Setting & Confirguation', path: '/setting' },
     { Icon: LogoutIcon, text: 'Logout', path: '/logout' },
 
   ];
 
 
   return (
-    <div className='bg-white w-[270px] h-[770px] rounded-[20px] pt-10 px-3.5 pb-3.5'>
-      <h1 className='text-[45.47px] text-[#FF6A00]'>Aashiyana</h1>
-      <div className="w-[242px] h-[644px]">
+    <div className='bg-white w-[270px]  rounded-[20px] pt-10 px-3.5 pb-3.5'>
+      <h1 className='text-[41.47px] text-[#FF6A00]'>Aashiyana</h1>
+      <div className="w-[242px] ">
 
         {NavigationButton.map((item, key) => (
           <NavLink
             key={key}
             to={item.path}
             className={({ isActive }) =>
-              `group flex items-center justify-between cursor-pointer p-[10px] rounded-[10px] my-1 transition-colors duration-200 ${isActive
-                ? 'bg-[#FF6A00] text-white' 
-                : 'text-gray-700 hover:bg-[#ff6a0041]'
+              `group flex items-center justify-between cursor-pointer p-[10px] rounded-[10px] my-1 transition-colors duration-200 
+              ${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'
               }`
             }
           >
-            <item.Icon className={`h-[18px] w-[18px] ${( isActive ) => isActive ? 'text-white' : 'text-gray-600 group-hover:text-[#FF6A00]'
-              }`} />
+            <item.Icon
+              className="h-[14px] w-[14px] text-gray-600 transition-colors duration-200 
+                         group-hover:text-black 
+                         group-[.active]:text-white"
+            />
 
-            <p className='flex-1 text-start text-[15px] mx-4'>{item.text}</p>
+            <p className='flex-1 text-start text-[13px] mx-4'>
+              {item.text}
+            </p>
 
-            <ArrowIcon className={`h-[15px] w-[10px] ${( isActive ) => isActive ? 'text-white' : 'text-gray-600 group-hover:text-[#FF6A00]'
-              }`} />
+            <ArrowIcon
+              className="h-[12px] w-[10px] text-gray-400 transition-colors duration-200
+                         group-hover:text-black
+                         group-[.active]:text-white"
+            />
           </NavLink>
         ))}
 

@@ -80,17 +80,15 @@ const PartnerPayout = () => {
     timeFrame === "2022-23"
       ? Year2022
       : timeFrame === "2023-24"
-      ? Year2023
-      : timeFrame === "2024-25"
-      ? Year2024
-      : Year2025;
+        ? Year2023
+        : timeFrame === "2024-25"
+          ? Year2024
+          : Year2025;
 
   return (
     <div
-      style={{ width: "68%", height: 300 }}
-      className="bg-white py-8 px-2 pt-3 rounded-[12px] min-w-[35%]"
-    >
-      <div className="flex justify-between items-center px-7">
+      className="bg-white py-8 px-2 pt-3 rounded-[12px] w-full lg:min-w-[68%] h-[300px]"  >
+      <div className="flex justify-between items-center px-3 lg:px-7">
         <h4 className="text-[15px] font-semibold mb-3">
           Revenue Growth (In Lac)
         </h4>
@@ -106,8 +104,8 @@ const PartnerPayout = () => {
           data={dataToShow}
           margin={{
             top: 20,
-            right: 20,
-            left: 0,
+            right: 0,
+            left: -28,
             bottom: 5
           }}
         >

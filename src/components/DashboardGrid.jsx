@@ -18,13 +18,13 @@ const DashboardGrid = () => {
     }
 
     return (
-        <div className='mt-7 grid grid-cols-5 gap-10'>
+        <div className='mt-7 grid lg:grid-cols-5 grid-cols-2  lg:gap-5 gap-2'>
 
             {DashboardGridData.map((data, key) => {
                 const IconComponent = iconComponent[data.icon];
                 return (
 
-                    <div key={key} className='bg-white w-[230px] rounded-[14px] p-[12px] border-gray-300 border-[1px]'>
+                    <div key={key} className='bg-white lg:w-[210px] rounded-[14px] p-[12px] border-gray-300 border-[1px] '>
                         <div className='flex gap-5 items-center'>
                             <div className={` rounded-[8px] w-8 flex items-center justify-center h-8 ${data.iconBoxColor}
                         `}>
@@ -33,7 +33,7 @@ const DashboardGrid = () => {
                             <p className='font-semibold text-[15px]'>{data.textOne} <br /> {data.textTwo}</p>
                         </div>
 
-                        <h4 className='my-2 text-[22px]'>{data.data}</h4>
+                        <h4 className='my-2 text-[22px] break-words'>{data.data}</h4>
                         <h4 className='text-[12px] text-gray-500'>{data.number} {data.text}</h4>
                     </div>
                 )

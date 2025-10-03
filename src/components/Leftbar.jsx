@@ -33,7 +33,7 @@ const leftBar = () => {
 
 
   return (
-    <div className='bg-white w-[270px]  rounded-[20px] pt-10 px-3.5 pb-3.5'>
+    <div className='hidden lg:block bg-white w-[270px]  rounded-[20px] pt-10 px-3.5 pb-3.5'>
       <h1 className='text-[41.47px] text-[#FF6A00]'>Aashiyana</h1>
       <div className="w-[242px] ">
 

@@ -1,29 +1,30 @@
 import { Routes, Route } from 'react-router-dom';
-import Leftbar from "@/components/Leftbar";
-import Navbar from "./components/Navbar";
-import Dashboard from './components/Dashboard';
-import AdminManagement from './components/AdminManagement';
-import Properties from './components/Properties';
-import Bookings from './components/Bookings';
-import Partner from './components/Partner'
-import Tenants from './components/Tenants'
-import Transaction from './components/Transaction'
-import Complaints from './components/Complaints'
-import Promotion from './components/Promotion'
-import Plan from './components/Plan'
-import Notification from './components/Notification'
-import Setting from './components/Setting'
-import Logout from './components/Logout'
+import Dashboard from './pages/Dashboard';
+import AdminManagement from './pages/AdminManagement'
+import Properties from './pages/Properties'
+import Bookings from './pages/Bookings'
+import Partner from './pages/Partner'
+import Tenants from './pages/Tenants'
+import Transaction from './pages/Transaction'
+import Complaints from './pages/Complaints'
+import Promotion from './pages/Promotion'
+import Plan from './pages/Plan'
+import Notification from './pages/Notification'
+import Setting from './pages/Setting'
+import Logout from './pages/Logout'
+import Leftbar from './components/Leftbar'
+import Navbar from './components/Navbar'
+import { useState } from 'react';
 
 const App = () => {
   return (
-    <div className="bg-[#F9F9F9] h-screen flex p-[20px] ">
+    <div className="bg-[#F9F9F9] h-screen flex lg:p-[20px] ">
       <Leftbar />
-      <div className='flex-grow px-6'>
-        <Navbar />
+      <div className='flex-grow lg:px-6 p-5 '>
+        <Navbar  />
         <main className="">
           <Routes>
-            <Route path="/" element={<Dashboard  />} />
+            <Route path="/" element={<Dashboard/>} />
             <Route path="/admin-management" element={<AdminManagement />} />
             <Route path="/properties" element={<Properties/>} />
             <Route path="/bookings" element={<Bookings/>} />

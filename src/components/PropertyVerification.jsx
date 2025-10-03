@@ -30,9 +30,9 @@ export default function PropertyVerification() {
     }
     const dataToShow = timeFrame === 'Monthly' ? Monthly : Weekly;
     return (
-        <div style={{ width: '30%', height: 300 }} className=" bg-white py-8 px-4 pt-3 rounded-[12px] min-w-[20%]">
+        <div className=" bg-white py-8 px-4 pt-3 rounded-[12px] w-full h-[300px] lg:min-w-[30%]">
             <div className='flex justify-between items-center '>
-                <h4 className='text-[15px] font-semibold mb-3 text-center'>Property Verification Rate</h4>
+                <h4 className='lg:text-[15px] font-semibold mb-3 text-center'>Property Verification Rate</h4>
                 <select value={timeFrame} onChange={eventHandler} >
                     <option>Monthly</option>
                     <option>Weekly</option>

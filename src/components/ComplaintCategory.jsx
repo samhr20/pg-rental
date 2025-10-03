@@ -25,8 +25,8 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 export default function ComplaintCategory() {
     return (
-        <div style={{ width: '20%', height: 300 }} className=" bg-white py-8 px-4 pt-3 rounded-[12px] min-w-[20%]">
-            <h4 className='text-[15px] font-semibold mb-3 text-center'>Complaints Category Spread</h4>
+        <div  className=" bg-white py-8 px-4 pt-3 rounded-[12px] lg:min-w-[20%] h-[300px]">
+            <h4 className='lg:text-[15px] font-semibold mb-3 text-center'>Complaints Category Spread</h4>
             <p className='text-[11px] text-center leading-0'>Visual breakdown of complaint types</p>
 
             <ResponsiveContainer width="100%" height="100%">

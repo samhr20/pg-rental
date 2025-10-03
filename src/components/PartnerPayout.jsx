@@ -101,9 +101,9 @@ const PartnerPayout = () => {
     }
     const dataToShow = timeFrame === 'Monthly' ? MonthlyData : WeeklyData ;
     return (
-        <div style={{ width: '35%', height: 300 }} className=" bg-white py-8 px-2 pt-3 rounded-[12px] min-w-[35%]">
+        <div  className=" bg-white py-8 px-2 pt-3 rounded-[12px] lg:min-w-[35%] h-[300px] w-full">
             <div className='flex justify-between items-center px-7'>
-                <h4 className='text-[15px] font-semibold mb-3 '>Partner Payout Timeline</h4>
+                <h4 className='lg:text-[15px] font-semibold mb-3 '>Partner Payout Timeline</h4>
                 <select value={timeFrame} onChange={eventHandler} >
                     <option>Monthly</option>
                     <option>Weekly</option>
@@ -116,8 +116,8 @@ const PartnerPayout = () => {
                     data={dataToShow}
                     margin={{
                         top: 20,
-                        right: 20,
-                        left: 0,
+                        right:0,
+                        left: -25,
                         bottom: 5,
                     }}
                 >

@@ -17,9 +17,9 @@ import Navbar from './components/Navbar'
 
 const App = () => {
   return (
-    <div className="bg-[#F9F9F9] h-screen flex lg:p-[20px] ">
+    <div className="bg-[#F9F9F9]  flex lg:p-[20px] ">
       <Leftbar />
-      <div className='flex-grow lg:px-6 p-5 '>
+      <div className='w-full lg:px-6 p-5 '>
         <Navbar  />
         <main className="">
           <Routes>

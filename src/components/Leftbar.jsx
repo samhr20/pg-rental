@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import AdminIcon from '../../public/svg/Admin.svg?react';
 import ArrowIcon from '../../public/svg/Arrow.svg?react';
 import BookingIcon from '../../public/svg/Booking.svg?react';
@@ -32,13 +32,16 @@ const LeftBar = () => {
   ];
 
   const { sideBarOpen, menuToggle } = useSideBar();
+  const location = useLocation()
+
+
 
   return (
     <>
       <div onClick={menuToggle}
         className={`fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
 
-      <div className={`fixed top-0 left-0 z-50 h-screen w-[270px] bg-white rounded-r-2xl lg:rounded-2xl shadow-lg
+      <div className={`fixed top-0 left-0 z-50 h-full overflow-auto lg:overflow-visible w-[270px] bg-white rounded-r-2xl lg:rounded-2xl shadow-lg
           transform transition-transform duration-200 ease-in-out
           ${sideBarOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:static lg:translate-x-0 lg:shadow-none
@@ -53,27 +56,49 @@ const LeftBar = () => {
         </div>
 
         <div className="lg:w-[242px] px-3">
+
           {NavigationButton.map((item, key) => (
-            <NavLink
-              key={key}
-              to={item.path}
-              className={({ isActive }) =>
-                `group flex items-center justify-between cursor-pointer p-[10px] rounded-[10px] my-1 transition-colors duration-200 
+            <div key={key}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `group flex items-center justify-between cursor-pointer p-[10px] rounded-[10px] my-1 transition-colors duration-200 
                 ${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'}`
-              }
-            >
-              <item.Icon
-                className="h-[14px] w-[14px] text-gray-600 transition-colors duration-200 
+                }
+              >
+                <item.Icon
+                  className="h-[14px] w-[14px] text-gray-600 transition-colors duration-200 
                            group-hover:text-black 
                            group-[.active]:text-white"
-              />
-              <p className="flex-1 text-start text-[13px] mx-4">{item.text}</p>
-              <ArrowIcon
-                className="h-[12px] w-[10px] text-gray-400 transition-colors duration-200
+                />
+                <p className="flex-1 text-start text-[13px] mx-4">{item.text}</p>
+                <ArrowIcon
+                  className="h-[12px] w-[10px] text-gray-400 transition-colors duration-200
                            group-hover:text-black
                            group-[.active]:text-white"
-              />
-            </NavLink>
+                />
+              </NavLink>
+
+              {item.path === "/admin-management" && (
+                <div
+                  className={`overflow-hidden transition-all duration-500 ease-in-out
+                  ${location.pathname === "/admin-management" ? "max-h-40 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}
+                      `}
+                >
+                  <div className="bg-[#F9F9F9] py-4 pr-2 my-3 rounded-2xl space-y-2">
+                    <span className="flex items-center justify-between cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg">
+                      <p className="text-start text-[13px] mx-4">Add New Admin</p>
+                      <ArrowIcon className="h-[12px] w-[10px] text-gray-400" />
+                    </span>
+                    <span className="flex items-center justify-between cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg">
+                      <p className="text-start text-[13px] mx-4">Manage Role & Permission</p>
+                      <ArrowIcon className="h-[12px] w-[10px] text-gray-400" />
+                    </span>
+                  </div>
+                </div>
+              )}
+
+            </div>
           ))}
         </div>
       </div>

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const SideBarContext = createContext()
- 
+
 export const SideBarProvider = ({ children }) => {
 
     const [sideBarOpen, setSideBarOpen] = useState(false)
@@ -15,7 +15,6 @@ export const SideBarProvider = ({ children }) => {
     useEffect(() => {
         setSideBarOpen(false)
     }, [location])
-    
 
 
     return (

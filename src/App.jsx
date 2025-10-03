@@ -14,7 +14,6 @@ import Setting from './pages/Setting'
 import Logout from './pages/Logout'
 import Leftbar from './components/Leftbar'
 import Navbar from './components/Navbar'
-import { useState } from 'react';
 
 const App = () => {
   return (

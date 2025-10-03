@@ -11,9 +11,10 @@ import PropertyIcon from '../../public/svg/Property.svg?react';
 import ReportIcon from '../../public/svg/Report.svg?react';
 import SettingIcon from '../../public/svg/Setting.svg?react';
 import TenantIcon from '../../public/svg/Tenant.svg?react';
+import useSideBar from '../context/SideBarContext';
+import Cross from '../../public/svg/Cross.svg?react';
 
-const leftBar = () => {
-
+const LeftBar = () => {
   const NavigationButton = [
     { Icon: AdminIcon, text: 'Dashboard', path: '/' },
     { Icon: AdminIcon, text: 'Admin Management', path: '/admin-management' },
@@ -28,48 +29,56 @@ const leftBar = () => {
     { Icon: ChatsIcon, text: 'Message/Notification', path: '/notification' },
     { Icon: SettingIcon, text: 'Setting & Confirguation', path: '/setting' },
     { Icon: LogoutIcon, text: 'Logout', path: '/logout' },
-
   ];
 
+  const { sideBarOpen, menuToggle } = useSideBar();
 
   return (
-    <div className='hidden lg:block bg-white w-[270px]  rounded-[20px] pt-10 px-3.5 pb-3.5'>
-      <h1 className='text-[41.47px] text-[#FF6A00]'>Aashiyana</h1>
-      <div className="w-[242px] ">
+    <>
+      <div onClick={menuToggle}
+        className={`fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
 
-        {NavigationButton.map((item, key) => (
-          <NavLink
-            key={key}
-            to={item.path}
-            className={({ isActive }) =>
-              `group flex items-center justify-between cursor-pointer p-[10px] rounded-[10px] my-1 transition-colors duration-200 
-              ${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'
-              }`
-            }
-          >
-            <item.Icon
-              className="h-[14px] w-[14px] text-gray-600 transition-colors duration-200 
-                         group-hover:text-black 
-                         group-[.active]:text-white"
-            />
+      <div className={`fixed top-0 left-0 z-50 h-screen w-[270px] bg-white rounded-r-2xl lg:rounded-2xl shadow-lg
+          transform transition-transform duration-200 ease-in-out
+          ${sideBarOpen ? 'translate-x-0' : '-translate-x-full'}
+          lg:static lg:translate-x-0 lg:shadow-none
+        `}
+      >
+        <div className="flex justify-between items-center pr-2 pt-4 lg:pt-10 px-3.5 pb-3.5">
+          <h1 className="text-[41.47px] text-[#FF6A00]">Aashiyana</h1>
+          <Cross
+            onClick={menuToggle}
+            className="lg:hidden h-6 w-6 bg-black text-white p-1 rounded-full cursor-pointer"
+          />
+        </div>
 
-            <p className='flex-1 text-start text-[13px] mx-4'>
-              {item.text}
-            </p>
-
-            <ArrowIcon
-              className="h-[12px] w-[10px] text-gray-400 transition-colors duration-200
-                         group-hover:text-black
-                         group-[.active]:text-white"
-            />
-          </NavLink>
-        ))}
-
-
-
+        <div className="lg:w-[242px] px-3">
+          {NavigationButton.map((item, key) => (
+            <NavLink
+              key={key}
+              to={item.path}
+              className={({ isActive }) =>
+                `group flex items-center justify-between cursor-pointer p-[10px] rounded-[10px] my-1 transition-colors duration-200 
+                ${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'}`
+              }
+            >
+              <item.Icon
+                className="h-[14px] w-[14px] text-gray-600 transition-colors duration-200 
+                           group-hover:text-black 
+                           group-[.active]:text-white"
+              />
+              <p className="flex-1 text-start text-[13px] mx-4">{item.text}</p>
+              <ArrowIcon
+                className="h-[12px] w-[10px] text-gray-400 transition-colors duration-200
+                           group-hover:text-black
+                           group-[.active]:text-white"
+              />
+            </NavLink>
+          ))}
+        </div>
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};
 
-export default leftBar
+export default LeftBar;

@@ -87,11 +87,11 @@ const PartnerPayout = () => {
 
   return (
     <div
-      className="bg-white py-8 px-2 pt-3 rounded-[12px] w-full lg:min-w-[68%] h-[300px]"  >
-      <div className="flex justify-between items-center px-3 lg:px-7">
-        <h4 className="text-[15px] font-semibold mb-3">
+      className="bg-white w-[810px] h-[270px] rounded-[14px] p-[20px] flex flex-col gap-2.5"  >
+      <div className="w-[770px] h-[30px] flex justify-between items-center">
+        <h5 className="text-[14px] text-black w-[174px] h-[21px]">
           Revenue Growth (In Lac)
-        </h4>
+        </h5>
         <select value={timeFrame} onChange={eventHandler}>
           <option value="2022-23">2022-23</option>
           <option value="2023-24">2023-24</option>
@@ -99,7 +99,7 @@ const PartnerPayout = () => {
           <option value="2025-26">2025-26</option>
         </select>
       </div>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer className={'w-[770px] h-[170px]'}>
         <BarChart
           data={dataToShow}
           margin={{

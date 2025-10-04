@@ -25,11 +25,13 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 export default function ComplaintCategory() {
     return (
-        <div  className=" bg-white py-8 px-4 pt-3 rounded-[12px] lg:min-w-[20%] h-[300px]">
-            <h4 className='lg:text-[15px] font-semibold mb-3 text-center'>Complaints Category Spread</h4>
-            <p className='text-[11px] text-center leading-0'>Visual breakdown of complaint types</p>
+        <div className=" bg-white p-[20px] flex flex-col justify-between  rounded-[14px] lg:min-w-[250px] h-[270px]">
+            <div className='w-[210px] h-[42px] gap-1.5 flex flex-col'>
+                <h5 className='lg:text-[14px] leading-[150%] tracking-[0%]  text-center'>Complaints Category Spread</h5>
+                <p className='text-[10px] text-[#838383]leading-[150%] tracking-[0%] text-center'>Visual breakdown of complaint types</p>
+            </div>
 
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer className={'w-[170px] h-[170px]'}>
                 <PieChart width={400} height={400}>
                     <Pie
                         data={data}

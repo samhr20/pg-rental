@@ -6,6 +6,39 @@
   font-weight:400;
   font-style: normal;
 }
+
+
+@font-face {
+  font-family: 'poppins';
+  src: url('/public/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight:400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'medium';
+  src: url('/public/fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight:500;
+  font-style: normal;
+}
+
 h1 {
   font-family: 'Qahiri', sans-serif;
+}
+
+p{
+  font-family: 'poppins' , sans-serif;
+}
+
+h5{
+  font-family: 'medium';
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
 }

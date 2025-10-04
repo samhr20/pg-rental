@@ -30,15 +30,15 @@ export default function PropertyVerification() {
     }
     const dataToShow = timeFrame === 'Monthly' ? Monthly : Weekly;
     return (
-        <div className=" bg-white py-8 px-4 pt-3 rounded-[12px] w-full h-[300px] lg:min-w-[30%]">
-            <div className='flex justify-between items-center '>
-                <h4 className='lg:text-[15px] font-semibold mb-3 text-center'>Property Verification Rate</h4>
-                <select value={timeFrame} onChange={eventHandler} >
+        <div className=" flex flex-col justify-between p-[20px] bg-white  rounded-[14px] h-[270px] w-[270px]">
+            <div className='w-[230px] h-[42px] flex justify-between items-center '>
+                <h5 className='lg:text-[14px] h-[42px] w-[117px] text-black'>Property Verification Rate</h5>
+                <select className='flex flex-row gap-2.5  w-[95px] h-[30px] rounded-[40px]' value={timeFrame} onChange={eventHandler} >
                     <option>Monthly</option>
                     <option>Weekly</option>
                 </select>
             </div>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer className={'w-[170px] h-[170px]'}>
                 <PieChart width={400} height={400}>
                     <Pie
                         data={dataToShow}

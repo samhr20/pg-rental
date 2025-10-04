@@ -7,19 +7,19 @@ import PropertyVerification from "../components/PropertyVerification"
 
 const Dashboard = () => {
   return (
-    <div className="lg:h-screen  overflow-x-hidden lg:overflow-y-scroll">
-      <div className='mt-5'>
-        <h3 className='text-[24px]'>Reports & Analytics</h3>
-        <p className='text-[12px] text-[#838383]'>Monitor platform performance, trends, and detailed statistics to improve decision-making.</p>
+    <div className="flex flex-col gap-[20px] lg:h-[660px] overflow-x-hidden lg:overflow-y-scroll ">
+      <div className='w-[542px] h-[54px] space-y-[6px] space-x-[6px]'>
+        <p className='text-[20px] text-[#000000] leading-[100%] tracking-[0%]'>Reports & Analytics</p>
+        <p className='text-[12px] text-[#838383] leading-[100%] tracking-[0%]'>Monitor platform performance, trends, and detailed statistics to improve decision-making.</p>
       </div>
 
       <DashboardGrid />
-      <div className="mt-4 lg:flex lg:justify-between lg:items-center gap-5 space-y-5 lg:space-y-0  ">
+      <div className="w-[1100px] h-[270px] lg:flex lg:justify-between lg:items-center gap-5 space-y-5 lg:space-y-0  ">
         <BookingTrend />
         <ComplaintCategory />
         <PartnerPayout />
       </div>
-      <div className="mt-4 lg:flex lg:justify-between lg:items-center gap-5 space-y-5 lg:space-y-0  ">
+      <div className="w-[1100px] h-[270px] lg:flex lg:justify-between lg:items-center gap-5 space-y-5 lg:space-y-0  ">
         <PropertyVerification />
         <RevenueGrowth />
       </div>

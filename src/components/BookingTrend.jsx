@@ -18,8 +18,8 @@ const data = [
 
 const BookingTrend = () => {
   return (
-    <div className="bg-white lg:py-8 py-4 px-3 lg:px-4 lg:pt-3 rounded-[12px] w-full lg:min-w-[42%] h-[300px]">
-      <h4 className="lg:text-[15px] font-semibold mb-3">Booking Trend</h4>
+    <div className="bg-white flex flex-col gap-[10px] lg:py-8 py-4 px-3 lg:px-[20px] rounded-[14px] w-full lg:min-w-[560px] h-[270px]">
+      <h5 className="lg:text-[14px] ">Booking Trend</h5>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}

@@ -101,15 +101,15 @@ const PartnerPayout = () => {
     }
     const dataToShow = timeFrame === 'Monthly' ? MonthlyData : WeeklyData ;
     return (
-        <div  className=" bg-white py-8 px-2 pt-3 rounded-[12px] lg:min-w-[35%] h-[300px] w-full">
-            <div className='flex justify-between items-center px-7'>
-                <h4 className='lg:text-[15px] font-semibold mb-3 '>Partner Payout Timeline</h4>
-                <select value={timeFrame} onChange={eventHandler} >
-                    <option>Monthly</option>
-                    <option>Weekly</option>
+        <div  className=" bg-white flex flex-col justify-between p-5 rounded-[14px] lg:min-w-[250px] h-[270px] ">
+            <div className='flex justify-between items-center w-[210px] h-[42]'>
+                <h5 className='lg:text-[14px] leading-[100%] tracling-[0%] w-[105px] h-[42px] '>Partner Payout Timeline</h5>
+                <select className='flex flex-col gap-2.5 w-[95px] h-[30px] rounded-[40px] px-2 pt-0.5' value={timeFrame} onChange={eventHandler} >
+                    <option><p className='text-[12px]'>Monthly</p></option>
+                    <option><p className='text-[12px]'>Weekly</p></option>
                 </select>
             </div>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer className={'w-[210px] h-[170px]'}>
                 <BarChart
                     width={500}
                     height={300}

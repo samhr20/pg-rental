@@ -17,9 +17,9 @@ import Navbar from './components/Navbar'
 
 const App = () => {
   return (
-    <div className="bg-[#F9F9F9]  flex lg:p-[20px] ">
+    <div className="bg-[#F9F9F9] overflow-hidden h-screen p-5 gap-5 flex lg:p-[20px] ">
       <Leftbar />
-      <div className='w-full lg:px-6 p-5 '>
+      <div className='space-y-[20px] space-x-[20px]'>
         <Navbar  />
         <main className="">
           <Routes>

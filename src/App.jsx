@@ -17,11 +17,11 @@ import Navbar from './components/Navbar'
 
 const App = () => {
   return (
-    <div className="bg-[#F9F9F9] overflow-hidden h-screen p-5 gap-5 flex lg:p-[20px] ">
+    <div className="bg-[#F9F9F9] h-screen p-5 gap-5 flex lg:p-[20px] overflow-hidden">
       <Leftbar />
-      <div className='space-y-[20px] space-x-[20px]'>
-        <Navbar  />
-        <main className="">
+      <div className='flex-1 flex flex-col gap-[20px] min-w-0 h-full'>
+        <Navbar />
+        <main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Dashboard/>} />
             <Route path="/admin-management" element={<AdminManagement />} />

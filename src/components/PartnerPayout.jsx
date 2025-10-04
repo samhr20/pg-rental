@@ -102,7 +102,7 @@ const PartnerPayout = () => {
     const dataToShow = timeFrame === 'Monthly' ? MonthlyData : WeeklyData ;
     return (
         <div  className=" bg-white flex flex-col justify-between p-5 rounded-[14px] lg:min-w-[250px] h-[270px] ">
-            <div className='flex justify-between items-center w-[210px] h-[42]'>
+            <div className='flex justify-between items-center w-full h-[42]'>
                 <h5 className='lg:text-[14px] leading-[100%] tracling-[0%] w-[105px] h-[42px] '>Partner Payout Timeline</h5>
                 <select className='flex flex-col gap-2.5 w-[95px] h-[30px] rounded-[40px] px-2 pt-0.5' value={timeFrame} onChange={eventHandler} >
                     <option><p className='text-[12px]'>Monthly</p></option>

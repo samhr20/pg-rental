@@ -15,16 +15,35 @@ const Dashboard = () => {
 
       <DashboardGrid />
 
-      <div className="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
-        <BookingTrend />
-        <ComplaintCategory />
-        <PartnerPayout />
+      <div className="w-full grid grid-cols-1 xl:grid-cols-8 gap-5">
+        <div className="col-span-4">
+          <BookingTrend />
+        </div>
+        <div className="col-span-2">
+          <ComplaintCategory />
+        </div>
+        <div className="col-span-2">
+          <PartnerPayout />
+        </div>
       </div>
 
-      <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <PropertyVerification />
-        <RevenueGrowth />
+      <div className="w-full grid grid-cols-1 xl:grid-cols-4  gap-5">
+        <div className="">
+          <PropertyVerification />
+        </div>
+        <div className="">
+          <RevenueGrowth />
+        </div>
       </div>
+      {/* <div className="w-full flex flex-wrap gap-5">
+        <div className="flex-1">
+          <PropertyVerification />
+        </div>
+        <div className="flex-1">
+          <RevenueGrowth />
+        </div>
+      </div> */}
+
 
     </div>
 

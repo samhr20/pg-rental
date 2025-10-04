@@ -69,7 +69,7 @@ const Year2025 = [
   { name: 'Dec', Num: 15 }
 ];
 
-const PartnerPayout = () => {
+const RevenueGrowth = () => {
   const [timeFrame, setTimeFrame] = useState("2025-26");
 
   const eventHandler = (e) => {
@@ -87,7 +87,7 @@ const PartnerPayout = () => {
 
   return (
     <div
-      className="bg-white w-[810px] h-[270px] rounded-[14px] p-[20px] flex flex-col gap-2.5"  >
+      className="bg-white min-w-[920px] h-[270px] rounded-[14px] p-[20px] flex flex-col gap-2.5"  >
       <div className="w-[770px] h-[30px] flex justify-between items-center">
         <h5 className="text-[14px] text-black w-[174px] h-[21px]">
           Revenue Growth (In Lac)
@@ -120,4 +120,4 @@ const PartnerPayout = () => {
   );
 };
 
-export default PartnerPayout;
+export default RevenueGrowth;

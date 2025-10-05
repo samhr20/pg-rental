@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="bg-[#F9F9F9] h-screen p-5 gap-5 flex lg:p-[20px] overflow-hidden">
       <Leftbar />
-      <div className='flex-1 flex flex-col gap-[20px] min-w-0 h-full'>
+      <div className='flex-1 flex flex-col gap-[20px] min-w-0 '>
         <Navbar />
         <main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden">
           <Routes>

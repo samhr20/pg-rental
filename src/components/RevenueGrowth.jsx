@@ -1,3 +1,9 @@
+export const applicationStyling = {
+  dashboard_Card_style : "bg-white min-w-[920px] h-[270px] rounded-[14px] p-[20px] flex flex-col gap-2.5",
+  sidebar_main_wrapper_style : "group flex items-center justify-between cursor-pointer w-[232px] h-[32px] p-[10px] rounded-[10px] mb-2.5 gap-[14px] transition-colors duration-200"
+}
+
+
 import React, { useState } from 'react';
 import {
   BarChart,
@@ -87,7 +93,7 @@ const RevenueGrowth = () => {
 
   return (
     <div
-      className="bg-white min-w-[920px] h-[270px] rounded-[14px] p-[20px] flex flex-col gap-2.5"  >
+      className= {applicationStyling.dashboard_Card_style}  >
       <div className="w-[770px] h-[30px] flex justify-between items-center">
         <h5 className="text-[14px] text-black w-[174px] h-[21px]">
           Revenue Growth (In Lac)

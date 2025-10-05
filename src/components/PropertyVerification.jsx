@@ -30,7 +30,7 @@ export default function PropertyVerification() {
     }
     const dataToShow = timeFrame === 'Monthly' ? Monthly : Weekly;
     return (
-        <div className=" flex flex-col justify-between p-[20px] bg-white  rounded-[14px] h-[270px] w-[270px]">
+        <div className=" flex flex-col justify-between p-[20px] bg-white  rounded-[14px] h-[270px] ">
             <div className='w-[230px] h-[42px] flex justify-between items-center '>
                 <h5 className='lg:text-[14px] h-[42px] w-[117px] text-black'>Property Verification Rate</h5>
                 <select className='flex flex-row gap-2.5  w-[95px] h-[30px] rounded-[40px]' value={timeFrame} onChange={eventHandler} >

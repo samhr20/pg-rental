@@ -13,6 +13,7 @@ import SettingIcon from '../../public/svg/Setting.svg?react';
 import TenantIcon from '../../public/svg/Tenant.svg?react';
 import useSideBar from '../context/SideBarContext';
 import Cross from '../../public/svg/Cross.svg?react';
+import styling, { applicationStyling } from '../components/RevenueGrowth';
 
 const LeftBar = () => {
   const NavigationButton = [
@@ -39,15 +40,15 @@ const LeftBar = () => {
   return (
     <>
       <div onClick={menuToggle}
-        className={`fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
+        className={`fixed inset-0 bg-black/50 z-60 lg:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
 
-      <div className={`fixed top-0 h-full left-0 z-50  overflow-y-auto overflow-x-hidden  w-[260px] lg:h-[700px] bg-white rounded-r-2xl lg:rounded-[20px] shadow-lg pt-10 px-3.5 pb-3.5 gap-2.5
-          transform transition-transform duration-200 ease-in-out
+      <div className={`${sideBarOpen ? 'show' : 'hide'}  fixed top-0 left-0 z-60   w-[260px]  bg-white rounded-r-2xl lg:rounded-[20px] shadow-lg pt-8 px-3.5 pb-3.5 gap-2.5
+          transform transition-transform duration-200 ease-in-out sm:flex flex-col
           ${sideBarOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:static lg:translate-x-0 lg:shadow-none
         `}
       >
-        <div className="flex justify-between items-center pr-2 pt-4 lg:pt-10 px-3.5 pb-3.5">
+        <div className="flex justify-between items-center pr-2 pt-2 px-3.5 pb-3.5">
           <h1 className="text-[45.47px] text-[#FF6A00]">Aashiyana</h1>
           <Cross
             onClick={menuToggle}
@@ -55,15 +56,15 @@ const LeftBar = () => {
           />
         </div>
 
-        <div className="lg:w-[232px]  lg:h-[644px] gap-2.5">
+        <div className="lg:w-[232px] overflow-y-auto overflow-x-hidden h-[auto]">
 
           {NavigationButton.map((item, key) => (
             <div key={key}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `group flex items-center justify-between cursor-pointer w-[232px] h-[32px] p-[10px] rounded-[10px] gap-[14px] transition-colors duration-200 
-                ${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'}`
+
+                  `${applicationStyling.sidebar_main_wrapper_style}${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'}`
                 }
               >
                 <item.Icon

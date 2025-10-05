@@ -94,6 +94,7 @@ const WeeklyData = [
     },
 ];
 
+
 const PartnerPayout = () => {
     const [timeFrame, setTimeFrame] = useState('Monthly')
     const eventHandler = (e) => {

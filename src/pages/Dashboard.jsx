@@ -15,7 +15,7 @@ const Dashboard = () => {
 
       <DashboardGrid />
 
-      <div className="hide w-full grid grid-cols-1 xl:grid-cols-8 gap-5">
+      <div className="hidden w-full size1280:grid grid-cols-1 xl:grid-cols-8 gap-5">
         <div className="col-span-4">
           <BookingTrend />
         </div>
@@ -27,7 +27,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="hide w-full grid grid-cols-1 xl:grid-cols-4  gap-5">
+      <div className=" hidden w-full size1280:grid grid-cols-1 xl:grid-cols-4  gap-5">
         <div className="col-span-1">
           <PropertyVerification />
         </div>
@@ -36,13 +36,13 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="hidden show ">
+      <div className="size1280:hidden hidden size1000:block ">
         <div className="flex flex-col">
           <div>
             <BookingTrend />
           </div>
 
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 size1000:grid-cols-4 gap-5">
             <div className="col-span-1">
               <ComplaintCategory />
             </div>
@@ -51,6 +51,32 @@ const Dashboard = () => {
             </div>
             <div className="col-span-1">
               <PropertyVerification />
+            </div>
+          </div>
+          <div>
+            <RevenueGrowth />
+          </div>
+        </div>
+
+      </div>
+
+      <div className="size1000:hidden ">
+        <div className="flex flex-col">
+          <div>
+            <BookingTrend />
+          </div>
+
+          <div className="grid grid-cols-1 size750:grid-cols-2 gap-5">
+            <div className="col-span-1">
+              <ComplaintCategory />
+            </div>
+            <div className="col-span-1">
+              <PropertyVerification />
+            </div>
+          </div>
+          <div>
+            <div className="col-span-2">
+              <PartnerPayout />
             </div>
           </div>
           <div>

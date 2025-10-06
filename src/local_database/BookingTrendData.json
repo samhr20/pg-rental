@@ -1,0 +1,14 @@
+[
+  { "name": "Jan", "Num": 4000 },
+  { "name": "Feb", "Num": 1000 },
+  { "name": "Mar", "Num": 2000 },
+  { "name": "Apr", "Num": 10000 },
+  { "name": "May", "Num": 100 },
+  { "name": "June", "Num": 0 },
+  { "name": "July", "Num": 500 },
+  { "name": "Aug", "Num": 1500 },
+  { "name": "Sep", "Num": 300 },
+  { "name": "Oct", "Num": 20000 },
+  { "name": "Nov", "Num": 15000 },
+  { "name": "Dec", "Num": 500 }
+]

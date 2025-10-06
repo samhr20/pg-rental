@@ -1,12 +1,6 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Text, Tooltip } from 'recharts';
+import useData from '../context/DashboardDataContext';
 
-const data = [
-    { name: 'Group A', value: 700 },
-    { name: 'Group B', value: 100 },
-    { name: 'Group C', value: 500 },
-    { name: 'Group D', value: 200 },
-    { name: 'Group E', value: 800 },
-];
 
 const RADIAN = Math.PI / 180;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6A00'];
@@ -24,6 +18,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 export default function ComplaintCategory() {
+    const {complaintCategory} = useData()
     return (
         <div className="bg-white p-[20px] flex flex-col justify-between rounded-[14px] w-full h-[270px] min-h-[270px]">
             <div className='w-full flex flex-col gap-1.5'>
@@ -35,7 +30,7 @@ export default function ComplaintCategory() {
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart width={400} height={400}>
                         <Pie
-                            data={data}
+                            data={complaintCategory}
                             cx="50%"
                             cy="50%"
                             labelLine={false}
@@ -46,7 +41,7 @@ export default function ComplaintCategory() {
                         >
                             <Tooltip />
 
-                            {data.map((entry, index) => (
+                            {complaintCategory.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>

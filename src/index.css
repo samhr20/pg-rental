@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+
+@theme {
+  --breakpoint-size360: 360px;
+  --breakpoint-size750: 750px;
+  --breakpoint-size1000: 1000px;
+  --breakpoint-size1280: 1280px;
+
+}
+
+
 @font-face {
   font-family: 'Qahiri';
   src: url('/fonts/Qahiri-Regular.ttf') format('truetype');
@@ -46,13 +56,4 @@ body {
 
 
 
-@media only screen and (max-width: 1280px) {
-  .hide {
-    display: none;
-  }
-
-  .show {
-    display: block;
-  }
-}
 

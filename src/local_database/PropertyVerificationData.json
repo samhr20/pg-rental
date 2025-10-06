@@ -1,0 +1,14 @@
+    {
+        "Monthly": [
+            {
+                "name": "Monthly",
+                "value": 700
+            }
+        ],
+        "Weekly": [
+            {
+                "name": "Weekly",
+                "value": 400
+            }
+        ]
+    }

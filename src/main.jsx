@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css'
 import App from './App.jsx'
 import { SideBarProvider } from './context/SideBarContext.jsx';
+import { DashboardDataProvider } from './context/DashboardDataContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <BrowserRouter>
-     <SideBarProvider>
-      <App />
-     </SideBarProvider>
+    <BrowserRouter>
+      <DashboardDataProvider>
+        <SideBarProvider>
+          <App />
+        </SideBarProvider>
+      </DashboardDataProvider>
     </BrowserRouter>
   </StrictMode>,
 )

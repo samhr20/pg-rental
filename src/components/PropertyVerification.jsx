@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Text, Tooltip } from 'recharts';
-
-const Monthly = [
-    { name: 'Monthly', value: 700 },
-];
-const Weekly = [
-    { name: 'Weekly', value: 400 },
-];
+import useData from '../context/DashboardDataContext';
 
 const RADIAN = Math.PI / 180;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6A00'];
@@ -24,11 +18,12 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 export default function PropertyVerification() {
+    const {propertyVerification} = useData()
     const [timeFrame, setTimeFrame] = useState('Monthly')
     const eventHandler = (e) => {
         setTimeFrame(e.target.value)
     }
-    const dataToShow = timeFrame === 'Monthly' ? Monthly : Weekly;
+    const dataToShow = timeFrame === 'Monthly' ? propertyVerification.Monthly : propertyVerification.Weekly;
     return (
         <div className=" flex flex-col justify-between p-[20px] bg-white  rounded-[14px] h-[270px] ">
             <div className='w-[230px] h-[42px] flex justify-between items-center '>

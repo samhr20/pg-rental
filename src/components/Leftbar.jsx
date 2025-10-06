@@ -40,14 +40,15 @@ const LeftBar = () => {
   return (
     <>
       <div onClick={menuToggle}
-        className={`fixed inset-0 bg-black/50 z-60 lg:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
+        className={`fixed inset-0 bg-black/50 z-60 size1000:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
 
-      <div className={`${sideBarOpen ? 'show' : 'hide'}  fixed top-0 left-0 z-60   w-[260px]  bg-white rounded-r-2xl lg:rounded-[20px] shadow-lg pt-8 px-3.5 pb-3.5 gap-2.5
-          transform transition-transform duration-200 ease-in-out sm:flex flex-col
+      <div className={` fixed top-0 left-0 z-60   w-[260px]  bg-white rounded-r-2xl size1000:rounded-[20px] shadow-lg pt-8 px-3.5 pb-3.5 gap-2.5
+          transform transition-transform duration-200 ease-in-out flex flex-col h-full
           ${sideBarOpen ? 'translate-x-0' : '-translate-x-full'}
-          lg:static lg:translate-x-0 lg:shadow-none
+          size1000:static size1000:translate-x-0 size1000:shadow-none
         `}
       >
+
         <div className="flex justify-between items-center pr-2 pt-2 px-3.5 pb-3.5">
           <h1 className="text-[45.47px] text-[#FF6A00]">Aashiyana</h1>
           <Cross
@@ -56,7 +57,7 @@ const LeftBar = () => {
           />
         </div>
 
-        <div className="lg:w-[232px] overflow-y-auto overflow-x-hidden h-[auto]">
+        <div className="size1000:w-[232px] overflow-y-auto overflow-x-hidden size1000:h-[auto]">
 
           {NavigationButton.map((item, key) => (
             <div key={key}>
@@ -64,7 +65,7 @@ const LeftBar = () => {
                 to={item.path}
                 className={({ isActive }) =>
 
-                  `${applicationStyling.sidebar_main_wrapper_style}${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'}`
+                  `$group flex items-center justify-between cursor-pointer w-[232px] h-[32px] p-[10px] rounded-[10px] mb-2.5 gap-[14px] transition-colors duration-200 ${isActive ? 'bg-[#FF6A00] text-white active' : 'text-gray-700 hover:bg-[#ff6a0041]'}`
                 }
               >
                 <item.Icon

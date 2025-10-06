@@ -14,68 +14,10 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-
-const Year2022 = [
-  { name: 'Jan', Num: 4 },
-  { name: 'Feb', Num: 1 },
-  { name: 'Mar', Num: 8 },
-  { name: 'Apr', Num: 9 },
-  { name: 'May', Num: 10 },
-  { name: 'June', Num: 20 },
-  { name: 'July', Num: 25 },
-  { name: 'Aug', Num: 70 },
-  { name: 'Sep', Num: 100 },
-  { name: 'Oct', Num: 50 },
-  { name: 'Nov', Num: 10 },
-  { name: 'Dec', Num: 15 }
-];
-
-const Year2023 = [
-  { name: 'Jan', Num: 8 },
-  { name: 'Feb', Num: 10 },
-  { name: 'Mar', Num: 8 },
-  { name: 'Apr', Num: 9 },
-  { name: 'May', Num: 100 },
-  { name: 'June', Num: 20 },
-  { name: 'July', Num: 25 },
-  { name: 'Aug', Num: 70 },
-  { name: 'Sep', Num: 100 },
-  { name: 'Oct', Num: 50 },
-  { name: 'Nov', Num: 10 },
-  { name: 'Dec', Num: 15 }
-];
-
-const Year2024 = [
-  { name: 'Jan', Num: 20 },
-  { name: 'Feb', Num: 1 },
-  { name: 'Mar', Num: 8 },
-  { name: 'Apr', Num: 9 },
-  { name: 'May', Num: 100 },
-  { name: 'June', Num: 20 },
-  { name: 'July', Num: 25 },
-  { name: 'Aug', Num: 90 },
-  { name: 'Sep', Num: 100 },
-  { name: 'Oct', Num: 50 },
-  { name: 'Nov', Num: 10 },
-  { name: 'Dec', Num: 15 }
-];
-
-const Year2025 = [
-  { name: 'Jan', Num: 4 },
-  { name: 'Feb', Num: 1 },
-  { name: 'Mar', Num: 8 },
-  { name: 'Apr', Num: 9 },
-  { name: 'May', Num: 105 },
-  { name: 'June', Num: 20 },
-  { name: 'July', Num: 250 },
-  { name: 'Aug', Num: 70 },
-  { name: 'Sep', Num: 100 },
-  { name: 'Oct', Num: 50 },
-  { name: 'Nov', Num: 104 },
-  { name: 'Dec', Num: 15 }
-];
+import useData from '../context/DashboardDataContext';
 
 const RevenueGrowth = () => {
+  const {revenueGrowth} = useData()
   const [timeFrame, setTimeFrame] = useState("2025-26");
 
   const eventHandler = (e) => {
@@ -84,12 +26,12 @@ const RevenueGrowth = () => {
 
   const dataToShow =
     timeFrame === "2022-23"
-      ? Year2022
+      ? revenueGrowth.Year2022
       : timeFrame === "2023-24"
-        ? Year2023
-        : timeFrame === "2024-25"
-          ? Year2024
-          : Year2025;
+        ? revenueGrowth.Year2023
+        : revenueGrowth.timeFrame === "2024-25"
+          ? revenueGrowth.Year2024
+          : revenueGrowth.Year2025;
 
   return (
     <div

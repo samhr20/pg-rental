@@ -4,10 +4,12 @@ import Rupee from '../../public/svg/Rupee.svg?react'
 import User from '../../public/svg/User.svg?react'
 import Property from '../../public/svg/Property.svg?react'
 import CashMove from '../../public/svg/CashMove.svg?react'
-import DashboardGridData from '../api/DashboardGridData.json'
+import useData from '../context/DashboardDataContext'
 
 
 const DashboardGrid = () => {
+
+    const {gridData} = useData()
 
     const iconComponent = {
         Booking: Booking,
@@ -20,7 +22,7 @@ const DashboardGrid = () => {
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-[20px] w-full'>
 
-            {DashboardGridData.map((data, key) => {
+            {gridData.map((data, key) => {
                 const IconComponent = iconComponent[data.icon];
                 return (
                     <div key={key} className='bg-white border border-[#EEEDED] gap-[14px] rounded-[14px] p-[20px] flex flex-col min-h-[155px]'>

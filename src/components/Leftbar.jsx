@@ -14,6 +14,7 @@ import TenantIcon from '../../public/svg/Tenant.svg?react';
 import useSideBar from '../context/SideBarContext';
 import Cross from '../../public/svg/Cross.svg?react';
 import styling, { applicationStyling } from '../components/RevenueGrowth';
+import useNewAdmin from '../context/AddNewAdminContext';
 
 const LeftBar = () => {
   const NavigationButton = [
@@ -33,6 +34,7 @@ const LeftBar = () => {
   ];
 
   const { sideBarOpen, menuToggle } = useSideBar();
+  const { adminToggle } = useNewAdmin()
   const location = useLocation()
 
 
@@ -40,9 +42,9 @@ const LeftBar = () => {
   return (
     <>
       <div onClick={menuToggle}
-        className={`fixed inset-0 bg-black/50 z-60 size1000:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
+        className={`fixed inset-0 bg-black/50 z-30 size1000:hidden transition-opacity duration-200 ${sideBarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} />
 
-      <div className={` fixed top-0 left-0 z-60   w-[260px]  bg-white rounded-r-2xl size1000:rounded-[20px] shadow-lg pt-8 px-3.5 pb-3.5 gap-2.5
+      <div className={` fixed top-0 left-0 z-40   w-[260px]  bg-white rounded-r-2xl size1000:rounded-[20px] shadow-lg pt-8 px-3.5 pb-3.5 gap-2.5
           transform transition-transform duration-200 ease-in-out flex flex-col h-full
           ${sideBarOpen ? 'translate-x-0' : '-translate-x-full'}
           size1000:static size1000:translate-x-0 size1000:shadow-none
@@ -83,17 +85,24 @@ const LeftBar = () => {
 
               {item.path === "/admin-management" && (
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out
+                  className={`overflow-hidden transition-all duration-500 ease-in-out 
                   ${location.pathname === "/admin-management" ? "max-h-40 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}
                       `}
                 >
-                  <div className="bg-[#F9F9F9] py-4 pr-2 my-3 rounded-2xl space-y-2">
-                    <span className="flex items-center justify-between cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg">
-                      <p className="text-start text-[13px] mx-4">Add New Admin</p>
+                  <div className="bg-[#F9F9F9] w-[232px] h-[90px] rounded-[10px] p-[10px] flex flex-col gap-2.5 mb-3">
+                    <span
+                      onClick={() => {
+                        adminToggle();
+                        menuToggle();
+                      }}
+
+
+                      className="flex items-center justify-between cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg">
+                      <p className="text-start text-[11px] mx-4">Add New Admin</p>
                       <ArrowIcon className="h-[12px] w-[10px] text-gray-400" />
                     </span>
                     <span className="flex items-center justify-between cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg">
-                      <p className="text-start text-[13px] mx-4">Manage Role & Permission</p>
+                      <p className="text-start text-[11px] mx-4">Manage Role & Permission</p>
                       <ArrowIcon className="h-[12px] w-[10px] text-gray-400" />
                     </span>
                   </div>

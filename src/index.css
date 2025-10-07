@@ -32,6 +32,19 @@
   font-style: normal;
 }
 
+.custom-qahiri {
+  font-family: 'Qahiri', sans-serif;
+}
+
+.custom-poppins {
+  font-family: 'poppins', sans-serif;
+}
+
+.custom-medium {
+  font-family: 'medium', sans-serif;
+}
+
+
 h1 {
   font-family: 'Qahiri', sans-serif;
 }
@@ -54,6 +67,8 @@ body {
   scrollbar-width: none;
 }
 
-
-
+.custombutton {
+  font-family: 'poppins', sans-serif;
+  @apply text-white text-[12px] rounded-[40px] py-[10px] px-[20px] cursor-pointer;
+}
 

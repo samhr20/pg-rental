@@ -5,13 +5,16 @@ import './index.css'
 import App from './App.jsx'
 import { SideBarProvider } from './context/SideBarContext.jsx';
 import { DashboardDataProvider } from './context/DashboardDataContext.jsx';
+import { AddNewAdminContextProvider } from './context/AddNewAdminContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <DashboardDataProvider>
         <SideBarProvider>
+          <AddNewAdminContextProvider>
           <App />
+          </AddNewAdminContextProvider>
         </SideBarProvider>
       </DashboardDataProvider>
     </BrowserRouter>

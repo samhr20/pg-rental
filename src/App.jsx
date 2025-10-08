@@ -15,13 +15,15 @@ import Logout from './pages/Logout'
 import Leftbar from './components/Leftbar'
 import Navbar from './components/Navbar'
 import AddNewAdmin from './components/AddNewAdmin';
+import ManageRoles from './pages/ManageRoles';
+import AddNewRole from './pages/AddNewRole';
 
 
 const App = () => {
   return (
     <>
-      <AddNewAdmin />
       <div className="bg-[#F9F9F9] h-screen p-5 gap-5 flex lg:p-[20px] overflow-hidden">
+        <AddNewAdmin />
         <Leftbar />
         <div className='flex-1 flex flex-col gap-[20px] min-w-0 '>
           <Navbar />
@@ -29,6 +31,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/admin-management" element={<AdminManagement />} />
+              <Route path="/admin-management/manage-roles" element={<ManageRoles />} />
+              <Route path="/admin-management/add-new-role" element={<AddNewRole />} />
               <Route path="/properties" element={<Properties />} />
               <Route path="/bookings" element={<Bookings />} />
               <Route path="/partner" element={<Partner />} />

@@ -77,40 +77,40 @@ const AdminManagement = () => {
       <hr className='border-[1px] border-[#EEEDED]' />
 
       <div className="border border-[#EEEDED] rounded-[20px] overflow-hidden">
-        <div className="overflow-x-auto">
+        <div className="overflow-y-auto max-h-[580px]">
           <table className="w-full custom-poppins border-collapse">
             <thead className="bg-[#FFECDE] sticky top-0 z-10">
-              <tr className="h-[46px] text-black text-left text-[12px]">
-                <th className="p-2.5 pl-[20px] font-normal">Admin ID</th>
-                <th className="font-normal p-2.5">Admin Name</th>
-                <th className="font-normal p-2.5">Phone</th>
-                <th className="font-normal p-2.5">Registered Email</th>
-                <th className="font-normal p-2.5">Role/Designation</th>
-                <th className="font-normal p-2.5">Last Login</th>
-                <th className="font-normal p-2.5">Status</th>
-                <th className="font-normal p-2.5">Actions</th>
+              <tr className="h-[46px] text-left text-black text-[12px]">
+                <th className="p-2.5 pl-6 font-normal">Admin ID</th>
+                <th className="p-2.5 font-normal">Admin Name</th>
+                <th className="p-2.5 font-normal">Phone</th>
+                <th className="p-2.5 font-normal">Registered Email</th>
+                <th className="p-2.5 font-normal">Role / Designation</th>
+                <th className="p-2.5 font-normal">Last Login</th>
+                <th className="p-2.5 font-normal">Status</th>
+                <th className="p-2.5 font-normal">Actions</th>
               </tr>
             </thead>
-          </table>
-        </div>
 
-        <div className="overflow-y-auto max-h-[500px]">
-          <table className="w-full custom-poppins border-collapse">
-            <tbody>
+            <tbody className="bg-white">
               {data.map((admin) => (
                 <tr
                   key={admin.id}
-                  className="border-b h-[38px] border-[#EDEDED] text-black bg-white"
+                  className=" h-[38px] border-[#EDEDED] text-black"
                 >
-                  <td className="text-[12px] p-2.5 pl-[20px]">#P10231</td>
+                  <td className="text-[12px] p-2.5 pl-6">#{admin.id}</td>
                   <td className="text-[12px] p-2.5">{admin.fullName}</td>
                   <td className="text-[12px] p-2.5">{admin.mobileNumber}</td>
                   <td className="text-[12px] p-2.5">{admin.email}</td>
                   <td className="text-[12px] p-2.5">{admin.role}</td>
-                  <td className="text-[12px] p-2.5">10 July 2025</td>
-                  <td className="text-[12px] p-2.5">Active</td>
-                  <td className="py-3 px-4">
-                    <div className="flex gap-3">
+                  <td className="text-[12px] p-2.5">21 June 2025</td>
+                  <td className="text-[12px] p-2.5">
+                    <span >
+                      Active
+                    </span>
+                  </td>
+                  <td className="p-2.5">
+                    <div className="flex items-center gap-3">
                       <Eye className="w-5 h-5 cursor-pointer text-[#5AC8FA] hover:scale-110 transition" />
                       <UserX className="w-5 h-5 cursor-pointer text-[#FF0000] hover:scale-110 transition" />
                     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useNewAdmin from "../context/AddNewAdminContext";
-
+import { useNavigate } from 'react-router-dom'; 
 const AddNewAdmin = () => {
   const { newAdminOpen, adminToggle, allAdminDetails, setAllAdminDetails } = useNewAdmin();
   const [image, setImage] = useState(null);
@@ -8,10 +8,22 @@ const AddNewAdmin = () => {
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [role, setRole] = useState('');
-
+  const navigate = useNavigate(); 
 
   const submitHandler = (e) => {
     e.preventDefault();
+    
+
+    const generateNewId = () => {
+      if (allAdminDetails.length === 0) {
+        return "P10231";
+      }
+
+      const lastAdmin = allAdminDetails[allAdminDetails.length - 1];
+      const lastIdNumber = parseInt(lastAdmin.id.substring(1));
+      const newIdNumber = lastIdNumber + 1;
+      return `P${newIdNumber}`;
+    };
 
     const newAdmin = {
       image: image,
@@ -19,18 +31,16 @@ const AddNewAdmin = () => {
       email: email,
       mobileNumber: mobileNumber,
       role: role,
-      id: Date.now()
+      id: generateNewId(),
     };
 
-    setAllAdminDetails(prev => [...prev, newAdmin]);
-
-    setFullName('');
-    setEmail('');
-    setMobileNumber('');
-    setRole('');
-    setImage(null);
+    setAllAdminDetails((prev) => [...prev, newAdmin]);
+    cancelButton()
+    navigate('/admin-management')
+  
 
   };
+
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];

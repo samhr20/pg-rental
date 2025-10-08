@@ -75,5 +75,5 @@ body {
 
 .customInput {
   font-family: 'poppins', sans-serif;
-  @apply w-full max-w-[290px] h-[48px] rounded-[40px] py-[10px] px-5  bg-[#F9F9F9]  text-[#838383] text-[12px] outline-none transition
+  @apply w-full max-w-[290px] h-[48px] rounded-[40px] py-[10px] px-5  bg-[#F9F9F9]  text-black text-[12px] outline-none transition
 }

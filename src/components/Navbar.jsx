@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import useSideBar from '../context/SideBarContext'
 const titles = {
   '/admin-management': 'Admin Management',
+  '/admin-management/manage-roles': 'Manage Roles & Permissions',
+  '/admin-management/add-new-role': 'Add New Role',
   '/properties': 'Properties',
   '/bookings': 'Bookings',
   '/partner': 'Partner',

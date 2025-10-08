@@ -87,6 +87,9 @@ const LeftBar = () => {
                 <div
                   className={`overflow-hidden transition-all duration-500 ease-in-out 
                   ${location.pathname === "/admin-management" ? "max-h-40 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}
+                  ${location.pathname === "/admin-management/manage-roles" ? "max-h-40 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}
+                  ${location.pathname === "/admin-management/add-new-role" ? "max-h-40 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}
+
                       `}
                 >
                   <div className="bg-[#F9F9F9] w-[232px] h-[90px] rounded-[10px] p-[10px] flex flex-col gap-2.5 mb-3">
@@ -101,10 +104,13 @@ const LeftBar = () => {
                       <p className="text-start text-[11px] mx-4">Add New Admin</p>
                       <ArrowIcon className="h-[12px] w-[10px] text-gray-400" />
                     </span>
-                    <span className="flex items-center justify-between cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg">
-                      <p className="text-start text-[11px] mx-4">Manage Role & Permission</p>
-                      <ArrowIcon className="h-[12px] w-[10px] text-gray-400" />
-                    </span>
+                    <NavLink
+                      to={'/admin-management/manage-roles'} >
+                      <span className="flex items-center justify-between cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-lg">
+                        <p className="text-start text-[11px] mx-4">Manage Role & Permission</p>
+                        <ArrowIcon className="h-[12px] w-[10px] text-gray-400" />
+                      </span>
+                    </NavLink>
                   </div>
                 </div>
               )}

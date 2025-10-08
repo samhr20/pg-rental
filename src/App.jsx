@@ -20,7 +20,7 @@ import AddNewAdmin from './components/AddNewAdmin';
 const App = () => {
   return (
     <>
-    <AddNewAdmin/>
+      <AddNewAdmin />
       <div className="bg-[#F9F9F9] h-screen p-5 gap-5 flex lg:p-[20px] overflow-hidden">
         <Leftbar />
         <div className='flex-1 flex flex-col gap-[20px] min-w-0 '>

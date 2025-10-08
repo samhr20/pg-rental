@@ -1,16 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useNewAdmin from "../context/AddNewAdminContext";
 
 const AddNewAdmin = () => {
-  const { newAdminOpen, adminToggle } = useNewAdmin();
-  const [imagePreview, setImagePreview] = useState(null);
+  const { newAdminOpen, adminToggle, allAdminDetails, setAllAdminDetails } = useNewAdmin();
+  const [image, setImage] = useState(null);
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [role, setRole] = useState('');
+
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const newAdmin = {
+      image: image,
+      fullName: fullName,
+      email: email,
+      mobileNumber: mobileNumber,
+      role: role,
+      id: Date.now()
+    };
+
+    setAllAdminDetails(prev => [...prev, newAdmin]);
+
+    setFullName('');
+    setEmail('');
+    setMobileNumber('');
+    setRole('');
+    setImage(null);
+
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImagePreview(URL.createObjectURL(file));
+      setImage(URL.createObjectURL(file));
     }
   };
+  const cancelButton = () => {
+    adminToggle()
+    setImage(null)
+    setFullName('')
+    setEmail('')
+    setMobileNumber('')
+    setRole('')
+  }
 
   return (
     <>
@@ -18,10 +53,7 @@ const AddNewAdmin = () => {
       <div
         className={`fixed inset-0 bg-black/80 z-50 transition-opacity duration-200 ${newAdminOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
-        onClick={() => {
-          adminToggle()
-          setImagePreview(null)
-        }}
+        onClick={cancelButton}
       />
 
       {/* Right Drawer */}
@@ -38,16 +70,16 @@ const AddNewAdmin = () => {
             Basic Information
           </p>
 
-          <form className="flex flex-col gap-5 ">
+          <form onSubmit={submitHandler} className="flex flex-col gap-5 ">
             {/* Profile Upload Box */}
             <div className="w-full max-w-[290px] h-[80px] bg-[#FFF5EE] border border-dashed border-[#FF7A00] rounded-[10px] flex flex-col justify-center items-center text-center p-[14px] cursor-pointer hover:bg-[#fff0e0] transition ">
               <label
                 htmlFor="fileUpload"
                 className="flex flex-col items-center justify-center w-full h-full gap-1.5 cursor-pointer"
               >
-                {imagePreview ? (
+                {image ? (
                   <img
-                    src={imagePreview}
+                    src={image}
                     alt="Profile Preview"
                     className="w-full h-full object-cover rounded-[10px]"
                   />
@@ -71,6 +103,7 @@ const AddNewAdmin = () => {
                 className="hidden"
                 accept="image/png, image/jpeg, image/jpg"
                 onChange={handleImageChange}
+                required
               />
             </div>
 
@@ -83,6 +116,8 @@ const AddNewAdmin = () => {
                 type="text"
                 placeholder="Enter Full Name"
                 className="customInput"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
               />
             </div>
 
@@ -95,6 +130,9 @@ const AddNewAdmin = () => {
                 type="email"
                 placeholder="role@example.com"
                 className="customInput"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -103,7 +141,14 @@ const AddNewAdmin = () => {
               <label className="text-[10px] custom-poppins">
                 Phone Number
               </label>
-              <input type="tel" placeholder="+91" className="customInput" />
+              <input
+                type="tel"
+                placeholder="+91"
+                className="customInput"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
+                required
+              />
             </div>
 
             {/* Role & Permission */}
@@ -113,11 +158,17 @@ const AddNewAdmin = () => {
                 <label className="text-[10px] custom-poppins">
                   Select Role
                 </label>
-                <select className="w-full max-w-[290px] h-[48px] rounded-[40px] border border-gray-300 text-[#838383] px-4 text-[12px] outline-none transition  bg-[#F9F9F9] custom-poppins cursor-pointer">
-                  <option>Super Admin</option>
-                  <option>Operation Manager</option>
-                  <option>Property Auditor</option>
-                  <option>Marketing Manager</option>
+                <select
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  required
+                  className="w-full max-w-[290px] h-[48px] rounded-[40px] border border-gray-300 text-[#838383] px-4 text-[12px] outline-none transition bg-[#F9F9F9] custom-poppins cursor-pointer"
+                >
+                  <option value="">Select Role</option>
+                  <option value="SuperAdmin">Super Admin</option>
+                  <option value="Operation Manager">Operation Manager</option>
+                  <option value="Property Auditor">Property Auditor</option>
+                  <option value="Marketing Manager">Marketing Manager</option>
                 </select>
               </div>
             </div>
@@ -128,10 +179,7 @@ const AddNewAdmin = () => {
                 type="button"
                 className="w-full max-w-[290px] h-[35px] rounded-[30px] border border-[#FF6A00] text-[#FF6A00]
                 custom-medium text-[14px]  hover:bg-[#fff1e8] transition cursor-pointer"
-                onClick={() => {
-                  adminToggle()
-                  setImagePreview(null)
-                }}
+                onClick={cancelButton}
               >
                 Cancel
               </button>

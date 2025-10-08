@@ -37,7 +37,7 @@
 }
 
 .custom-poppins {
-  font-family: 'poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .custom-medium {

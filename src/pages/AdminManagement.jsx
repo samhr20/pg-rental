@@ -21,7 +21,7 @@ const AdminManagement = () => {
 
 
   return (
-    <div className="flex h-full p-[30px] bg-white rounded-[20px] flex-col gap-[20px] ">
+    <div className="flex p-[30px] bg-white rounded-[20px] flex-col gap-[20px] ">
       <div className="flex justify-between items-center h-[40px]">
         <div className="relative min-w-[320px] rounded-[40px]  flex flex-col gap-2.5">
           <Search className="absolute w-6 h-6 top-1.5 left-2 text-orange-400" />
@@ -77,7 +77,7 @@ const AdminManagement = () => {
       <hr className='border-[1px] border-[#EEEDED]' />
 
       <div className="border border-[#EEEDED] rounded-[20px] overflow-hidden">
-        <div className="overflow-y-auto max-h-[580px]">
+        <div className="overflow-y-auto max-h-[345px]">
           <table className="w-full custom-poppins border-collapse">
             <thead className="bg-[#FFECDE] sticky top-0 z-10">
               <tr className="h-[46px] text-left text-black text-[12px]">

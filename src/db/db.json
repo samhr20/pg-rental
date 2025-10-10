@@ -1,0 +1,510 @@
+{
+  "BookingTrendData": [
+    {
+      "name": "Jan",
+      "Num": 4000
+    },
+    {
+      "name": "Feb",
+      "Num": 1000
+    },
+    {
+      "name": "Mar",
+      "Num": 2000
+    },
+    {
+      "name": "Apr",
+      "Num": 10000
+    },
+    {
+      "name": "May",
+      "Num": 100
+    },
+    {
+      "name": "June",
+      "Num": 0
+    },
+    {
+      "name": "July",
+      "Num": 500
+    },
+    {
+      "name": "Aug",
+      "Num": 1500
+    },
+    {
+      "name": "Sep",
+      "Num": 300
+    },
+    {
+      "name": "Oct",
+      "Num": 20000
+    },
+    {
+      "name": "Nov",
+      "Num": 15000
+    },
+    {
+      "name": "Dec",
+      "Num": 500
+    }
+  ],
+  "ComplaintCategoryData": [
+    {
+      "name": "Group A",
+      "value": 700
+    },
+    {
+      "name": "Group B",
+      "value": 100
+    },
+    {
+      "name": "Group C",
+      "value": 500
+    },
+    {
+      "name": "Group D",
+      "value": 200
+    },
+    {
+      "name": "Group E",
+      "value": 800
+    }
+  ],
+  "DashboardGridData": [
+    {
+      "icon": "Booking",
+      "textOne": "Total",
+      "textTwo": "Booking",
+      "data": 12545,
+      "number": 5,
+      "text": "% in this month",
+      "iconColor": "text-[#FF6A00]",
+      "iconBoxColor": "bg-[#FFEDD8]"
+    },
+    {
+      "icon": "Rupee",
+      "textOne": "Total",
+      "textTwo": "Revenue",
+      "data": "₹1529400",
+      "number": 8.2,
+      "text": "% in this month",
+      "iconColor": "text-[#000000]",
+      "iconBoxColor": "bg-[#E3F8EF]"
+    },
+    {
+      "icon": "User",
+      "textOne": "Active",
+      "textTwo": "Tenants",
+      "data": 820,
+      "number": 12,
+      "text": "new this week",
+      "iconColor": "text-[#026743]",
+      "iconBoxColor": "bg-[#E4F7EF]"
+    },
+    {
+      "icon": "Property",
+      "textOne": "Verified",
+      "textTwo": "Properties",
+      "data": 1252,
+      "number": 88,
+      "text": "pending",
+      "iconColor": "text-[#4E85E4]",
+      "iconBoxColor": "bg-[#F0F5FF]"
+    },
+    {
+      "icon": "CashMove",
+      "textOne": "Total Payouts",
+      "textTwo": "to Partners",
+      "data": "₹844000",
+      "number": 5,
+      "text": "% in this month",
+      "iconColor": "text-[#FF6A00]",
+      "iconBoxColor": "bg-[#FFEDD8]"
+    }
+  ],
+  "PartnerPayoutData": {
+    "MonthlyData": [
+      {
+        "name": "Jan",
+        "Num": 4000
+      },
+      {
+        "name": "Feb",
+        "Num": 1000
+      },
+      {
+        "name": "Mar",
+        "Num": 2000
+      },
+      {
+        "name": "Apr",
+        "Num": 10000
+      },
+      {
+        "name": "May",
+        "Num": 100
+      },
+      {
+        "name": "June",
+        "Num": 0
+      },
+      {
+        "name": "July",
+        "Num": 500
+      },
+      {
+        "name": "Aug",
+        "Num": 1500
+      },
+      {
+        "name": "Sep",
+        "Num": 300
+      },
+      {
+        "name": "Oct",
+        "Num": 20000
+      },
+      {
+        "name": "Nov",
+        "Num": 15000
+      },
+      {
+        "name": "Dec",
+        "Num": 500
+      }
+    ],
+    "WeeklyData": [
+      {
+        "name": "Mon",
+        "Num": 1000
+      },
+      {
+        "name": "Tue",
+        "Num": 200
+      },
+      {
+        "name": "Wed",
+        "Num": 500
+      },
+      {
+        "name": "Thu",
+        "Num": 100
+      },
+      {
+        "name": "Fri",
+        "Num": 1000
+      },
+      {
+        "name": "Sat",
+        "Num": 500
+      },
+      {
+        "name": "Sun",
+        "Num": 5000
+      }
+    ]
+  },
+  "PropertyVerificationData": {
+    "Monthly": [
+      {
+        "name": "Monthly",
+        "value": 700
+      }
+    ],
+    "Weekly": [
+      {
+        "name": "Weekly",
+        "value": 400
+      }
+    ]
+  },
+  "RevenueGrowthData": {
+    "Year2022": [
+      {
+        "name": "Jan",
+        "Num": 4
+      },
+      {
+        "name": "Feb",
+        "Num": 1
+      },
+      {
+        "name": "Mar",
+        "Num": 8
+      },
+      {
+        "name": "Apr",
+        "Num": 9
+      },
+      {
+        "name": "May",
+        "Num": 10
+      },
+      {
+        "name": "June",
+        "Num": 20
+      },
+      {
+        "name": "July",
+        "Num": 25
+      },
+      {
+        "name": "Aug",
+        "Num": 70
+      },
+      {
+        "name": "Sep",
+        "Num": 100
+      },
+      {
+        "name": "Oct",
+        "Num": 50
+      },
+      {
+        "name": "Nov",
+        "Num": 10
+      },
+      {
+        "name": "Dec",
+        "Num": 15
+      }
+    ],
+    "Year2023": [
+      {
+        "name": "Jan",
+        "Num": 8
+      },
+      {
+        "name": "Feb",
+        "Num": 10
+      },
+      {
+        "name": "Mar",
+        "Num": 8
+      },
+      {
+        "name": "Apr",
+        "Num": 9
+      },
+      {
+        "name": "May",
+        "Num": 100
+      },
+      {
+        "name": "June",
+        "Num": 20
+      },
+      {
+        "name": "July",
+        "Num": 25
+      },
+      {
+        "name": "Aug",
+        "Num": 70
+      },
+      {
+        "name": "Sep",
+        "Num": 100
+      },
+      {
+        "name": "Oct",
+        "Num": 50
+      },
+      {
+        "name": "Nov",
+        "Num": 10
+      },
+      {
+        "name": "Dec",
+        "Num": 15
+      }
+    ],
+    "Year2024": [
+      {
+        "name": "Jan",
+        "Num": 20
+      },
+      {
+        "name": "Feb",
+        "Num": 1
+      },
+      {
+        "name": "Mar",
+        "Num": 8
+      },
+      {
+        "name": "Apr",
+        "Num": 9
+      },
+      {
+        "name": "May",
+        "Num": 100
+      },
+      {
+        "name": "June",
+        "Num": 20
+      },
+      {
+        "name": "July",
+        "Num": 25
+      },
+      {
+        "name": "Aug",
+        "Num": 90
+      },
+      {
+        "name": "Sep",
+        "Num": 100
+      },
+      {
+        "name": "Oct",
+        "Num": 50
+      },
+      {
+        "name": "Nov",
+        "Num": 10
+      },
+      {
+        "name": "Dec",
+        "Num": 15
+      }
+    ],
+    "Year2025": [
+      {
+        "name": "Jan",
+        "Num": 4
+      },
+      {
+        "name": "Feb",
+        "Num": 1
+      },
+      {
+        "name": "Mar",
+        "Num": 8
+      },
+      {
+        "name": "Apr",
+        "Num": 9
+      },
+      {
+        "name": "May",
+        "Num": 105
+      },
+      {
+        "name": "June",
+        "Num": 20
+      },
+      {
+        "name": "July",
+        "Num": 250
+      },
+      {
+        "name": "Aug",
+        "Num": 70
+      },
+      {
+        "name": "Sep",
+        "Num": 100
+      },
+      {
+        "name": "Oct",
+        "Num": 50
+      },
+      {
+        "name": "Nov",
+        "Num": 104
+      },
+      {
+        "name": "Dec",
+        "Num": 15
+      }
+    ]
+  },
+  "AdminData": [
+    {
+      "Image": "blob:http://localhost:5173/477c94f4-2c9e-4111-bc53-252564f9d9b1",
+      "AdminId": "P10231",
+      "FullName": "Shubham saini",
+      "AdminPhone": "8278568770",
+      "AdminMail": "shubhamsaini8965@gmail.com",
+      "Role": "Admin management",
+      "LastLogin": "just now",
+      "Status": true,
+      "id": 1
+    },
+    {
+      "Image": "blob:http://localhost:5173/6f4f1ad6-8636-4e0f-940b-693536dd650a",
+      "AdminId": "P10232",
+      "FullName": "Manish Verma",
+      "AdminPhone": "8794561251",
+      "AdminMail": "manish@gmail.com",
+      "Role": "Membership Management",
+      "LastLogin": "just now",
+      "Status": false,
+      "id": 2
+    }
+  ],
+  "Roles": [
+    {
+      "Role": "Admin management",
+      "RoleDes": "Add, manage, and set permissions for admin users.",
+      "id": 1
+    },
+    {
+      "Role": "Properties Management",
+      "RoleDes": "Manage listing of all properties including add, edit, verify, block, delete, view.",
+      "id": 2
+    },
+    {
+      "Role": "Bookings Management",
+      "RoleDes": "View and manage all room/PG booking requests.",
+      "id": 3
+    },
+    {
+      "Role": "Partners Management",
+      "RoleDes": "Manage PG/room owners using the platform.",
+      "id": 4
+    },
+    {
+      "Role": "Tenants Management",
+      "RoleDes": "Manage users looking to book rooms/PGs.",
+      "id": 5
+    },
+    {
+      "Role": "Complaints Management",
+      "RoleDes": "Track and resolve tenant and partner complaints.",
+      "id": 6
+    },
+    {
+      "Role": "Transactions & Payouts",
+      "RoleDes": "View platform earnings, commissions, and withdrawals.",
+      "id": 7
+    },
+    {
+      "Role": "Reports & Analytics",
+      "RoleDes": "View downloadable and graphical reports on platform activity.",
+      "id": 8
+    },
+    {
+      "Role": "Promotions & Ads",
+      "RoleDes": "Promote partner properties or run banner ads.",
+      "id": 9
+    },
+    {
+      "Role": "Membership Management",
+      "RoleDes": "Handle subscription-based premium features.",
+      "id": 10
+    },
+    {
+      "Role": "Notifications Management",
+      "RoleDes": "Manage system-generated or manual notifications.",
+      "id": 11
+    },
+    {
+      "Role": "Settings & Configurations",
+      "RoleDes": "Platform-wide setup and configuration settings.",
+      "id": 12
+    }
+  ]
+}

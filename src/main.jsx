@@ -4,19 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css'
 import App from './App.jsx'
 import { SideBarProvider } from './context/SideBarContext.jsx';
-import { DashboardDataProvider } from './context/DashboardDataContext.jsx';
 import { AddNewAdminContextProvider } from './context/AddNewAdminContext.jsx';
+import { DataFetchProvider } from './context/DataFetchContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <DashboardDataProvider>
+      <DataFetchProvider>
         <SideBarProvider>
           <AddNewAdminContextProvider>
           <App />
           </AddNewAdminContextProvider>
         </SideBarProvider>
-      </DashboardDataProvider>
+      </DataFetchProvider>
     </BrowserRouter>
   </StrictMode>,
 )

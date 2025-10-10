@@ -5,26 +5,13 @@ export const AddNewAdminContext = createContext();
 
 export const AddNewAdminContextProvider = ({ children }) => {
     const [newAdminOpen, setNewAdminOpen] = useState(false);
-    const [allAdminDetails, setAllAdminDetails] = useState([]);
+    // const [allAdminDetails, setAllAdminDetails] = useState([])
 
     const location = useLocation();
 
     const adminToggle = () => {
         setNewAdminOpen((prev) => !prev);
     };
-
-    useEffect(() => {
-        const storedAdmins = localStorage.getItem("allAdminDetails");
-        if (storedAdmins) {
-            setAllAdminDetails(JSON.parse(storedAdmins));
-        }
-    }, []);
-
-    useEffect(() => {
-        if (allAdminDetails.length > 0) {
-            localStorage.setItem("allAdminDetails", JSON.stringify(allAdminDetails));
-        }
-    }, [allAdminDetails]);
 
     useEffect(() => {
         setNewAdminOpen(false);
@@ -35,8 +22,8 @@ export const AddNewAdminContextProvider = ({ children }) => {
             value={{
                 newAdminOpen,
                 adminToggle,
-                allAdminDetails,
-                setAllAdminDetails,
+                // allAdminDetails,
+                // setAllAdminDetails,
             }}
         >
             {children}

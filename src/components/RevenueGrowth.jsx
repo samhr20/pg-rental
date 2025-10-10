@@ -14,7 +14,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import useData from '../context/DashboardDataContext';
+import useData from '../context/DataFetchContext';
 
 const RevenueGrowth = () => {
   const {revenueGrowth} = useData()

@@ -1,7 +1,6 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import useData from '../context/DashboardDataContext';
-
+import useData from '../context/DataFetchContext';
 
 const BookingTrend = () => {
   const { bookingData } = useData()

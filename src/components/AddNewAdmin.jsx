@@ -1,45 +1,60 @@
 import React, { useEffect, useState } from "react";
 import useNewAdmin from "../context/AddNewAdminContext";
-import { useNavigate } from 'react-router-dom'; 
+import { data, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import useData from "../context/DataFetchContext";
+
 const AddNewAdmin = () => {
-  const { newAdminOpen, adminToggle, allAdminDetails, setAllAdminDetails } = useNewAdmin();
+  const { newAdminOpen, adminToggle } = useNewAdmin();
+  const { adminData, setAdminData, allRoles } = useData()
   const [image, setImage] = useState(null);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [role, setRole] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    
+
 
     const generateNewId = () => {
-      if (allAdminDetails.length === 0) {
+      if (adminData.length === 0) {
         return "P10231";
       }
 
-      const lastAdmin = allAdminDetails[allAdminDetails.length - 1];
-      const lastIdNumber = parseInt(lastAdmin.id.substring(1));
+      const lastAdmin = adminData[adminData.length - 1];
+      const lastIdNumber = parseInt(lastAdmin.AdminId.substring(1));
       const newIdNumber = lastIdNumber + 1;
       return `P${newIdNumber}`;
     };
 
-    const newAdmin = {
-      image: image,
-      fullName: fullName,
-      email: email,
-      mobileNumber: mobileNumber,
-      role: role,
-      id: generateNewId(),
-    };
 
-    setAllAdminDetails((prev) => [...prev, newAdmin]);
-    cancelButton()
-    navigate('/admin-management')
-  
+    const newAdmin = {
+      Image: image,
+      AdminId: generateNewId(),
+      FullName: fullName,
+      AdminPhone: mobileNumber,
+      AdminMail: email,
+      Role: role,
+      LastLogin: "just now",
+      Status: true
+    }
+
+    try {
+      const res = await axios.post('http://localhost:3000/AdminData', newAdmin)
+      setAdminData([...adminData, res.data])
+      console.log('hogya bhai');
+      cancelButton()
+      navigate('/admin-management')
+
+    } catch (error) {
+      console.error(error);
+
+    }
 
   };
+
 
 
   const handleImageChange = (e) => {
@@ -175,12 +190,18 @@ const AddNewAdmin = () => {
                   className="w-full max-w-[290px] h-[48px] rounded-[40px] border border-gray-300 text-[#838383] px-4 text-[12px] outline-none transition bg-[#F9F9F9] custom-poppins cursor-pointer"
                 >
                   <option value="">Select Role</option>
-                  <option value="SuperAdmin">Super Admin</option>
-                  <option value="Operation Manager">Operation Manager</option>
-                  <option value="Property Auditor">Property Auditor</option>
-                  <option value="Marketing Manager">Marketing Manager</option>
+                  {allRoles && allRoles.length > 0 ? (
+                    allRoles.map((item, index) => (
+                      <option key={index} value={item.Role}>
+                        {item.Role}
+                      </option>
+                    ))
+                  ) : (
+                    <option disabled>No roles available</option>
+                  )}
                 </select>
               </div>
+
             </div>
 
             {/* Buttons */}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Text, Tooltip } from 'recharts';
-import useData from '../context/DashboardDataContext';
+import useData from '../context/DataFetchContext';
 
 const RADIAN = Math.PI / 180;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6A00'];
@@ -23,6 +23,7 @@ export default function PropertyVerification() {
     const eventHandler = (e) => {
         setTimeFrame(e.target.value)
     }
+
     const dataToShow = timeFrame === 'Monthly' ? propertyVerification.Monthly : propertyVerification.Weekly;
     return (
         <div className=" flex flex-col justify-between p-[20px] bg-white  rounded-[14px] h-[270px] ">
@@ -47,7 +48,7 @@ export default function PropertyVerification() {
                     >
                         <Tooltip />
 
-                        {dataToShow.map((entry, index) => (
+                        {dataToShow && dataToShow.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                     </Pie>

@@ -4,7 +4,7 @@ import Rupee from '../../public/svg/Rupee.svg?react'
 import User from '../../public/svg/User.svg?react'
 import Property from '../../public/svg/Property.svg?react'
 import CashMove from '../../public/svg/CashMove.svg?react'
-import useData from '../context/DashboardDataContext'
+import useData from '../context/DataFetchContext'
 
 
 const DashboardGrid = () => {

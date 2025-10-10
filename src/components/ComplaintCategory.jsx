@@ -1,6 +1,5 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Text, Tooltip } from 'recharts';
-import useData from '../context/DashboardDataContext';
-
+import useData from '../context/DataFetchContext';
 
 const RADIAN = Math.PI / 180;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6A00'];

@@ -8,17 +8,20 @@ import Eye from '../../public/svg/Eye.svg?react'
 import UserX from '../../public/svg/UserX.svg?react'
 import LeftArrow from '../../public/svg/LeftArrow.svg?react'
 import RightArrow from '../../public/svg/RightArrow.svg?react'
+import useData from '../context/DataFetchContext'
 
 const AdminManagement = () => {
   const [search, setSearch] = useState('')
-  const { adminToggle, allAdminDetails } = useNewAdmin()
+  const { adminToggle  } = useNewAdmin()
+  const {adminData } = useData()
   const [postPerPage, setPostPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
   const lastPostIndex = postPerPage * currentPage;
   const firstPostIndex = lastPostIndex - postPerPage
 
-  const data = allAdminDetails.slice(firstPostIndex, lastPostIndex)
-
+  const data = adminData.slice(firstPostIndex, lastPostIndex)
+  const activeAdmin = adminData.filter((adminData)=>adminData.Status === true ).length ;
+  const inactiveAdmin = adminData.filter((adminData)=>adminData.Status === false).length ;
 
   return (
     <div className="flex p-[30px] bg-white rounded-[20px] flex-col gap-[20px] ">
@@ -48,21 +51,21 @@ const AdminManagement = () => {
           <div className='bg-[#FFF3E6] w-[150px] rounded-[14px]  py-2.5 px-5 flex flex-col  gap-1.5'>
             <p className='text-[12px]'>Total Admins</p>
             <div className=' relative flex  justify-between items-center'>
-              <p className='text-[#FF6A00] text-[20px]'>12</p>
+              <p className='text-[#FF6A00] text-[20px]'>{adminData.length}</p>
               <Navigate className={'absolute right-0 bottom-1 text-[#838383] w-[12.5px] h-[12.5px] border rounded-full p-[1.5px]'} />
             </div>
           </div>
           <div className='bg-[#E6F8EF] w-[150px] rounded-[14px]  py-2.5 px-5 flex flex-col  gap-1.5'>
             <p className='text-[12px]'>Active Admins</p>
             <div className=' relative flex  justify-between items-center'>
-              <p className='text-[#00B806] text-[20px]'>9</p>
+              <p className='text-[#00B806] text-[20px]'>{activeAdmin}</p>
               <Navigate className={'absolute right-0 bottom-1 text-[#838383] w-[12.5px] h-[12.5px] border rounded-full p-[1.5px]'} />
             </div>
           </div>
           <div className='bg-[#FFF3E6] w-[150px] rounded-[14px]  py-2.5 px-5 flex flex-col  gap-1.5'>
             <p className='text-[12px]'>Inactive Admins</p>
             <div className=' relative flex  justify-between items-center'>
-              <p className='text-[#FF6A00] text-[20px]'>3</p>
+              <p className='text-[#FF6A00] text-[20px]'>{inactiveAdmin}</p>
               <Navigate className={'absolute right-0 bottom-1 text-[#838383] w-[12.5px] h-[12.5px] border rounded-full p-[1.5px]'} />
             </div>
           </div>
@@ -93,26 +96,27 @@ const AdminManagement = () => {
             </thead>
 
             <tbody className="bg-white">
-              {data.map((admin) => (
+              { data.map((admin) => (
                 <tr
-                  key={admin.id}
+                  key={admin.AdminId}
                   className=" h-[38px] border-[#EDEDED] text-black"
                 >
-                  <td className="text-[12px] p-2.5 pl-6">#{admin.id}</td>
-                  <td className="text-[12px] p-2.5">{admin.fullName}</td>
-                  <td className="text-[12px] p-2.5">{admin.mobileNumber}</td>
-                  <td className="text-[12px] p-2.5">{admin.email}</td>
-                  <td className="text-[12px] p-2.5">{admin.role}</td>
-                  <td className="text-[12px] p-2.5">21 June 2025</td>
+                  <td className="text-[12px] p-2.5 pl-6">#{admin.AdminId}</td>
+                  <td className="text-[12px] p-2.5">{admin.FullName}</td>
+                  <td className="text-[12px] p-2.5">{admin.AdminPhone}</td>
+                  <td className="text-[12px] p-2.5">{admin.AdminMail}</td>
+                  <td className="text-[12px] p-2.5">{admin.Role}</td>
+                  <td className="text-[12px] p-2.5">{admin.LastLogin}</td>
                   <td className="text-[12px] p-2.5">
-                    <span >
-                      Active
+                    <span > {admin.Status === true ? 'Active' : 'Offline'}
                     </span>
                   </td>
                   <td className="p-2.5">
                     <div className="flex items-center gap-3">
                       <Eye className="w-5 h-5 cursor-pointer text-[#5AC8FA] hover:scale-110 transition" />
-                      <UserX className="w-5 h-5 cursor-pointer text-[#FF0000] hover:scale-110 transition" />
+                      <UserX className="w-5 h-5 cursor-pointer text-[#FF0000] hover:scale-110 transition" 
+                      />
+
                     </div>
                   </td>
                 </tr>
@@ -155,7 +159,7 @@ const AdminManagement = () => {
           {/* PAGE NUMBERS */}
           <div className="flex items-center gap-1">
             {Array.from(
-              { length: Math.ceil(allAdminDetails.length / postPerPage) },
+              { length: Math.ceil(adminData.length / postPerPage) },
               (_, i) => i + 1
             ).map((pageNum) => (
               <button
@@ -173,13 +177,13 @@ const AdminManagement = () => {
 
           {/* RIGHT ARROW */}
           <button
-            disabled={currentPage === Math.ceil(allAdminDetails.length / postPerPage)}
+            disabled={currentPage === Math.ceil(adminData.length / postPerPage)}
             onClick={() =>
               setCurrentPage((prev) =>
-                Math.min(prev + 1, Math.ceil(allAdminDetails.length / postPerPage))
+                Math.min(prev + 1, Math.ceil(adminData.length / postPerPage))
               )
             }
-            className={`bg-[#F9F9F9] rounded-[10px] p-2.5 ${currentPage === Math.ceil(allAdminDetails.length / postPerPage)
+            className={`bg-[#F9F9F9] rounded-[10px] p-2.5 ${currentPage === Math.ceil(adminData.length / postPerPage)
               ? "opacity-50 cursor-not-allowed"
               : "hover:bg-[#FFE9D7]"
               }`}

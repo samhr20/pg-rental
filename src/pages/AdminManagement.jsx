@@ -9,19 +9,20 @@ import UserX from '../../public/svg/UserX.svg?react'
 import LeftArrow from '../../public/svg/LeftArrow.svg?react'
 import RightArrow from '../../public/svg/RightArrow.svg?react'
 import useData from '../context/DataFetchContext'
+import { newAdminSchema } from '../helpers/user_enum'
 
 const AdminManagement = () => {
   const [search, setSearch] = useState('')
-  const { adminToggle  } = useNewAdmin()
-  const {adminData } = useData()
+  const { adminToggle } = useNewAdmin()
+  const { adminData } = useData()
   const [postPerPage, setPostPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
   const lastPostIndex = postPerPage * currentPage;
   const firstPostIndex = lastPostIndex - postPerPage
 
   const data = adminData.slice(firstPostIndex, lastPostIndex)
-  const activeAdmin = adminData.filter((adminData)=>adminData.Status === true ).length ;
-  const inactiveAdmin = adminData.filter((adminData)=>adminData.Status === false).length ;
+  const activeAdmin = adminData.filter((adminData) => adminData[newAdminSchema.Status] === true).length;
+  const inactiveAdmin = adminData.filter((adminData) => adminData[newAdminSchema.Status] === false).length;
 
   return (
     <div className="flex p-[30px] bg-white rounded-[20px] flex-col gap-[20px] ">
@@ -96,32 +97,46 @@ const AdminManagement = () => {
             </thead>
 
             <tbody className="bg-white">
-              { data.map((admin) => (
-                <tr
-                  key={admin.AdminId}
-                  className=" h-[38px] border-[#EDEDED] text-black"
-                >
-                  <td className="text-[12px] p-2.5 pl-6">#{admin.AdminId}</td>
-                  <td className="text-[12px] p-2.5">{admin.FullName}</td>
-                  <td className="text-[12px] p-2.5">{admin.AdminPhone}</td>
-                  <td className="text-[12px] p-2.5">{admin.AdminMail}</td>
-                  <td className="text-[12px] p-2.5">{admin.Role}</td>
-                  <td className="text-[12px] p-2.5">{admin.LastLogin}</td>
-                  <td className="text-[12px] p-2.5">
-                    <span > {admin.Status === true ? 'Active' : 'Offline'}
-                    </span>
+              {data.map((admin) => (
+                <tr key={admin[newAdminSchema.AdminId]} className="h-[38px] border-[#EDEDED] text-black">
+                  <td className="text-[12px] p-2.5 pl-6">
+                    #{admin[newAdminSchema.AdminId]}
                   </td>
+
+                  <td className="text-[12px] p-2.5">
+                    {admin[newAdminSchema.FullName]}
+                  </td>
+
+                  <td className="text-[12px] p-2.5">
+                    {admin[newAdminSchema.AdminPhone]}
+                  </td>
+
+                  <td className="text-[12px] p-2.5">
+                    {admin[newAdminSchema.AdminMail]}
+                  </td>
+
+                  <td className="text-[12px] p-2.5">
+                    {admin[newAdminSchema.Role]}
+                  </td>
+
+                  <td className="text-[12px] p-2.5">
+                    {admin[newAdminSchema.LastLogin]}
+                  </td>
+
+                  <td className="text-[12px] p-2.5">
+                    {admin[newAdminSchema.Status] ? "Active" : "Offline"}
+                  </td>
+
                   <td className="p-2.5">
                     <div className="flex items-center gap-3">
                       <Eye className="w-5 h-5 cursor-pointer text-[#5AC8FA] hover:scale-110 transition" />
-                      <UserX className="w-5 h-5 cursor-pointer text-[#FF0000] hover:scale-110 transition" 
-                      />
-
+                      <UserX className="w-5 h-5 cursor-pointer text-[#FF0000] hover:scale-110 transition" />
                     </div>
                   </td>
                 </tr>
               ))}
             </tbody>
+
           </table>
         </div>
       </div>

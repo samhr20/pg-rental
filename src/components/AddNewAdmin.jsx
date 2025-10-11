@@ -3,6 +3,7 @@ import useNewAdmin from "../context/AddNewAdminContext";
 import { data, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import useData from "../context/DataFetchContext";
+import { newAdminSchema, rolesSchema } from "../helpers/user_enum";
 
 const AddNewAdmin = () => {
   const { newAdminOpen, adminToggle } = useNewAdmin();
@@ -30,21 +31,21 @@ const AddNewAdmin = () => {
     };
 
 
-    const newAdmin = {
-      Image: image,
-      AdminId: generateNewId(),
-      FullName: fullName,
-      AdminPhone: mobileNumber,
-      AdminMail: email,
-      Role: role,
-      LastLogin: "just now",
-      Status: true
-    }
+    const newAdmin = {}
+    newAdmin[newAdminSchema.AdminId] = generateNewId();
+    newAdmin[newAdminSchema.FullName] = fullName;
+    newAdmin[newAdminSchema.AdminPhone] = mobileNumber;
+    newAdmin[newAdminSchema.AdminMail] = email;
+    newAdmin[newAdminSchema.Image] = image;
+    newAdmin[newAdminSchema.Role] = role;
+    newAdmin[newAdminSchema.LastLogin] = "Just Now";
+    newAdmin[newAdminSchema.Status] = true
+
+
 
     try {
       const res = await axios.post('http://localhost:3000/AdminData', newAdmin)
       setAdminData([...adminData, res.data])
-      console.log('hogya bhai');
       cancelButton()
       navigate('/admin-management')
 
@@ -191,9 +192,9 @@ const AddNewAdmin = () => {
                 >
                   <option value="">Select Role</option>
                   {allRoles && allRoles.length > 0 ? (
-                    allRoles.map((item, index) => (
-                      <option key={index} value={item.Role}>
-                        {item.Role}
+                    allRoles.map((item) => (
+                      <option key={item[rolesSchema.id]} value={item[rolesSchema.role]}>
+                        {item[rolesSchema.role]}
                       </option>
                     ))
                   ) : (

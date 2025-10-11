@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Text, Tooltip } from 'recharts';
 import useData from '../context/DataFetchContext';
+import { propertyVerificationDataSchema, propertyVerificationMonthlyDataSchema } from '../helpers/user_enum';
 
 const RADIAN = Math.PI / 180;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6A00'];
@@ -24,7 +25,7 @@ export default function PropertyVerification() {
         setTimeFrame(e.target.value)
     }
 
-    const dataToShow = timeFrame === 'Monthly' ? propertyVerification.Monthly : propertyVerification.Weekly;
+    const dataToShow = timeFrame === 'Monthly' ? propertyVerification[propertyVerificationDataSchema.Monthly] : propertyVerification[propertyVerificationDataSchema.Weekly];
     return (
         <div className=" flex flex-col justify-between p-[20px] bg-white  rounded-[14px] h-[270px] ">
             <div className='w-[230px] h-[42px] flex justify-between items-center '>
@@ -44,7 +45,7 @@ export default function PropertyVerification() {
                         label={renderCustomizedLabel}
                         outerRadius={85}
                         fill="#8884d8"
-                        dataKey="value"
+                        dataKey={`${propertyVerificationMonthlyDataSchema.value}`}
                     >
                         <Tooltip />
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import useData from '../context/DataFetchContext';
+import { bookingTrendDataSchema } from '../helpers/user_enum';
 
 const BookingTrend = () => {
   const { bookingData } = useData()
@@ -19,7 +20,7 @@ const BookingTrend = () => {
             <Tooltip />
             <Area
               type="monotone"
-              dataKey="Num"
+              dataKey={`${bookingTrendDataSchema.Num}`}
               stroke="#FF6A00"
               fill="#FF6A00"
               fillOpacity={0.3}

@@ -324,20 +324,130 @@
   "AdminData": [
     {
       "AdminId": "P10231",
-      "FullName": "Shubham",
+      "FullName": "Shubham Saini",
       "AdminPhone": "8278568770",
       "AdminMail": "shubhamsaini8965@gmail.com",
-      "Image": "blob:http://localhost:5173/93b4d8d2-2c50-4b02-9e43-66a34d963798",
+      "Image": "blob:http://localhost:5173/bec675d3-c7b8-4814-b1b6-491ac4ecd36f",
       "Role": "Super Admin",
       "LastLogin": "Just Now",
       "Status": true,
       "id": 1
+    },
+    {
+      "AdminId": "P10232",
+      "FullName": "Manish Verma",
+      "AdminPhone": "7894561235",
+      "AdminMail": "manishverma@gmail.com",
+      "Image": null,
+      "Role": "Super Admin",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 2
+    },
+    {
+      "AdminId": "P10233",
+      "FullName": "Lalit Saini",
+      "AdminPhone": "8521479635",
+      "AdminMail": "lalitsaini@gmail.com",
+      "Image": "blob:http://localhost:5173/d8aa3200-2a1c-4f35-8b42-abd8d78aba3a",
+      "Role": "Super Admin",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 3
+    },
+    {
+      "AdminId": "P10234",
+      "FullName": "Rahul Saini",
+      "AdminPhone": "78951496325",
+      "AdminMail": "rahulsaini@gmail.com",
+      "Image": "blob:http://localhost:5173/dd067e7c-679c-4c21-b53e-f28a702e2719",
+      "Role": "Property Manager",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 4
+    },
+    {
+      "AdminId": "P10235",
+      "FullName": "Deepak ",
+      "AdminPhone": "1594786592",
+      "AdminMail": "deepak@gmail.com",
+      "Image": "blob:http://localhost:5173/5908f26e-9fc0-499d-a99b-0090a72a98da",
+      "Role": "Property Manager",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 5
+    },
+    {
+      "AdminId": "P10236",
+      "FullName": "Devender Saini",
+      "AdminPhone": "4568971549",
+      "AdminMail": "devendersaini@gmail.com",
+      "Image": "blob:http://localhost:5173/3d40950d-13ea-4b0d-a3a3-fc7edcc9f649",
+      "Role": "Property Manager",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 6
+    },
+    {
+      "AdminId": "P10237",
+      "FullName": "Ankush Saini",
+      "AdminPhone": "1545624783",
+      "AdminMail": "ankush@gmail.com",
+      "Image": "blob:http://localhost:5173/00222c54-9568-4f33-8102-b5fa0870dbe3",
+      "Role": "Property Manager",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 7
+    },
+    {
+      "AdminId": "P10238",
+      "FullName": "Jyoti Saini",
+      "AdminPhone": "8221931634",
+      "AdminMail": "jyoti@gmail.com",
+      "Image": "blob:http://localhost:5173/0da918c6-2a63-4c37-a240-35ed3fba6c80",
+      "Role": "Property Manager",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 8
+    },
+    {
+      "AdminId": "P10239",
+      "FullName": "Pardeep Verma",
+      "AdminPhone": "7894561235",
+      "AdminMail": "pardeep@gmail.com",
+      "Image": "blob:http://localhost:5173/fbade53b-a506-4aab-83ef-4089c9c41ac3",
+      "Role": "Support Staff",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 9
+    },
+    {
+      "AdminId": "P10240",
+      "FullName": "Jai Parkash",
+      "AdminPhone": "45678945655",
+      "AdminMail": "jaiparkash@gmail.com",
+      "Image": "blob:http://localhost:5173/1ea7f243-5e38-44a6-a27a-8e25309d50e8",
+      "Role": "Support Staff",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 10
+    },
+    {
+      "AdminId": "P10241",
+      "FullName": "Premlata",
+      "AdminPhone": "8221931638",
+      "AdminMail": "premlata@gmail.com",
+      "Image": "blob:http://localhost:5173/72bceee3-4490-420f-b6f3-a3960ef5b7f2",
+      "Role": "Finance Analyst",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 11
     }
   ],
   "Roles": [
     {
       "role": "Super Admin",
-      "roleDes": "Full access to all Features..",
+      "roleDes": "Full Access to all features",
       "createdOn": "12 Oct 2025",
       "activeStatus": true,
       "permissions": [
@@ -474,7 +584,430 @@
           }
         }
       ],
+      "id": 1
+    },
+    {
+      "role": "Property Manager",
+      "roleDes": "Manage Properties and Bookings",
+      "createdOn": "2 Oct 2025",
+      "activeStatus": true,
+      "permissions": [
+        {
+          "module": "Admin Management",
+          "moduleDes": "Add, manage, and set permissions for admin users.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Properties Management",
+          "moduleDes": "Manage listing of all properties including add, edit, verify, block, delete, view.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Bookings Management",
+          "moduleDes": "View and manage all room/PG booking requests.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Partners Management",
+          "moduleDes": "Manage PG/room owners using the platform.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Tenants Management",
+          "moduleDes": "Manage users looking to book rooms/PGs.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Complaints Management",
+          "moduleDes": "Track and resolve tenant and partner complaints.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Transactions & Payouts",
+          "moduleDes": "View platform earnings, commissions, and withdrawals.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Reports & Analytics",
+          "moduleDes": "View downloadable and graphical reports on platform activity.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Promotions & Ads",
+          "moduleDes": "Promote partner properties or run banner ads.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Membership Management",
+          "moduleDes": "Handle subscription-based premium features.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Notifications Management",
+          "moduleDes": "Manage system-generated or manual notifications.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Settings & Configurations",
+          "moduleDes": "Platform-wide setup and configuration settings.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        }
+      ],
       "id": 2
+    },
+    {
+      "role": "Support Staff",
+      "roleDes": "Handle complaints and queries",
+      "createdOn": "12 Oct 2025",
+      "activeStatus": true,
+      "permissions": [
+        {
+          "module": "Admin Management",
+          "moduleDes": "Add, manage, and set permissions for admin users.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Properties Management",
+          "moduleDes": "Manage listing of all properties including add, edit, verify, block, delete, view.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Bookings Management",
+          "moduleDes": "View and manage all room/PG booking requests.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Partners Management",
+          "moduleDes": "Manage PG/room owners using the platform.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Tenants Management",
+          "moduleDes": "Manage users looking to book rooms/PGs.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Complaints Management",
+          "moduleDes": "Track and resolve tenant and partner complaints.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Transactions & Payouts",
+          "moduleDes": "View platform earnings, commissions, and withdrawals.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Reports & Analytics",
+          "moduleDes": "View downloadable and graphical reports on platform activity.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Promotions & Ads",
+          "moduleDes": "Promote partner properties or run banner ads.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Membership Management",
+          "moduleDes": "Handle subscription-based premium features.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Notifications Management",
+          "moduleDes": "Manage system-generated or manual notifications.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Settings & Configurations",
+          "moduleDes": "Platform-wide setup and configuration settings.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        }
+      ],
+      "id": 3
+    },
+    {
+      "role": "Finance Analyst",
+      "roleDes": "View Earnings & Refunds Processing",
+      "createdOn": "10 Oct 2025",
+      "activeStatus": true,
+      "permissions": [
+        {
+          "module": "Admin Management",
+          "moduleDes": "Add, manage, and set permissions for admin users.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Properties Management",
+          "moduleDes": "Manage listing of all properties including add, edit, verify, block, delete, view.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Bookings Management",
+          "moduleDes": "View and manage all room/PG booking requests.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Partners Management",
+          "moduleDes": "Manage PG/room owners using the platform.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Tenants Management",
+          "moduleDes": "Manage users looking to book rooms/PGs.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Complaints Management",
+          "moduleDes": "Track and resolve tenant and partner complaints.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Transactions & Payouts",
+          "moduleDes": "View platform earnings, commissions, and withdrawals.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Reports & Analytics",
+          "moduleDes": "View downloadable and graphical reports on platform activity.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Promotions & Ads",
+          "moduleDes": "Promote partner properties or run banner ads.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Membership Management",
+          "moduleDes": "Handle subscription-based premium features.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Notifications Management",
+          "moduleDes": "Manage system-generated or manual notifications.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        },
+        {
+          "module": "Settings & Configurations",
+          "moduleDes": "Platform-wide setup and configuration settings.",
+          "features": {
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "status": false
+          }
+        }
+      ],
+      "id": 4
     }
   ]
 }

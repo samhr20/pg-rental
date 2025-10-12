@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import useData from '../context/DataFetchContext';
 import { partnerPayoutDataMonthlySchema, partnerPayoutDataSchema } from '../helpers/user_enum';
+import useDashboard from '../context/DashboardContext';
 
 
 
 const PartnerPayout = () => {
     const [timeFrame, setTimeFrame] = useState('Monthly')
-    const { partnerPayout } = useData()
+    const { partnerPayout } = useDashboard()
     const eventHandler = (e) => {
         setTimeFrame(e.target.value)
     }

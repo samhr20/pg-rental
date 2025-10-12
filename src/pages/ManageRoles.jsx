@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import NoRole from '../../public/svg/NoRole.svg?react'
 import { Link, NavLink } from 'react-router-dom'
-import useData from '../context/DataFetchContext'
 import Search from '../../public/svg/Search.svg?react'
 import Filter from '../../public/svg/Filter.svg?react'
 import Refresh from '../../public/svg/Refresh.svg?react'
+import useAdminManagement from '../context/AdminManagementContext'
 
 const ManageRoles = () => {
-    const { allRoles } = useData()
+    const { allRoles } = useAdminManagement()
     const [search, setSearch] = useState('')
     return (
         <>

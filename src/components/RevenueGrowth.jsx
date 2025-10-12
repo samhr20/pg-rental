@@ -14,11 +14,11 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import useData from '../context/DataFetchContext';
 import { revenueGrowth2024DataSchema, revenueGrowthDataSchema } from '../helpers/user_enum';
+import useDashboard from '../context/DashboardContext';
 
 const RevenueGrowth = () => {
-  const { revenueGrowth } = useData()
+  const { revenueGrowth } = useDashboard()
   const [timeFrame, setTimeFrame] = useState("2025-26");
 
   const eventHandler = (e) => {

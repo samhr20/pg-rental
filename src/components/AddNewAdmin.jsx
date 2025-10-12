@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import useNewAdmin from "../context/AddNewAdminContext";
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import useData from "../context/DataFetchContext";
 import { newAdminSchema, rolesSchema } from "../helpers/user_enum";
+import useAdminManagement from "../context/AdminManagementContext";
 
 const AddNewAdmin = () => {
-  const { newAdminOpen, adminToggle } = useNewAdmin();
-  const { adminData, setAdminData, allRoles } = useData()
+  const { newAdminOpen, adminToggle } = useAdminManagement();
+  const { adminData, setAdminData, allRoles } = useAdminManagement()
   const [image, setImage] = useState(null);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

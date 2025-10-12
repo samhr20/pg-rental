@@ -323,29 +323,158 @@
   },
   "AdminData": [
     {
-      "Image": "blob:http://localhost:5173/477c94f4-2c9e-4111-bc53-252564f9d9b1",
       "AdminId": "P10231",
-      "FullName": "Shubham saini",
+      "FullName": "Shubham",
       "AdminPhone": "8278568770",
       "AdminMail": "shubhamsaini8965@gmail.com",
-      "Role": "Admin management",
-      "LastLogin": "just now",
+      "Image": "blob:http://localhost:5173/93b4d8d2-2c50-4b02-9e43-66a34d963798",
+      "Role": "Super Admin",
+      "LastLogin": "Just Now",
       "Status": true,
       "id": 1
-    },
-    {
-      "Image": "blob:http://localhost:5173/6f4f1ad6-8636-4e0f-940b-693536dd650a",
-      "AdminId": "P10232",
-      "FullName": "Manish Verma",
-      "AdminPhone": "8794561251",
-      "AdminMail": "manish@gmail.com",
-      "Role": "Membership Management",
-      "LastLogin": "just now",
-      "Status": false,
-      "id": 2
     }
   ],
   "Roles": [
-    
+    {
+      "role": "Super Admin",
+      "roleDes": "Full access to all Features..",
+      "createdOn": "12 Oct 2025",
+      "activeStatus": true,
+      "permissions": [
+        {
+          "module": "Admin Management",
+          "moduleDes": "Add, manage, and set permissions for admin users.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Properties Management",
+          "moduleDes": "Manage listing of all properties including add, edit, verify, block, delete, view.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Bookings Management",
+          "moduleDes": "View and manage all room/PG booking requests.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Partners Management",
+          "moduleDes": "Manage PG/room owners using the platform.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Tenants Management",
+          "moduleDes": "Manage users looking to book rooms/PGs.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Complaints Management",
+          "moduleDes": "Track and resolve tenant and partner complaints.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Transactions & Payouts",
+          "moduleDes": "View platform earnings, commissions, and withdrawals.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Reports & Analytics",
+          "moduleDes": "View downloadable and graphical reports on platform activity.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Promotions & Ads",
+          "moduleDes": "Promote partner properties or run banner ads.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Membership Management",
+          "moduleDes": "Handle subscription-based premium features.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Notifications Management",
+          "moduleDes": "Manage system-generated or manual notifications.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        },
+        {
+          "module": "Settings & Configurations",
+          "moduleDes": "Platform-wide setup and configuration settings.",
+          "features": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "status": true
+          }
+        }
+      ],
+      "id": 2
+    }
   ]
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import useData from '../context/DataFetchContext';
 import { bookingTrendDataSchema } from '../helpers/user_enum';
+import useDashboard from '../context/DashboardContext';
 
 const BookingTrend = () => {
-  const { bookingData } = useData()
+  const {bookingData} = useDashboard();
   return (
     <div className="bg-white flex flex-col gap-[10px] lg:py-8 py-4 px-3 lg:px-[20px] rounded-[14px] w-full h-[270px] min-h-[270px]">
       <h5 className="lg:text-[14px] text-[12px]">Booking Trend</h5>

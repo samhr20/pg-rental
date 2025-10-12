@@ -13,8 +13,7 @@ import SettingIcon from '../../public/svg/Setting.svg?react';
 import TenantIcon from '../../public/svg/Tenant.svg?react';
 import useSideBar from '../context/SideBarContext';
 import Cross from '../../public/svg/Cross.svg?react';
-import styling, { applicationStyling } from '../components/RevenueGrowth';
-import useNewAdmin from '../context/AddNewAdminContext';
+import useAdminManagement from '../context/AdminManagementContext';
 
 const LeftBar = () => {
   const NavigationButton = [
@@ -34,10 +33,8 @@ const LeftBar = () => {
   ];
 
   const { sideBarOpen, menuToggle } = useSideBar();
-  const { adminToggle } = useNewAdmin()
+  const { adminToggle } = useAdminManagement()
   const location = useLocation()
-
-
 
   return (
     <>

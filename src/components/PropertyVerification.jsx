@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Text, Tooltip } from 'recharts';
-import useData from '../context/DataFetchContext';
 import { propertyVerificationDataSchema, propertyVerificationMonthlyDataSchema } from '../helpers/user_enum';
+import useDashboard from '../context/DashboardContext';
 
 const RADIAN = Math.PI / 180;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6A00'];
@@ -19,7 +19,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 export default function PropertyVerification() {
-    const {propertyVerification} = useData()
+    const {propertyVerification} = useDashboard()
     const [timeFrame, setTimeFrame] = useState('Monthly')
     const eventHandler = (e) => {
         setTimeFrame(e.target.value)

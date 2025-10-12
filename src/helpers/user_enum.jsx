@@ -95,6 +95,7 @@ export const rolesSchema = {
       role: "role",
       roleDes: "roleDes",
       activeStatus: "activeStatus",
+      createdOn: "createdOn",
       permissions: "permissions"
 }
 

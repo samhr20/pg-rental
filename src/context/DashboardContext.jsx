@@ -1,9 +1,9 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
-export const DataFetchContext = createContext();
+export const DashboardContext = createContext();
 
-export const DataFetchProvider = ({ children }) => {
+export const DashboardContextProvider = ({ children }) => {
 
     const [gridData, setGridData] = useState([]);
     const [bookingData, setBookingData] = useState([]);
@@ -11,9 +11,7 @@ export const DataFetchProvider = ({ children }) => {
     const [partnerPayout, setPartnerPayout] = useState([]);
     const [propertyVerification, setPropertyVerification] = useState([]);
     const [revenueGrowth, setRevenueGrowth] = useState([]);
-    const [adminData, setAdminData] = useState([])
-    const [allRoles, setAllRoles] = useState([])
-
+   
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,8 +22,6 @@ export const DataFetchProvider = ({ children }) => {
                 const payout = await axios.get('http://localhost:3000/PartnerPayoutData');
                 const property = await axios.get('http://localhost:3000/PropertyVerificationData');
                 const revenue = await axios.get('http://localhost:3000/RevenueGrowthData');
-                const adminData = await axios.get('http://localhost:3000/AdminData')
-                 const roles = await axios.get('http://localhost:3000/Roles')
 
                 setGridData(grid.data);
                 setBookingData(booking.data);
@@ -33,8 +29,6 @@ export const DataFetchProvider = ({ children }) => {
                 setPartnerPayout(payout.data);
                 setPropertyVerification(property.data);
                 setRevenueGrowth(revenue.data);
-                setAdminData(adminData.data)
-                setAllRoles(roles.data)
 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -49,25 +43,21 @@ export const DataFetchProvider = ({ children }) => {
 
 
     return (
-        <DataFetchContext.Provider value={{
+        <DashboardContext.Provider value={{
             gridData,
             bookingData,
             complaintCategory,
             partnerPayout,
             propertyVerification,
             revenueGrowth,
-            adminData,
-            setAdminData,
-            allRoles,
-            setAllRoles
         }}>
             {children}
-        </DataFetchContext.Provider>
+        </DashboardContext.Provider>
     )
 }
 
-const useData = () => {
-    return useContext(DataFetchContext)
+const useDashboard = () => {
+    return useContext(DashboardContext)
 }
 
-export default useData 
+export default useDashboard 

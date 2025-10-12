@@ -4,13 +4,13 @@ import Rupee from '../../public/svg/Rupee.svg?react'
 import User from '../../public/svg/User.svg?react'
 import Property from '../../public/svg/Property.svg?react'
 import CashMove from '../../public/svg/CashMove.svg?react'
-import useData from '../context/DataFetchContext'
 import { dashboardGridDataSchema } from '../helpers/user_enum'
+import useDashboard from '../context/DashboardContext'
 
 
 const DashboardGrid = () => {
 
-    const { gridData } = useData()
+    const { gridData } = useDashboard()
 
     const iconComponent = {
         Booking: Booking,

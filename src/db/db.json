@@ -442,6 +442,17 @@
       "LastLogin": "Just Now",
       "Status": true,
       "id": 11
+    },
+    {
+      "AdminId": "P10242",
+      "FullName": "Jatin Saini",
+      "AdminPhone": "4587596842",
+      "AdminMail": "jatin@gmail.com",
+      "Image": "blob:http://localhost:5173/e19ea737-4f42-4c1e-903f-009064a6b125",
+      "Role": "Finance Analyst",
+      "LastLogin": "Just Now",
+      "Status": true,
+      "id": 12
     }
   ],
   "Roles": [

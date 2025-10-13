@@ -9,6 +9,7 @@ import LeftArrow from '../../public/svg/LeftArrow.svg?react'
 import RightArrow from '../../public/svg/RightArrow.svg?react'
 import { newAdminSchema } from '../helpers/user_enum'
 import useAdminManagement from '../context/AdminManagementContext'
+import { handleExportCsv } from '../App'
 
 const AdminManagement = () => {
   const [search, setSearch] = useState('')
@@ -17,13 +18,22 @@ const AdminManagement = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const lastPostIndex = postPerPage * currentPage;
   const firstPostIndex = lastPostIndex - postPerPage
+  const unparse = adminData.map((admin) => ({
+    AdminID: admin[newAdminSchema.AdminId],
+    FullName: admin[newAdminSchema.FullName],
+    PhoneNumber: admin[newAdminSchema.AdminPhone],
+    Mail: admin[newAdminSchema.AdminMail],
+    Role: admin[newAdminSchema.Role],
+    LastLogin: admin[newAdminSchema.LastLogin],
+    Status: admin[newAdminSchema.Status] ? "Active" : "Offline",
+  }))
 
   const data = adminData.slice(firstPostIndex, lastPostIndex)
   const activeAdmin = adminData.filter((adminData) => adminData[newAdminSchema.Status] === true).length;
   const inactiveAdmin = adminData.filter((adminData) => adminData[newAdminSchema.Status] === false).length;
 
   return (
-    <div className="flex p-[30px] bg-white rounded-[20px] flex-col gap-[20px] ">
+    <div className="flex p-[30px] bg-white rounded-[20px] flex-col gap-[20px] " >
       <div className="flex justify-between items-center h-[40px]">
         <div className="relative min-w-[320px] rounded-[40px]  flex flex-col gap-2.5">
           <Search className="absolute w-6 h-6 top-1.5 left-2 text-orange-400" />
@@ -40,7 +50,10 @@ const AdminManagement = () => {
         </div>
         <div className="flex gap-2.5 ">
           <button className='bg-[#00B806] custombutton' onClick={(adminToggle)}>+ Add New Admin</button>
-          <button className='bg-[#FF6A00] custombutton'>Export CSV</button>
+          <button
+            className='bg-[#FF6A00] custombutton'
+            onClick={() => handleExportCsv(adminData, unparse, "adminData.csv")}
+          >Export CSV</button>
         </div>
 
       </div>
@@ -206,7 +219,7 @@ const AdminManagement = () => {
         </div>
       </div>
 
-    </div>
+    </div >
 
 
 

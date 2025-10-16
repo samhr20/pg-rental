@@ -35,19 +35,7 @@ const AdminManagement = () => {
   return (
     <div className="flex p-[30px] bg-white rounded-[20px] flex-col gap-[20px] " >
       <div className="flex justify-between items-center h-[40px]">
-        <div className="relative min-w-[320px] rounded-[40px]  flex flex-col gap-2.5">
-          <Search className="absolute w-6 h-6 top-1.5 left-2 text-orange-400" />
-          <input
-            type="text"
-            placeholder="Search by property, name, Id or City"
-            className="w-full custom-poppins text-[12px] bg-[#F9F9F9] text-[#838383] 
-                         rounded-lg pl-10 pr-4 py-2.5 outline-none "
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value)
-            }}
-          />
-        </div>
+       <SearchBar search={search} setSearch={setSearch} />
         <div className="flex gap-2.5 ">
           <button className='bg-[#00B806] custombutton' onClick={(adminToggle)}>+ Add New Admin</button>
           <button
@@ -227,3 +215,19 @@ const AdminManagement = () => {
 }
 
 export default AdminManagement
+
+
+export const SearchBar = ({ search, setSearch }) => {
+  return (
+    <div className="relative min-w-[320px] h-[48px]] rounded-[40px] flex flex-col gap-2.5">
+      <Search className="absolute w-6 h-6 top-1.5 left-4 text-orange-400" />
+      <input
+        type="text"
+        placeholder="Search by property, name, Id or City"
+        className="w-full custom-poppins text-[12px] bg-[#F9F9F9] text-[#838383] py-2.5 px-12  outline-none rounded-[40px]"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </div>
+  );
+};

@@ -32,6 +32,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'semibold';
+  src: url('/public/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'light';
+  src: url('/public/fonts/Poppins-Light.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
 .custom-qahiri {
   font-family: 'Qahiri', sans-serif;
 }
@@ -42,6 +56,12 @@
 
 .custom-medium {
   font-family: 'medium', sans-serif;
+}
+.custom-semibold {
+  font-family: 'semibold', sans-serif;
+}
+.custom-light {
+  font-family: 'light', sans-serif;
 }
 
 
@@ -77,3 +97,5 @@ body {
   font-family: 'poppins', sans-serif;
   @apply w-full max-w-[290px] h-[48px] rounded-[40px] py-[10px] px-5  bg-[#F9F9F9]  text-black text-[12px] outline-none transition
 }
+
+

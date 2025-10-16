@@ -1020,5 +1020,719 @@
       ],
       "id": 4
     }
+  ],
+  "Properties": [
+    {
+      "propertyName": "The Student's Den",
+      "active": true,
+      "propertyId": "PG1011",
+      "listedOn": "18 August 2025, 03:15 PM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Kota",
+        "address": "Rajeev Gandhi Nagar, Near Allen Sangyan"
+      },
+      "partnerInfo": {
+        "name": "Anil Verma",
+        "phone": "+91 9876543211",
+        "email": "anil.verma@example.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Hostel",
+        "roomsAvailable": [
+          "Single Room",
+          "Double Sharing",
+          "Triple Sharing"
+        ],
+        "genderPreference": "Male",
+        "furnishing": "Fully Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": false,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "privateRoom": 10000,
+        "doubleSharing": 7000,
+        "tripleSharing": 5500
+      },
+      "engagementMetrics": {
+        "totalViews": 18540,
+        "totalInquiries": 450,
+        "lastBooking": "Yesterday"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": [
+        {
+          "date": "10 Oct, 2025",
+          "bookingId": "#BK9123",
+          "tenantName": "Priya Sharma",
+          "roomType": "Single Room",
+          "checkIn": "12 Oct, 2025",
+          "status": "Confirmed",
+          "amount": 10000
+        }
+      ]
+    },
+    {
+      "propertyName": "Girls Paradise PG",
+      "active": true,
+      "propertyId": "PG1012",
+      "listedOn": "22 September 2025, 11:00 AM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Indore",
+        "address": "Bhawarkua, Near Apple Hospital"
+      },
+      "partnerInfo": {
+        "name": "Sunita Tiwari",
+        "phone": "+91 9812345671",
+        "email": "sunita.pg@gmail.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Paying Guest",
+        "roomsAvailable": [
+          "Double Sharing",
+          "Triple Sharing"
+        ],
+        "genderPreference": "Female",
+        "furnishing": "Semi-Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": true,
+        "laundry": false,
+        "security": true
+      },
+      "rentAndPrice": {
+        "doubleSharing": 5500,
+        "tripleSharing": 4200
+      },
+      "engagementMetrics": {
+        "totalViews": 9870,
+        "totalInquiries": 210,
+        "lastBooking": "4 Days Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "Work & Stay Co-living",
+      "active": true,
+      "propertyId": "PG1013",
+      "listedOn": "05 October 2025, 05:30 PM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": false,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Hyderabad",
+        "address": "Hitech City, Near Mindspace"
+      },
+      "partnerInfo": {
+        "name": "Vikram Reddy",
+        "phone": "+91 9988776656",
+        "email": "vikram.coliving@yahoo.com",
+        "accountStatus": "Pending Verification"
+      },
+      "propertyTypeStructure": {
+        "type": "Paying Guest",
+        "roomsAvailable": [
+          "Single Room",
+          "Double Sharing"
+        ],
+        "genderPreference": "Co-ed",
+        "furnishing": "Fully Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": true,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "privateRoom": 15000,
+        "doubleSharing": 9000
+      },
+      "engagementMetrics": {
+        "totalViews": 12450,
+        "totalInquiries": 320,
+        "lastBooking": "2 Days Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": [
+        {
+          "date": "14 Oct, 2025",
+          "bookingId": "#BK9124",
+          "tenantName": "Amit Singh",
+          "roomType": "Double Sharing",
+          "checkIn": "15 Oct, 2025",
+          "status": "Confirmed",
+          "amount": 9000
+        }
+      ]
+    },
+    {
+      "propertyName": "Budget Boys Hostel",
+      "active": false,
+      "propertyId": "PG1014",
+      "listedOn": "11 July 2025, 10:00 AM",
+      "statusControls": {
+        "isBlocked": true,
+        "isVerified": false,
+        "isDeleted": false,
+        "blockReason": "Incomplete documentation"
+      },
+      "locationDetails": {
+        "city": "Jaipur",
+        "address": "Pratap Nagar, Near Tonk Road"
+      },
+      "partnerInfo": {
+        "name": "Ravi Sharma",
+        "phone": "+91 9876500034",
+        "email": "ravi.hostel@gmail.com",
+        "accountStatus": "Suspended"
+      },
+      "propertyTypeStructure": {
+        "type": "Hostel",
+        "roomsAvailable": [
+          "Triple Sharing",
+          "Four Sharing"
+        ],
+        "genderPreference": "Male",
+        "furnishing": "Unfurnished"
+      },
+      "amenities": {
+        "wifi": false,
+        "parking": true,
+        "laundry": false,
+        "security": false
+      },
+      "rentAndPrice": {
+        "tripleSharing": 3500,
+        "fourSharing": 3000
+      },
+      "engagementMetrics": {
+        "totalViews": 5600,
+        "totalInquiries": 120,
+        "lastBooking": "1 Month Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "The Professional's Hub",
+      "active": true,
+      "propertyId": "PG1015",
+      "listedOn": "01 September 2025, 08:45 AM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Chennai",
+        "address": "T. Nagar, Near Pondy Bazaar"
+      },
+      "partnerInfo": {
+        "name": "Karthik Raja",
+        "phone": "+91 9801234568",
+        "email": "karthik.hub@hostmail.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Paying Guest",
+        "roomsAvailable": [
+          "Single Room"
+        ],
+        "genderPreference": "Male",
+        "furnishing": "Fully Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": true,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "privateRoom": 14000
+      },
+      "engagementMetrics": {
+        "totalViews": 11500,
+        "totalInquiries": 280,
+        "lastBooking": "3 Days Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "Serene Stay for Women",
+      "active": true,
+      "propertyId": "PG1016",
+      "listedOn": "15 August 2025, 06:00 PM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Kolkata",
+        "address": "Salt Lake, Sector V"
+      },
+      "partnerInfo": {
+        "name": "Priya Das",
+        "phone": "+91 9988776657",
+        "email": "priya.serene@gmail.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Paying Guest",
+        "roomsAvailable": [
+          "Single Room",
+          "Double Sharing"
+        ],
+        "genderPreference": "Female",
+        "furnishing": "Semi-Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": false,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "privateRoom": 9500,
+        "doubleSharing": 6500
+      },
+      "engagementMetrics": {
+        "totalViews": 10200,
+        "totalInquiries": 250,
+        "lastBooking": "5 Days Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "Ghar Jaisa PG",
+      "active": true,
+      "propertyId": "PG1017",
+      "listedOn": "28 July 2025, 02:20 PM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": false,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Dehradun",
+        "address": "Rajpur Road, Near Pacific Mall"
+      },
+      "partnerInfo": {
+        "name": "Deepak Negi",
+        "phone": "+91 9811122234",
+        "email": "deepak.pg@gmail.com",
+        "accountStatus": "Pending Verification"
+      },
+      "propertyTypeStructure": {
+        "type": "Paying Guest",
+        "roomsAvailable": [
+          "Double Sharing",
+          "Triple Sharing"
+        ],
+        "genderPreference": "Co-ed",
+        "furnishing": "Unfurnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": true,
+        "laundry": false,
+        "security": true
+      },
+      "rentAndPrice": {
+        "doubleSharing": 5000,
+        "tripleSharing": 3800
+      },
+      "engagementMetrics": {
+        "totalViews": 8500,
+        "totalInquiries": 180,
+        "lastBooking": "1 Week Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "Peaceful Abode Hostel",
+      "active": true,
+      "propertyId": "PG1018",
+      "listedOn": "09 September 2025, 09:00 AM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Varanasi",
+        "address": "Lanka, Near BHU"
+      },
+      "partnerInfo": {
+        "name": "Shalini Pandey",
+        "phone": "+91 9800012346",
+        "email": "shalini.abode@gmail.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Hostel",
+        "roomsAvailable": [
+          "Single Room",
+          "Double Sharing"
+        ],
+        "genderPreference": "Female",
+        "furnishing": "Semi-Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": false,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "privateRoom": 7000,
+        "doubleSharing": 4500
+      },
+      "engagementMetrics": {
+        "totalViews": 11000,
+        "totalInquiries": 230,
+        "lastBooking": "Today"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": [
+        {
+          "date": "15 Oct, 2025",
+          "bookingId": "#BK9125",
+          "tenantName": "Neha Gupta",
+          "roomType": "Double Sharing",
+          "checkIn": "16 Oct, 2025",
+          "status": "Pending",
+          "amount": 4500
+        }
+      ]
+    },
+    {
+      "propertyName": "The Scholars Inn",
+      "active": true,
+      "propertyId": "PG1019",
+      "listedOn": "20 August 2025, 12:30 PM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Allahabad",
+        "address": "Civil Lines, Near University of Allahabad"
+      },
+      "partnerInfo": {
+        "name": "Rajesh Mishra",
+        "phone": "+91 9876540023",
+        "email": "rajesh.inn@gmail.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Hostel",
+        "roomsAvailable": [
+          "Double Sharing",
+          "Triple Sharing"
+        ],
+        "genderPreference": "Male",
+        "furnishing": "Fully Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": true,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "doubleSharing": 6000,
+        "tripleSharing": 4500
+      },
+      "engagementMetrics": {
+        "totalViews": 14500,
+        "totalInquiries": 350,
+        "lastBooking": "Yesterday"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo": "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "City Center PG",
+      "active": false,
+      "propertyId": "PG1020",
+      "listedOn": "03 September 2025, 04:00 PM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": false,
+        "isDeleted": true,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Nagpur",
+        "address": "Sitabuldi, Near Variety Square"
+      },
+      "partnerInfo": {
+        "name": "Prakash Deshmukh",
+        "phone": "+91 9922334456",
+        "email": "prakash.pg@gmail.com",
+        "accountStatus": "Pending Verification"
+      },
+      "propertyTypeStructure": {
+        "type": "Paying Guest",
+        "roomsAvailable": [
+          "Single Room",
+          "Double Sharing"
+        ],
+        "genderPreference": "Co-ed",
+        "furnishing": "Semi-Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": false,
+        "laundry": false,
+        "security": true
+      },
+      "rentAndPrice": {
+        "privateRoom": 8000,
+        "doubleSharing": 5500
+      },
+      "engagementMetrics": {
+        "totalViews": 7800,
+        "totalInquiries": 150,
+        "lastBooking": "2 Weeks Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo":  "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "The Executive Stay",
+      "active": true,
+      "propertyId": "PG1021",
+      "listedOn": "25 September 2025, 10:15 AM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Ahmedabad",
+        "address": "Navrangpura, Near C.G. Road"
+      },
+      "partnerInfo": {
+        "name": "Alok Shah",
+        "phone": "+91 9876543212",
+        "email": "alok.stay@example.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Paying Guest",
+        "roomsAvailable": [
+          "Single Room"
+        ],
+        "genderPreference": "Male",
+        "furnishing": "Fully Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": true,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "privateRoom": 12500
+      },
+      "engagementMetrics": {
+        "totalViews": 13200,
+        "totalInquiries": 290,
+        "lastBooking": "6 Days Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo":  "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    },
+    {
+      "propertyName": "Sakhi Women's Hostel",
+      "active": true,
+      "propertyId": "PG1022",
+      "listedOn": "12 August 2025, 07:30 PM",
+      "statusControls": {
+        "isBlocked": false,
+        "isVerified": true,
+        "isDeleted": false,
+        "blockReason": null
+      },
+      "locationDetails": {
+        "city": "Bhopal",
+        "address": "MP Nagar, Zone-II"
+      },
+      "partnerInfo": {
+        "name": "Anjali Sharma",
+        "phone": "+91 9812345672",
+        "email": "anjali.sakhi@gmail.com",
+        "accountStatus": "Verified"
+      },
+      "propertyTypeStructure": {
+        "type": "Hostel",
+        "roomsAvailable": [
+          "Double Sharing",
+          "Triple Sharing"
+        ],
+        "genderPreference": "Female",
+        "furnishing": "Semi-Furnished"
+      },
+      "amenities": {
+        "wifi": true,
+        "parking": true,
+        "laundry": true,
+        "security": true
+      },
+      "rentAndPrice": {
+        "doubleSharing": 5800,
+        "tripleSharing": 4500
+      },
+      "engagementMetrics": {
+        "totalViews": 9500,
+        "totalInquiries": 200,
+        "lastBooking": "1 Week Ago"
+      },
+      "photosAndMedia": {
+        "walkthroughVideo":  "/images/image1.png",
+        "images": [
+          "/images/image1.png",
+          "/images/image2.png",
+          "/images/image3.png",
+          "/images/image4.png",
+          "/images/image5.png"
+        ]
+      },
+      "bookingHistory": []
+    }
   ]
 }

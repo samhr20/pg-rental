@@ -11,6 +11,7 @@ import useAdminManagement from '../context/AdminManagementContext'
 import LeftArrow from '../../public/svg/LeftArrow.svg?react'
 import RightArrow from '../../public/svg/RightArrow.svg?react'
 import { newAdminSchema, rolesPermissionSchema, rolesSchema } from '../helpers/user_enum'
+import { SearchBar } from './AdminManagement'
 
 const ManageRoles = () => {
     const { allRoles, adminData } = useAdminManagement()
@@ -44,20 +45,7 @@ const ManageRoles = () => {
 
                 <div className="flex p-[30px] h-full bg-white rounded-[20px] flex-col gap-[20px] ">
                     <div className="  flex justify-between items-center h-[40px]">
-                        <div className=" relative min-w-[320px] rounded-[40px]  flex flex-col gap-2.5">
-                            <Search className="absolute w-6 h-6 top-1.5 left-2 text-orange-400" />
-                            <input
-                                type="text"
-                                placeholder="Search by property, name, Id or City"
-                                className="w-full custom-poppins text-[12px] bg-[#F9F9F9] text-[#838383] 
-                            rounded-lg pl-10 pr-4 py-2.5 outline-none "
-                                value={search}
-                                onChange={(e) => {
-                                    setSearch(e.target.value)
-                                }}
-                            />
-
-                        </div>
+                    <SearchBar search={search} setSearch={setSearch} />
                         <div className='flex justify-between items-center gap-2.5 '>
                             <div className='bg-[#F9F9F9]  flex items-center rounded-[40px] p-2.5 pl-5 gap-2.5 cursor-pointer'><Filter className='w-[20px] h-[20px]   text-[#838383]' /> <p className='text-[12px] text-black'>Filter</p></div>
                             <div className='bg-[#F9F9F9]  flex items-center rounded-[40px] p-2.5 pl-5 gap-2.5 cursor-pointer'><Refresh className='w-[20px] h-[20px]   text-[#FF6A00]' /><p className='text-[12px] text-[#838383]'>Refresh</p></div>

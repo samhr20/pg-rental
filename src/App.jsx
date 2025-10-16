@@ -18,6 +18,7 @@ import AddNewAdmin from './components/AddNewAdmin';
 import ManageRoles from './pages/ManageRoles';
 import AddNewRole from './pages/AddNewRole';
 import Papa from 'papaparse'
+import PropertyDetails from './pages/PropertyDetails';
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
               <Route path="/admin-management/manage-roles" element={<ManageRoles />} />
               <Route path="/admin-management/add-new-role" element={<AddNewRole />} />
               <Route path="/properties" element={<Properties />} />
+              <Route path="/properties/:propertyId" element={<PropertyDetails />} />
               <Route path="/bookings" element={<Bookings />} />
               <Route path="/partner" element={<Partner />} />
               <Route path="/tenants" element={<Tenants />} />

@@ -12,7 +12,7 @@ import DetailRow from '../components/DetailRow'
 
 const PropertyDetails = () => {
     const { propertyId } = useParams()
-    const { properties } = useProperties()
+    const { properties, openPopup  } = useProperties()
 
     if (properties.length === 0) {
         return (
@@ -35,6 +35,7 @@ const PropertyDetails = () => {
     const accountStatusColor = accountStatus === "Verified" ? "#00B806" : accountStatus === "Pending Verification" ? "#FF0000" : accountStatus === "Suspended" ? "#FF0000" : "#00000"
 
 
+
     return (
         <div className='flex flex-col gap-4 p-[30px] pb-[10px] h-full bg-white rounded-[20px]'>
             <div className='flex  justify-between items-center'>
@@ -53,25 +54,13 @@ const PropertyDetails = () => {
                 </div>
                 <div className='h-full flex items-end justify-between '>
                     <div className='flex items-center justify-between cursor-pointer gap-4'>
-                        {/* Show Block button only if the property is active */}
-                        {thisProperty[propertySchema.active] && (
-                            <ActionButton IconComponent={Block} text={"Block"} bgColor={"#FF000014"} iconColor={"#FF0000"} />
-                        )}
+                            <ActionButton IconComponent={Block} text={"Block"} bgColor={"#FF000014"}  iconColor={"#FF0000"} onClick={()=>openPopup("block")}  />
 
-                        {/* Show Unblock button only if the property is NOT active */}
-                        {!thisProperty[propertySchema.active] && (
-                            <ActionButton IconComponent={Unblock} text={"Unblock"} bgColor={"#0022FF14"} iconColor={"#0022FF"} />
-                        )}
+                            <ActionButton IconComponent={Unblock} text={"Unblock"} bgColor={"#0022FF14"} iconColor={"#0022FF"} onClick={()=>openPopup("unblock")} />
 
-                        {/* Show Verify button only if account status is "Pending Verification" */}
-                        {accountStatus === "Pending Verification" && (
-                            <ActionButton IconComponent={Check} text={"Verify"} bgColor={"#00B80614"} iconColor={"#00B806"} />
-                        )}
+                            <ActionButton IconComponent={Check} text={"Verify"} bgColor={"#00B80614"}  iconColor={"#00B806"} onClick={()=>openPopup("verify")} />
 
-                        {/* Show Delete button only if the property is NOT active for safety */}
-                        {!thisProperty[propertySchema.active] && (
-                            <ActionButton IconComponent={Delete} text={"Delete"} bgColor={"#FF000014"} iconColor={"#FF0000"} />
-                        )}
+                            <ActionButton IconComponent={Delete} text={"Delete"} bgColor={"#FF000014"} iconColor={"#FF0000"} onClick={()=>openPopup("delete")} />
                     </div>
                 </div>
             </div>

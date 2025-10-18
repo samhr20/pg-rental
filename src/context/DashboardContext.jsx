@@ -16,20 +16,19 @@ export const DashboardContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const grid = await axios.get('http://localhost:3000/DashboardGridData');
-                const booking = await axios.get('http://localhost:3000/BookingTrendData');
-                const complaint = await axios.get('http://localhost:3000/ComplaintCategoryData');
-                const payout = await axios.get('http://localhost:3000/PartnerPayoutData');
-                const property = await axios.get('http://localhost:3000/PropertyVerificationData');
-                const revenue = await axios.get('http://localhost:3000/RevenueGrowthData');
+                const grid = await axios.get('/DashboardGridData');
+                const booking = await axios.get('/BookingTrendData');
+                const complaint = await axios.get('/ComplaintCategoryData');
+                const payout = await axios.get('/PartnerPayoutData');
+                const property = await axios.get('/PropertyVerificationData');
+                const revenue = await axios.get('/RevenueGrowthData');
 
                 setGridData(grid.data);
                 setBookingData(booking.data);
                 setComplaintCategory(complaint.data);
                 setPartnerPayout(payout.data);
                 setPropertyVerification(property.data);
-                setRevenueGrowth(revenue.data);
-
+                setRevenueG
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

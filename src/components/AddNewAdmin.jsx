@@ -43,7 +43,7 @@ const AddNewAdmin = () => {
 
 
     try {
-      const res = await axios.post('http://localhost:3000/AdminData', newAdmin)
+      const res = await axios.post('/AdminData', newAdmin)
       setAdminData([...adminData, res.data])
       cancelButton()
       navigate('/admin-management')

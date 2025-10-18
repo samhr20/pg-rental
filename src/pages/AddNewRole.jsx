@@ -192,7 +192,7 @@ const AddNewRole = () => {
         roleData[rolesSchema.createdOn] = created.toLocaleDateString('en-GB', options)
 
         try {
-            const res = await axios.post('http://localhost:3000/Roles', roleData)
+            const res = await axios.post('/Roles', roleData)
             setAllRoles((prev) => [...prev, roleData])
             setRoleData(initialState)
             alert('Role Creation Successfull...')

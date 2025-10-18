@@ -12,8 +12,8 @@ export const AdminManagementContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const adminData = await axios.get('http://localhost:3000/AdminData')
-                const roles = await axios.get('http://localhost:3000/Roles')
+                const adminData = await axios.get('/AdminData')
+                const roles = await axios.get('/Roles')
 
                 setAdminData(adminData.data)
                 setAllRoles(roles.data)

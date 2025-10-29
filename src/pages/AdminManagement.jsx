@@ -9,7 +9,7 @@ import LeftArrow from '../../public/svg/LeftArrow.svg?react'
 import RightArrow from '../../public/svg/RightArrow.svg?react'
 import { newAdminSchema } from '../helpers/user_enum'
 import useAdminManagement from '../context/AdminManagementContext'
-import { handleExportCsv } from '../App'
+import { handleExportCsv } from '../functions/ExportCsvHandler'
 
 const AdminManagement = () => {
   const [search, setSearch] = useState('')

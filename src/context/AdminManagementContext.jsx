@@ -8,25 +8,26 @@ export const AdminManagementContextProvider = ({ children }) => {
     const [newAdminOpen, setNewAdminOpen] = useState(false);
     const [adminData, setAdminData] = useState([])
     const [allRoles, setAllRoles] = useState([])
+    const location = useLocation();
 
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const adminData = await axios.get('/AdminData')
-                const roles = await axios.get('/Roles')
-
+                const adminData = await axios.get('http://localhost:3000/AdminData')
+                const roles = await axios.get('http://localhost:3000/Roles')
+                
                 setAdminData(adminData.data)
                 setAllRoles(roles.data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
+        if (location.pathname === "/admin-management") {
+            fetchData();
+        }
 
-        fetchData();
+    }, [location.pathname]);
 
-    }, []);
-
-    const location = useLocation();
 
     const adminToggle = () => {
         setNewAdminOpen((prev) => !prev);

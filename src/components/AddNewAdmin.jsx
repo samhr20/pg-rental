@@ -43,7 +43,7 @@ const AddNewAdmin = () => {
 
 
     try {
-      const res = await axios.post('/AdminData', newAdmin)
+      const res = await axios.post('http://localhost:3000/AdminData', newAdmin)
       setAdminData([...adminData, res.data])
       cancelButton()
       navigate('/admin-management')
@@ -192,12 +192,12 @@ const AddNewAdmin = () => {
                 >
                   <option value="">Select Role</option>
                   {allRoles && allRoles.length > 0 ? (
-                    allRoles.map((item) => (
-                      <option key={item[rolesSchema.id]} value={item[rolesSchema.role]}>
+                    allRoles.map((item , key) => (
+                      <option key={item[rolesSchema.id] || key} value={item[rolesSchema.role]}>
                         {item[rolesSchema.role]}
                       </option>
                     ))
-                  ) : (
+                  ) : ( 
                     <option disabled>No roles available</option>
                   )}
                 </select>

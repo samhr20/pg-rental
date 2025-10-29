@@ -9,7 +9,7 @@ import { AdminManagementContextProvider } from './context/AdminManagementContext
 import { PropertiesContextProvider } from './context/PropertiesContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <BrowserRouter>
       <PropertiesContextProvider>
         <AdminManagementContextProvider>
@@ -21,5 +21,5 @@ createRoot(document.getElementById('root')).render(
         </AdminManagementContextProvider>
       </PropertiesContextProvider>
     </BrowserRouter>
-  </StrictMode>,
+  // </StrictMode>,
 )

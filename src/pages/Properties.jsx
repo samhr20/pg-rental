@@ -13,9 +13,10 @@ import { locationDetailsSchema, mediaSchema, propertySchema, rentSchema, roomTyp
 
 
 const Properties = () => {
-    const { properties, setPropertyFilterIsOpen } = useProperties()
+    const { properties, setPropertyFilterIsOpen , filteredProperties  } = useProperties()
     const [sortIsOpen, setSortIsOpen] = useState(false)
     const [sortBy, setSortBy] = useState("Newest First")
+    
 
 
     const handleSort = (sort) => {
@@ -24,8 +25,7 @@ const Properties = () => {
     }
 
 
-    const sortedProperties = [...properties]
-
+    const sortedProperties  = filteredProperties.length > 0 ? [...filteredProperties] : [...properties]
     switch (sortBy) {
         case 'Newest First':
             sortedProperties.sort((a, b) => new Date(b[propertySchema.listedOn]) - new Date(a[propertySchema.listedOn]));
@@ -56,7 +56,7 @@ const Properties = () => {
             />
             <div className=' flex flex-col p-[30px] gap-4 h-full bg-white rounded-[20px] '>
                 <div className='relative flex justify-between items-center min-w-[1060ox] min-h-[48px] gap-5 '>
-                    <p className='text-[14px] custom-poppins text-[#838383]'>Showing {properties.length} of {properties.length}</p>
+                    <p className='text-[14px] custom-poppins text-[#838383]'>Showing {sortedProperties.length} of {properties.length}</p>
                     <div className='flex items-center gap-5'>
                         <SearchBar />
                         <div className='flex items-center justify-between gap-5'>

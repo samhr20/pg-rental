@@ -10,7 +10,7 @@ import CalendarIcon from '../../public/svg/CalendarIcon.svg?react'
 import { locationDetailsSchema, propertySchema } from '../helpers/properties_enum'
 
 const PropertyFilters = () => {
-  const { propertyFilterIsOpen, setPropertyFilterIsOpen, properties, } = useProperties();
+  const { propertyFilterIsOpen, setPropertyFilterIsOpen, properties,setFilteredProperties } = useProperties();
   const [listedDateFrom, setListedDateFrom] = useState("");
   const [listedDateTo, setListedDateTO] = useState("");
   const ListedDateFromInput = useRef(null);
@@ -135,13 +135,12 @@ const PropertyFilters = () => {
 };
 
 
-const Demo = async () => {
+const ApplyFilter = async () => {
   try {
     const refinedFilter = buildRefinedFilter(filter);
     const res = await axios.get(`http://localhost:3000/Properties?${refinedFilter}`);
-    console.log("✅ Filtered data:", res.data);
-    console.log(res.request.url);
-    
+    setFilteredProperties(res.data)
+    setPropertyFilterIsOpen(false)
   } catch (error) {
     console.error("❌ Filter error:", error);
   }
@@ -572,7 +571,7 @@ const Demo = async () => {
 
           <button
             className="border-[#FF6A00] bg-[#FF6A00] w-[180px] rounded-[50px] border py-3 px-2.5 flex flex-col items-center justify-center gap-[10px] text-[white] custom-poppins cursor-pointer text-[14px] transition-all duration-200 hover:opacity-80"
-            onClick={Demo}
+            onClick={ApplyFilter}
           >
             Apply
           </button>

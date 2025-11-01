@@ -6,6 +6,7 @@ export const PropertiesContext = createContext();
 
 export const PropertiesContextProvider = ({ children }) => {
     const [properties, setProperties] = useState([])
+    const [filteredProperties, setFilteredProperties] = useState([])
     const location = useLocation()
     const [popup, setPopup] = useState({
         type: null,
@@ -54,6 +55,8 @@ export const PropertiesContextProvider = ({ children }) => {
             setPopup,
             setPropertyFilterIsOpen,
             propertyFilterIsOpen,
+            filteredProperties,
+            setFilteredProperties
         }}>
             {children}
         </PropertiesContext.Provider>

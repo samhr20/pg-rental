@@ -21,6 +21,8 @@ import PropertyDetails from './pages/PropertyDetails';
 import useProperties from './context/PropertiesContext';
 import PropertyPopups from './components/PropertyPopups';
 import PropertyFilters from './components/PropertyFilters';
+import { useEffect } from 'react';
+
 
 const App = () => {
 

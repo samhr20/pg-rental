@@ -14,12 +14,17 @@ import {
     locationDetailsSchema,
     mediaSchema,
     partnerInfoSchema,
+    propertyInfoSchema,
     propertySchema,
     rentSchema,
     roomTypesSchema,
+    statusControlsSchema,
 } from '../helpers/properties_enum'
 
 const PropertyDetails = () => {
+
+
+    
     const { propertyId } = useParams()
     const { properties, openPopup } = useProperties()
 
@@ -42,10 +47,10 @@ const PropertyDetails = () => {
         accountStatus === 'Verified'
             ? '#00B806'
             : accountStatus === 'Pending Verification'
-            ? '#FF0000'
-            : accountStatus === 'Suspended'
-            ? '#FF0000'
-            : '#000000'
+                ? '#FF0000'
+                : accountStatus === 'Suspended'
+                    ? '#FF0000'
+                    : '#000000'
 
     return (
         <div className='flex flex-col gap-4 p-[30px] pb-[10px] h-full bg-white rounded-[20px]'>
@@ -71,29 +76,38 @@ const PropertyDetails = () => {
 
                 <div className='h-full flex items-end justify-between '>
                     <div className='flex items-center justify-between cursor-pointer gap-4'>
-                        <ActionButton
-                            IconComponent={Block}
-                            text={'Block'}
-                            bgColor={'#FF000014'}
-                            iconColor={'#FF0000'}
-                            onClick={() => openPopup('block')}
-                        />
 
-                        <ActionButton
-                            IconComponent={Unblock}
-                            text={'Unblock'}
-                            bgColor={'#0022FF14'}
-                            iconColor={'#0022FF'}
-                            onClick={() => openPopup('unblock')}
-                        />
 
-                        <ActionButton
-                            IconComponent={Check}
-                            text={'Verify'}
-                            bgColor={'#00B80614'}
-                            iconColor={'#00B806'}
-                            onClick={() => openPopup('verify')}
-                        />
+
+                        {thisProperty[propertySchema.statusControls][statusControlsSchema.isBlocked] ? (
+
+                            <ActionButton
+                                IconComponent={Unblock}
+                                text={'Unblock'}
+                                bgColor={'#0022FF14'}
+                                iconColor={'#0022FF'}
+                                onClick={() => openPopup('unblock')}
+                            />
+                        ) : (
+
+                            <ActionButton
+                                IconComponent={Block}
+                                text={'Block'}
+                                bgColor={'#FF000014'}
+                                iconColor={'#FF0000'}
+                                onClick={() => openPopup('block')}
+                            />
+                        )}
+
+                        {!thisProperty[propertySchema.statusControls][statusControlsSchema.isVerified] && (
+                            <ActionButton
+                                IconComponent={Check}
+                                text={'Verify'}
+                                bgColor={'#00B80614'}
+                                iconColor={'#00B806'}
+                                onClick={() => openPopup('verify')}
+                            />
+                        )}
 
                         <ActionButton
                             IconComponent={Delete}
@@ -116,7 +130,7 @@ const PropertyDetails = () => {
                                 label={'City'}
                                 value={
                                     thisProperty[propertySchema.locationDetails][
-                                        locationDetailsSchema.city
+                                    locationDetailsSchema.city
                                     ]
                                 }
                             />
@@ -124,7 +138,7 @@ const PropertyDetails = () => {
                                 label={'Full Address'}
                                 value={
                                     thisProperty[propertySchema.locationDetails][
-                                        locationDetailsSchema.locality
+                                    locationDetailsSchema.locality
                                     ]
                                 }
                                 multiline
@@ -179,7 +193,7 @@ const PropertyDetails = () => {
                                 label={'Name'}
                                 value={
                                     thisProperty[propertySchema.partnerInfo][
-                                        partnerInfoSchema.name
+                                    partnerInfoSchema.name
                                     ]
                                 }
                             />
@@ -187,7 +201,7 @@ const PropertyDetails = () => {
                                 label={'Phone Number'}
                                 value={
                                     thisProperty[propertySchema.partnerInfo][
-                                        partnerInfoSchema.phone
+                                    partnerInfoSchema.phone
                                     ]
                                 }
                             />
@@ -195,7 +209,7 @@ const PropertyDetails = () => {
                                 label={'Email'}
                                 value={
                                     thisProperty[propertySchema.partnerInfo][
-                                        partnerInfoSchema.email
+                                    partnerInfoSchema.email
                                     ]
                                 }
                             />
@@ -223,7 +237,7 @@ const PropertyDetails = () => {
                                 label={'Total Views'}
                                 value={
                                     thisProperty[propertySchema.engagement][
-                                        engagementSchema.totalViews
+                                    engagementSchema.totalViews
                                     ]
                                 }
                             />
@@ -231,7 +245,7 @@ const PropertyDetails = () => {
                                 label={'Total Inquiries'}
                                 value={
                                     thisProperty[propertySchema.engagement][
-                                        engagementSchema.totalInquiries
+                                    engagementSchema.totalInquiries
                                     ]
                                 }
                             />
@@ -239,7 +253,7 @@ const PropertyDetails = () => {
                                 label={'Last Booking'}
                                 value={
                                     thisProperty[propertySchema.engagement][
-                                        engagementSchema.lastBooking
+                                    engagementSchema.lastBooking
                                     ]
                                 }
                             />
@@ -255,7 +269,7 @@ const PropertyDetails = () => {
                                 className='h-[100px] w-[200px] rounded-[10px]'
                                 src={
                                     thisProperty[propertySchema.media][
-                                        mediaSchema.walkthroughVideo
+                                    mediaSchema.walkthroughVideo
                                     ]
                                 }
                             />
@@ -359,7 +373,7 @@ const PropertyDetails = () => {
                                     <tbody className='bg-white'>
                                         {Object.values(
                                             thisProperty[
-                                                propertySchema.bookings
+                                            propertySchema.bookings
                                             ]
                                         ).map((item, key) => (
                                             <tr
@@ -373,8 +387,8 @@ const PropertyDetails = () => {
                                                 <td className='text-[12px] p-2.5'>
                                                     {
                                                         item[
-                                                            bookingsSchema
-                                                                .bookingId
+                                                        bookingsSchema
+                                                            .bookingId
                                                         ]
                                                     }
                                                 </td>
@@ -382,8 +396,8 @@ const PropertyDetails = () => {
                                                 <td className='text-[12px] p-2.5'>
                                                     {
                                                         item[
-                                                            bookingsSchema
-                                                                .tenantName
+                                                        bookingsSchema
+                                                            .tenantName
                                                         ]
                                                     }
                                                 </td>
@@ -391,8 +405,8 @@ const PropertyDetails = () => {
                                                 <td className='text-[12px] p-2.5'>
                                                     {
                                                         item[
-                                                            bookingsSchema
-                                                                .roomType
+                                                        bookingsSchema
+                                                            .roomType
                                                         ]
                                                     }
                                                 </td>
@@ -400,8 +414,8 @@ const PropertyDetails = () => {
                                                 <td className='text-[12px] p-2.5'>
                                                     {
                                                         item[
-                                                            bookingsSchema
-                                                                .checkIn
+                                                        bookingsSchema
+                                                            .checkIn
                                                         ]
                                                     }
                                                 </td>
@@ -409,8 +423,8 @@ const PropertyDetails = () => {
                                                 <td className='text-[12px] p-2.5'>
                                                     {
                                                         item[
-                                                            bookingsSchema
-                                                                .status
+                                                        bookingsSchema
+                                                            .status
                                                         ]
                                                     }
                                                 </td>
@@ -418,8 +432,8 @@ const PropertyDetails = () => {
                                                 <td className='text-[12px] p-2.5'>
                                                     {
                                                         item[
-                                                            bookingsSchema
-                                                                .amount
+                                                        bookingsSchema
+                                                            .amount
                                                         ]
                                                     }
                                                 </td>

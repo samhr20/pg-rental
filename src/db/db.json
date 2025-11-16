@@ -1047,10 +1047,10 @@
     {
       "propertyId": "PG1001",
       "propertyName": "Urban Stay Residency",
-      "active": true,
+      "active": false,
       "listedOn": "15 August 2025, 06:00 PM",
       "statusControls": {
-        "isBlocked": false,
+        "isBlocked": true,
         "isVerified": true,
         "isDeleted": false,
         "blockReason": null

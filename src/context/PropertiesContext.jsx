@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { supabase } from '../call_handler/supabase-client'
 
 export const PropertiesContext = createContext();
 
@@ -14,20 +15,23 @@ export const PropertiesContextProvider = ({ children }) => {
     })
     const [propertyFilterIsOpen, setPropertyFilterIsOpen] = useState(false)
 
+
     useEffect(() => {
 
-       if (location.pathname === "/properties") {
-            const fetchData = async () => {
-            try {
-                const properties = await axios.get("http://localhost:3000/Properties");
-                setProperties(properties.data)
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+        if (location.pathname === "/properties") {
 
-        fetchData();
-       }
+            const fetchData = async () => {
+                try {
+                    const properties = supabase.from('Properties').select('*')
+                    const { data } = await properties
+                   setProperties(data)
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+
+            fetchData();
+        }
 
     }, [location.pathname]);
 
@@ -39,11 +43,12 @@ export const PropertiesContextProvider = ({ children }) => {
     }
 
 
-    useEffect(() => {
-        closePopup()
-        setPropertyFilterIsOpen(false)
-    }, [location])
+   useEffect(() => {
 
+    closePopup()
+    setPropertyFilterIsOpen(false)
+
+}, [location])
 
     return (
         <PropertiesContext.Provider value={{

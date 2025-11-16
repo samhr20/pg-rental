@@ -53,7 +53,10 @@ const Properties = () => {
                 className={`fixed inset-0 bg-black/60 z-50 transition-opacity duration-200 ${sortIsOpen ? "opacity-100 visible" : "opacity-0 invisible"
                     }`}
                 onClick={() => setSortIsOpen(false)}
-            />
+            /> 
+            {sortedProperties.length < 1 ? (
+                <div>loading........</div>
+            ):(
             <div className=' flex flex-col p-[30px] gap-4 h-full bg-white rounded-[20px] '>
                 <div className='relative flex justify-between items-center min-w-[1060ox] min-h-[48px] gap-5 '>
                     <p className='text-[14px] custom-poppins text-[#838383]'>Showing {sortedProperties.length} of {properties.length}</p>
@@ -166,6 +169,7 @@ const Properties = () => {
 
                 </div>
             </div >
+            )}
         </>
 
     )

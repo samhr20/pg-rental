@@ -21,15 +21,16 @@ export const PropertiesContextProvider = ({ children }) => {
         if (location.pathname === "/properties") {
 
             const fetchData = async () => {
-                try {
+                
                     const properties = supabase.from('Properties').select('*')
-                    const { data } = await properties
-                   setProperties(data)
-                } catch (error) {
-                    console.log(error);
-                }
+                    const { data  , error} = await properties
+                     
+                    if (data) {
+                        setProperties(data)
+                    }else{
+                        console.log(error);   
+                    }
             }
-
             fetchData();
         }
 

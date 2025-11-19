@@ -1,5 +1,5 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import useProperties from '../context/PropertiesContext'
 import Block from '../../public/svg/Block.svg?react'
 import Unblock from '../../public/svg/Unblock.svg?react'
@@ -8,40 +8,46 @@ import Delete from '../../public/svg/Delete.svg?react'
 import ActionButton from '../components/ActionButton'
 import DetailCard from '../components/DetailCard'
 import DetailRow from '../components/DetailRow'
-import {
-    bookingsSchema,
-    engagementSchema,
-    locationDetailsSchema,
-    mediaSchema,
-    partnerInfoSchema,
-    propertyInfoSchema,
-    propertySchema,
-    rentSchema,
-    roomTypesSchema,
-    statusControlsSchema,
-} from '../helpers/properties_enum'
+import { supabase } from '../call_handler/supabase-client'
+import { LocationSchema, partnerInfoSchema, PropertiesSchema, rentSchema, roomTypesSchema, statusControlsSchema } from '../helpers/properties_enum'
+
 
 const PropertyDetails = () => {
-
-
-    
+    const location = useLocation()
     const { propertyId } = useParams()
-    const { properties, openPopup } = useProperties()
+    const { openPopup } = useProperties()
+    const [thisProperty, setThisProperty] = useState(null);
+    const [loader, setLoader] = useState(false)
 
-    const thisProperty = properties.find(
-        (p) => p[propertySchema.propertyId] === propertyId
-    )
+    useEffect(() => {
+        const GetData = async () => {
 
-    if (!thisProperty) {
-        return (
-            <div className='flex items-center justify-center p-[30px] h-full bg-white rounded-[20px]'>
-                <p className='text-xl text-gray-500'>Property Not Found</p>
-            </div>
-        )
-    }
+            setLoader(true)
+            const { data, error } = await supabase
+                .from("Properties")
+                .select(` *,Partner(*),StatusControls(*),Location(*),Rent(*),Amenties(*) `)
+                .eq("id", propertyId)
+                .single();
+
+            if (error) {
+                console.log(error);
+                setLoader(false)
+            } else {
+                setThisProperty(data);
+                setLoader(false)
+            }
+        };
+
+        if (propertyId) {
+            GetData();
+        }
+    }, [location === `/properties/${propertyId}`]);
+
 
     const accountStatus =
-        thisProperty[propertySchema.partnerInfo]?.[partnerInfoSchema.accountStatus]
+        thisProperty?.Partner?.[partnerInfoSchema.account_status]
+
+    console.log(accountStatus);
 
     const accountStatusColor =
         accountStatus === 'Verified'
@@ -52,294 +58,300 @@ const PropertyDetails = () => {
                     ? '#FF0000'
                     : '#000000'
 
+
+    const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+
+        return date.toLocaleString("en-IN", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        });
+    };
+
+
     return (
-        <div className='flex flex-col gap-4 p-[30px] pb-[10px] h-full bg-white rounded-[20px]'>
-            <div className='flex  justify-between items-center'>
-                <div className='flex flex-col items-center gap-4'>
-                    <div className=' min-w-[307px] flex items-center justify-between gap-5'>
-                        <p className='custom-poppins text-[24px] '>
-                            {thisProperty[propertySchema.propertyName]}
-                        </p>
-                        <p className='-mt-2.5 bg-[#00B8061A] min-w-[51px] min-h-[23px] rounded-[20px] py-0.5 px-2.5 flex  justify-center items-center gap-2.5 text-[10px] text-[#00B806]'>
-                            {thisProperty[propertySchema.active]
-                                ? 'Active'
-                                : 'Inactive'}
-                        </p>
-                    </div>
 
-                    <div className='flex items-center  w-full gap-4 text-[#838383] text-[14px]'>
-                        <p>#{thisProperty[propertySchema.propertyId]}</p>
-                        <p>|</p>
-                        <p>{thisProperty[propertySchema.listedOn]}</p>
-                    </div>
-                </div>
+        <>
+            {loader ? (
+                <div>Loading...</div>
+            ) : !thisProperty ? (
+                <div>Property Not Found</div>
+            ) : (
+                <div className='flex flex-col gap-4 p-[30px] pb-[10px] h-full bg-white rounded-[20px]'>
+                    <div className='flex  justify-between items-center'>
+                        <div className='flex flex-col gap-4'>
+                            <div className=' max-w-[307px] flex items-center justify-between text-start gap-5'>
+                                <p className='custom-poppins text-[24px] '>
+                                    {thisProperty[PropertiesSchema.title]}
+                                </p>
+                                <p className='-mt-2.5 bg-[#00B8061A] min-w-[51px] min-h-[23px] rounded-[20px] py-0.5 px-2.5 flex  justify-center items-center gap-2.5 text-[10px] text-[#00B806]'>
+                                    {thisProperty[PropertiesSchema.StatusControls]?.[0]?.[statusControlsSchema.active]
+                                        ? 'Active'
+                                        : 'Inactive'}
+                                </p>
+                            </div>
 
-                <div className='h-full flex items-end justify-between '>
-                    <div className='flex items-center justify-between cursor-pointer gap-4'>
+                            <div className='flex items-center  w-full gap-4 text-[#838383] text-[14px]'>
+                                <p>#{thisProperty[PropertiesSchema.id]}</p>
+                                <p>|</p>
+                                <p>{formatDate(thisProperty[PropertiesSchema.created_at])}</p>
+
+                            </div>
+                        </div>
+
+                        <div className='h-full flex items-end justify-between '>
+                            <div className='flex items-center justify-between cursor-pointer gap-4'>
 
 
 
-                        {thisProperty[propertySchema.statusControls][statusControlsSchema.isBlocked] ? (
+                                {thisProperty?.StatusControls?.[0]?.[statusControlsSchema.isBlocked] ? (
 
-                            <ActionButton
-                                IconComponent={Unblock}
-                                text={'Unblock'}
-                                bgColor={'#0022FF14'}
-                                iconColor={'#0022FF'}
-                                onClick={() => openPopup('unblock')}
-                            />
-                        ) : (
+                                    <ActionButton
+                                        IconComponent={Unblock}
+                                        text={'Unblock'}
+                                        bgColor={'#0022FF14'}
+                                        iconColor={'#0022FF'}
+                                        onClick={() => openPopup('unblock')}
+                                    />
+                                ) : (
 
-                            <ActionButton
-                                IconComponent={Block}
-                                text={'Block'}
-                                bgColor={'#FF000014'}
-                                iconColor={'#FF0000'}
-                                onClick={() => openPopup('block')}
-                            />
-                        )}
-
-                        {!thisProperty[propertySchema.statusControls][statusControlsSchema.isVerified] && (
-                            <ActionButton
-                                IconComponent={Check}
-                                text={'Verify'}
-                                bgColor={'#00B80614'}
-                                iconColor={'#00B806'}
-                                onClick={() => openPopup('verify')}
-                            />
-                        )}
-
-                        <ActionButton
-                            IconComponent={Delete}
-                            text={'Delete'}
-                            bgColor={'#FF000014'}
-                            iconColor={'#FF0000'}
-                            onClick={() => openPopup('delete')}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <hr className='border border-[#EEEDED]' />
-
-            <div className='overflow-y-scroll flex flex-col gap-4'>
-                <div className='min-w-[1060px] flex justify-between items-start gap-4'>
-                    <div className='flex flex-col gap-4 w-full '>
-                        <DetailCard title={'Location Details'}>
-                            <DetailRow
-                                label={'City'}
-                                value={
-                                    thisProperty[propertySchema.locationDetails][
-                                    locationDetailsSchema.city
-                                    ]
-                                }
-                            />
-                            <DetailRow
-                                label={'Full Address'}
-                                value={
-                                    thisProperty[propertySchema.locationDetails][
-                                    locationDetailsSchema.locality
-                                    ]
-                                }
-                                multiline
-                            />
-                        </DetailCard>
-
-                        <DetailCard title={'Property Type & Structure'}>
-                            <DetailRow
-                                label={'Type'}
-                                value={thisProperty[propertySchema.propertyType]}
-                            />
-
-                            <DetailRow
-                                label={'Gender Preference'}
-                                value={
-                                    thisProperty[propertySchema.genderPreference]
-                                }
-                            />
-                            <DetailRow
-                                label={'Furnishing'}
-                                value={thisProperty[propertySchema.furnishing]}
-                            />
-                        </DetailCard>
-
-                        <DetailCard title={'Amenities'}>
-                            <div className=' w-[302px] flex flex-wrap items-center  gap-x-[30px] gap-y-3'>
-                                {Object.entries(
-                                    thisProperty[propertySchema.amenities]
-                                ).map(
-                                    ([key, value]) =>
-                                        value && (
-                                            <div
-                                                key={key}
-                                                className='flex items-center gap-1.5'
-                                            >
-                                                <div className='flex items-center justify-center w-[24px] h-[24px] rounded-[16px] py-[1.6px] px-[4.8px] bg-[#00B80633]'>
-                                                    <Check className='w-[14px] h-[14px] text-black' />
-                                                </div>
-                                                <p className='text-[12px] custom-poppins capitalize'>
-                                                    {key}
-                                                </p>
-                                            </div>
-                                        )
+                                    <ActionButton
+                                        IconComponent={Block}
+                                        text={'Block'}
+                                        bgColor={'#FF000014'}
+                                        iconColor={'#FF0000'}
+                                        onClick={() => openPopup('block')}
+                                    />
                                 )}
-                            </div>
-                        </DetailCard>
-                    </div>
 
-                    <div className='flex flex-col gap-4 w-full '>
-                        <DetailCard title={'Partner (Owner) Info'}>
-                            <DetailRow
-                                label={'Name'}
-                                value={
-                                    thisProperty[propertySchema.partnerInfo][
-                                    partnerInfoSchema.name
-                                    ]
-                                }
-                            />
-                            <DetailRow
-                                label={'Phone Number'}
-                                value={
-                                    thisProperty[propertySchema.partnerInfo][
-                                    partnerInfoSchema.phone
-                                    ]
-                                }
-                            />
-                            <DetailRow
-                                label={'Email'}
-                                value={
-                                    thisProperty[propertySchema.partnerInfo][
-                                    partnerInfoSchema.email
-                                    ]
-                                }
-                            />
-                            <DetailRow
-                                label={'Account Status'}
-                                value={accountStatus}
-                                textColor={accountStatusColor}
-                            />
-                        </DetailCard>
+                                {!thisProperty?.StatusControls?.[0]?.[statusControlsSchema.isVerified] && (
+                                    <ActionButton
+                                        IconComponent={Check}
+                                        text={'Verify'}
+                                        bgColor={'#00B80614'}
+                                        iconColor={'#00B806'}
+                                        onClick={() => openPopup('verify')}
+                                    />
+                                )}
 
-                        <DetailCard title={'Rent & Price'}>
-                            {thisProperty[propertySchema.rent][
-                                rentSchema.roomTypes
-                            ].map((item, key) => (
-                                <DetailRow
-                                    key={key}
-                                    label={item[roomTypesSchema.type]}
-                                    value={item[roomTypesSchema.price]}
+                                <ActionButton
+                                    IconComponent={Delete}
+                                    text={'Delete'}
+                                    bgColor={'#FF000014'}
+                                    iconColor={'#FF0000'}
+                                    onClick={() => openPopup('delete')}
                                 />
-                            ))}
-                        </DetailCard>
-
-                        <DetailCard title={'Engagement Metrics'}>
-                            <DetailRow
-                                label={'Total Views'}
-                                value={
-                                    thisProperty[propertySchema.engagement][
-                                    engagementSchema.totalViews
-                                    ]
-                                }
-                            />
-                            <DetailRow
-                                label={'Total Inquiries'}
-                                value={
-                                    thisProperty[propertySchema.engagement][
-                                    engagementSchema.totalInquiries
-                                    ]
-                                }
-                            />
-                            <DetailRow
-                                label={'Last Booking'}
-                                value={
-                                    thisProperty[propertySchema.engagement][
-                                    engagementSchema.lastBooking
-                                    ]
-                                }
-                            />
-                        </DetailCard>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className='flex flex-col gap-4 w-full '>
-                        <DetailCard title={'Photos / Media'}>
-                            <p className='text-[#838383] text-[12px] custom-poppins'>
-                                Walkthrough Video
-                            </p>
-                            <img
-                                className='h-[100px] w-[200px] rounded-[10px]'
-                                src={
-                                    thisProperty[propertySchema.media][
-                                    mediaSchema.walkthroughVideo
-                                    ]
-                                }
-                            />
+                    <hr className='border border-[#EEEDED]' />
 
-                            <p className='text-[#838383] text-[12px] custom-poppins'>
-                                Property Front & Surrounding
-                            </p>
-                            <div className='flex gap-4 items-center min-w-[176px]'>
-                                {thisProperty[propertySchema.media][
-                                    mediaSchema.images
-                                ]
-                                    .slice(0, 2)
-                                    .map((img, i) => (
-                                        <img
-                                            key={i}
-                                            className='h-[80px] w-[80px] rounded-[10px]'
-                                            src={img}
-                                        />
-                                    ))}
+                    <div className='overflow-y-scroll flex flex-col gap-4'>
+                        <div className='min-w-[1060px] flex justify-between items-start gap-4'>
+                            <div className='flex flex-col gap-4 w-full '>
+                                <DetailCard title={'Location Details'}>
+                                    <DetailRow
+                                        label={'City'}
+                                        value={
+                                            thisProperty?.Location?.[0]?.[LocationSchema.city]
+                                        }
+                                    />
+                                    <DetailRow
+                                        label={'Full Address'}
+                                        value={
+                                            thisProperty?.Location?.[0]?.[LocationSchema.address]
+                                        }
+                                        multiline
+                                    />
+                                </DetailCard>
+
+                                <DetailCard title={'Property Type & Structure'}>
+                                    <DetailRow
+                                        label={'Type'}
+                                        value={thisProperty[PropertiesSchema.type]}
+                                    />
+
+                                    <DetailRow
+                                        label={'Gender Preference'}
+                                        value={
+                                            thisProperty[PropertiesSchema.gender_prefrence]
+                                        }
+                                    />
+                                    <DetailRow
+                                        label={'Furnishing'}
+                                        value={thisProperty[PropertiesSchema.furnishing]}
+                                    />
+                                </DetailCard>
+
+                                <DetailCard title={'Amenities'}>
+                                    <div className=' w-[302px] flex flex-wrap items-center  gap-x-[30px] gap-y-3'>
+                                        {thisProperty?.Amenties?.[0]?.amenties.map(
+                                            (item, key) =>
+                                            (
+                                                <div
+                                                    key={key}
+                                                    className='flex items-center gap-1.5'
+                                                >
+                                                    <div className='flex items-center justify-center w-[24px] h-[24px] rounded-[16px] py-[1.6px] px-[4.8px] bg-[#00B80633]'>
+                                                        <Check className='w-[14px] h-[14px] text-black' />
+                                                    </div>
+                                                    <p className='text-[12px] custom-poppins capitalize'>
+                                                        {item}
+                                                    </p>
+                                                </div>
+                                            )
+                                        )}
+                                    </div>
+                                </DetailCard>
                             </div>
 
-                            <p className='text-[#838383] text-[12px] custom-poppins'>
-                                Double Sharing
-                            </p>
-                            <div className='flex gap-4 items-center min-w-[176px]'>
-                                {thisProperty[propertySchema.media][
-                                    mediaSchema.images
-                                ]
-                                    .slice(2, 5)
-                                    .map((img, i) => (
-                                        <img
-                                            key={i}
-                                            className='h-[80px] w-[80px] rounded-[10px]'
-                                            src={img}
+                            <div className='flex flex-col gap-4 w-full '>
+                                <DetailCard title={'Partner (Owner) Info'}>
+                                    <DetailRow
+                                        label={'Name'}
+                                        value={
+                                            thisProperty?.Partner?.[partnerInfoSchema.name]
+                                        }
+                                    />
+                                    <DetailRow
+                                        label={'Phone Number'}
+                                        value={
+                                            thisProperty?.Partner?.[partnerInfoSchema.phone]
+                                        }
+                                    />
+                                    <DetailRow
+                                        label={'Email'}
+                                        value={
+                                            thisProperty?.Partner?.[partnerInfoSchema.email]
+                                        }
+                                    />
+                                    <DetailRow
+                                        label={'Account Status'}
+                                        value={accountStatus}
+                                        textColor={accountStatusColor}
+                                    />
+                                </DetailCard>
+
+                                <DetailCard title={'Rent & Price'}>
+
+                                    {thisProperty?.Rent?.[0]?.[rentSchema.room_types].map((item, key) => (
+                                        <DetailRow
+                                            key={key}
+                                            label={item[roomTypesSchema.type]}
+                                            value={item[roomTypesSchema.price]}
                                         />
                                     ))}
+                                </DetailCard>
+
+                                <DetailCard title={'Engagement Metrics'}>
+                                    <DetailRow
+                                        label={'Total Views'}
+                                        value={"520"}
+                                    // value={
+                                    //     thisProperty[propertySchema.engagement][
+                                    //     engagementSchema.totalViews
+                                    //     ]
+                                    // }
+                                    />
+                                    <DetailRow
+                                        label={'Total Inquiries'}
+                                        value={"199"}
+                                    // value={
+                                    //     thisProperty[propertySchema.engagement][
+                                    //     engagementSchema.totalInquiries
+                                    //     ]
+                                    // }
+                                    />
+                                    <DetailRow
+                                        label={'Last Booking'}
+                                        value={"Today"}
+                                    // value={
+                                    //     thisProperty[propertySchema.engagement][
+                                    //     engagementSchema.lastBooking
+                                    //     ]
+                                    // }
+                                    />
+                                </DetailCard>
                             </div>
 
-                            <p className='text-[#838383] text-[12px] custom-poppins'>
-                                Private Room
+                            <div className='flex flex-col gap-4 w-full '>
+                                <DetailCard title={'Photos / Media'}>
+                                    <p className='text-[#838383] text-[12px] custom-poppins'>
+                                        Walkthrough Video
+                                    </p>
+                                    <img
+                                        className='h-[100px] w-[200px] rounded-[10px]'
+                                        src={
+                                            `/images${thisProperty[PropertiesSchema.video]}`
+                                        }
+                                    />
+
+                                    <p className='text-[#838383] text-[12px] custom-poppins'>
+                                        Property Front & Surrounding
+                                    </p>
+                                    <div className='flex gap-4 items-center min-w-[176px]'>
+                                        {thisProperty[PropertiesSchema.images]
+                                            .slice(0, 2)
+                                            .map((img, i) => (
+                                                <img
+                                                    key={i}
+                                                    className='h-[80px] w-[80px] rounded-[10px]'
+                                                    src={`/images/${img}`}
+                                                />
+                                            ))}
+                                    </div>
+
+                                    <p className='text-[#838383] text-[12px] custom-poppins'>
+                                        Double Sharing
+                                    </p>
+                                    <div className='flex gap-4 items-center min-w-[176px]'>
+                                        {thisProperty[PropertiesSchema.images]
+                                            .slice(2, 4)
+                                            .map((img, i) => (
+                                                <img
+                                                    key={i}
+                                                    className='h-[80px] w-[80px] rounded-[10px]'
+                                                    src={`/images/${img}`}
+                                                />
+                                            ))}
+                                    </div>
+
+
+                                    <p className='text-[#838383] text-[12px] custom-poppins'>
+                                        Private Room
+                                    </p>
+                                    <div className='flex gap-4 items-center min-w-[176px]'>
+                                        {thisProperty[PropertiesSchema.images]
+                                            .slice(0, 2)
+                                            .map((img, i) => (
+                                                <img
+                                                    key={i}
+                                                    className='h-[80px] w-[80px] rounded-[10px]'
+                                                    src={`/images/${img}`}
+                                                />
+                                            ))}
+                                    </div>
+
+                                </DetailCard>
+                            </div>
+                        </div>
+
+                        <hr className='border border-[#EEEDED]' />
+
+                        <div className='flex flex-col gap-4 w-full'>
+                            <p className='custom-medium text-[14px] text-[#FF6A00]'>
+                                Booking History
                             </p>
-                            <div className='flex gap-4 items-center min-w-[176px]'>
-                                {thisProperty[propertySchema.media][
-                                    mediaSchema.images
-                                ]
-                                    .slice(0, 1)
-                                    .concat(
-                                        thisProperty[propertySchema.media][
-                                            mediaSchema.images
-                                        ].slice(2, 3)
-                                    )
-                                    .map((img, i) => (
-                                        <img
-                                            key={i}
-                                            className='h-[80px] w-[80px] rounded-[10px]'
-                                            src={img}
-                                        />
-                                    ))}
+
+                            <div className='flex justify-center items-center'>
+                                <p>No Booking History</p>
                             </div>
-                        </DetailCard>
-                    </div>
-                </div>
-
-                <hr className='border border-[#EEEDED]' />
-
-                <div className='flex flex-col gap-4 w-full'>
-                    <p className='custom-medium text-[14px] text-[#FF6A00]'>
-                        Booking History
-                    </p>
-
+                            {/* 
                     {thisProperty[propertySchema.bookings].length > 0 ? (
                         <div className='border border-[#EEEDED] rounded-[20px] overflow-hidden'>
                             <div className='overflow-y-auto max-h-[345px]'>
@@ -447,11 +459,16 @@ const PropertyDetails = () => {
                         <div className='flex justify-center items-center'>
                             <p>No Booking History</p>
                         </div>
-                    )}
+                    )} */}
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </div>
+
+            )}
+        </>
     )
 }
 
 export default PropertyDetails
+

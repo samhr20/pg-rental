@@ -22,6 +22,7 @@ import useProperties from './context/PropertiesContext';
 import PropertyPopups from './components/PropertyPopups';
 import PropertyFilters from './components/PropertyFilters';
 import { useEffect } from 'react';
+import Testing from './pages/Dummy'
 
 
 const App = () => {
@@ -115,6 +116,7 @@ const App = () => {
               <Route path="/notification" element={<Notification />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/logout" element={<Logout />} />
+              <Route path="/testing" element={<Testing />} />
             </Routes>
 
           </main>

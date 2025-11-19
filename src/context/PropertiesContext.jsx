@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { supabase } from '../call_handler/supabase-client'
@@ -8,6 +7,7 @@ export const PropertiesContext = createContext();
 export const PropertiesContextProvider = ({ children }) => {
     const [properties, setProperties] = useState([])
     const [filteredProperties, setFilteredProperties] = useState([])
+    const [loader, setLoader] = useState(false)
     const location = useLocation()
     const [popup, setPopup] = useState({
         type: null,
@@ -15,26 +15,6 @@ export const PropertiesContextProvider = ({ children }) => {
     })
     const [propertyFilterIsOpen, setPropertyFilterIsOpen] = useState(false)
 
-
-    useEffect(() => {
-
-        if (location.pathname === "/properties") {
-
-            const fetchData = async () => {
-                
-                    const properties = supabase.from('Properties').select('*')
-                    const { data  , error} = await properties
-                     
-                    if (data) {
-                        setProperties(data)
-                    }else{
-                        console.log(error);   
-                    }
-            }
-            fetchData();
-        }
-
-    }, [location.pathname]);
 
     const openPopup = (type) => {
         setPopup({ type, isOpen: true })
@@ -44,12 +24,47 @@ export const PropertiesContextProvider = ({ children }) => {
     }
 
 
-   useEffect(() => {
+    useEffect(() => {
 
-    closePopup()
-    setPropertyFilterIsOpen(false)
+        const getData = async () => {
 
-}, [location])
+            setLoader(true)
+
+            const { data: propertiesData, error: propertiesError } = await supabase
+                .from('Properties')
+                .select('title, created_at,id, images, Rent(room_types), Location(locality, city)')
+
+            if (propertiesData) {
+
+                const updated = propertiesData.map(item => {
+                    const roomTypes = item.Rent?.[0]?.room_types || [];
+                    const lowestPrice = roomTypes.length
+                        ? Math.min(...roomTypes.map(r => Number(r.price)))
+                        : null;
+
+                    return {
+                        ...item,
+                        lowestPrice
+                    };
+                });
+
+                setProperties(updated);
+                setLoader(false)
+            }
+            else {
+                console.log(propertiesError);
+                setLoader(false)
+
+            }
+        };
+
+        getData();
+        closePopup();
+        setPropertyFilterIsOpen(false);
+       
+
+    }, [location]);
+
 
     return (
         <PropertiesContext.Provider value={{
@@ -62,7 +77,8 @@ export const PropertiesContextProvider = ({ children }) => {
             setPropertyFilterIsOpen,
             propertyFilterIsOpen,
             filteredProperties,
-            setFilteredProperties
+            setFilteredProperties,
+            loader
         }}>
             {children}
         </PropertiesContext.Provider>

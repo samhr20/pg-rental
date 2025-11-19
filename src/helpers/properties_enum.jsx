@@ -1,94 +1,66 @@
-export const propertySchema = {
-    propertyId:"propertyId",
-    propertyName:"propertyName",
-    active:"active",
-    listedOn:"listedOn",
-    statusControls:"statusControls",
-    locationDetails:"locationDetails",
-    partnerInfo:"partnerInfo",
-    propertyType :"propertyType",
-    furnishing:"furnishing",
-    genderPreference : "genderPreference",
-    rent : "rent",
-    amenities : "amenities",
-    engagement : "engagement",
-    media : "media",
-    bookings : "bookings"
+export const partnerInfoSchema = {
+    Properties: "Properties",
+    account_status: "account_status",
+    created_at: "created_at",
+    email: "email",
+    id: "id",
+    name: "name",
+    phone: "phone",
 }
 
-export const statusControlsSchema ={
-    isBlocked:"isBlocked",
-    isVerified:"isVerified",
-    isDeleted:"isDeleted",
-    blockReason:"blockReason"
+export const PropertiesSchema = {
+    Amenties: "Amenties",
+    Location: "Location",
+    Rent: "Rent",
+    StatusControls: "StatusControls",
+    created_at: "created_at",
+    furnishing: "furnishing",
+    gender_prefrence: "gender_prefrence",
+    id: "id",
+    images: "images",
+    pg_id: "pg_id",
+    title: "title",
+    type: "type",
+    video: "video"
+}
+export const AmentiesSchema = {
+    ac: "ac",
+    created_at: "created_at",
+    id: "id",
+    laundry: "laundry",
+    pg_id: "pg_id",
+    wifi: "wifi"
 }
 
-export const locationDetailsSchema = {
-    city : "city",
-    locality : "locality",
-    address : "address"
+export const LocationSchema = {
+    address: "address",
+    city: "city",
+    created_at: "created_at",
+    id: "id",
+    locality: "locality",
+    pg_id: "pg_id"
 }
-export const partnerInfoSchema ={
-    name : "name",
-    phone : "phone",
-    email : "email",
-    accountStatus : "accountStatus"
-}
+
 export const rentSchema = {
-    roomTypes : "roomTypes",
-    minRange : "minRange",
-    maxRange : "maxRange"
+    created_at: "created_at",
+    id: "id",
+    pg_id: "pg_id",
+    room_types: "room_types"
+}
+export const roomTypesSchema = {
+    price: "price",
+    type: "type"
 }
 
-export const roomTypesSchema= {
-    type :"type",
-    price : "price"
-}
-export const amenitiesSchema = {
-    wifi : "wifi",
-    parking : "parking",
-    laundry : "laundry",
-    security : "security",
-    ac : "ac",
-    meals : "meals",
-    housekeeping : "housekeeping",
-    cctv : "cctv",
-    lift : "lift",
-    powerBackup : "powerBackup",
-    geyser : "geyser",
-    gym : "gym",
-    attachedWashroom : "attachedWashroom",
-    balcony : "balcony",
-    refrigerator : "refrigerator",
-    roWater : "roWater",
-    tv :"tv",
-    studyTable : "studyTable"
+export const statusControlsSchema = {
+    active : "active",
+    blockReason : "blockReason",
+    created_at  :"created_at",
+    id : "id",
+    isBlocked  :"isBlocked",
+    isDeleted : "isDeleted",
+    isVerified  : "isVerified",
+    pg_id  : "pg_id",
+
 }
 
-export const engagementSchema = {
-    totalViews : "totalViews",
-    totalInquiries : "totalInquiries",
-    lastBooking : "lastBooking"
-}
-
-export const mediaSchema = { 
-    walkthroughVideo : "walkthroughVideo",
-    images : "images"
-}
-
-export const bookingsSchema = {
-    date : "date",
-    bookingId : "bookingId",
-    tenantName :"tenantName",
-    roomType : "roomType",
-    checkIn: "checkIn",
-    status: "status",
-    amount : "amount"
-}
-
-export const propertyInfoSchema= {
-    name :"name",
-    phone :"phone",
-    email : "email",
-    accountStatus : "accountStatus"
-}

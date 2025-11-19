@@ -9,15 +9,14 @@ import Wifi from '../../public/svg/Wifi.svg?react'
 import Bed from '../../public/svg/Bed.svg?react'
 import Bus from '../../public/svg/Bus.svg?react'
 import { Link, NavLink } from 'react-router-dom'
-import { locationDetailsSchema, mediaSchema, propertySchema, rentSchema, roomTypesSchema } from '../helpers/properties_enum'
 
+import { LocationSchema, PropertiesSchema, rentSchema, roomTypesSchema } from '../helpers/properties_enum'
 
 const Properties = () => {
-    const { properties, setPropertyFilterIsOpen , filteredProperties  } = useProperties()
+
+    const { properties, setPropertyFilterIsOpen, filteredProperties, loader } = useProperties()
     const [sortIsOpen, setSortIsOpen] = useState(false)
     const [sortBy, setSortBy] = useState("Newest First")
-    
-
 
     const handleSort = (sort) => {
         setSortBy(sort)
@@ -25,27 +24,36 @@ const Properties = () => {
     }
 
 
-    const sortedProperties  = filteredProperties.length > 0 ? [...filteredProperties] : [...properties]
+    const sortedProperties = [...properties]
     switch (sortBy) {
         case 'Newest First':
-            sortedProperties.sort((a, b) => new Date(b[propertySchema.listedOn]) - new Date(a[propertySchema.listedOn]));
-            break;
+            sortedProperties.sort((a, b) => new Date(b[PropertiesSchema.created_at]) - new Date(a[PropertiesSchema.created_at]));
+            break; PropertiesSchema
         case 'Oldest First':
-            sortedProperties.sort((a, b) => new Date(a[propertySchema.listedOn]) - new Date(b[propertySchema.listedOn]));
+            sortedProperties.sort((a, b) => new Date(a[PropertiesSchema.created_at]) - new Date(b[PropertiesSchema.created_at]));
             break;
         case 'A-Z (Descending)':
-            sortedProperties.sort((a, b) => b[propertySchema.propertyName].localeCompare(a[propertySchema.propertyName]));
+            sortedProperties.sort((a, b) => b[PropertiesSchema.title].localeCompare(a[PropertiesSchema.title]));
             break;
         case 'Rent High To Low':
-            sortedProperties.sort((a, b) => (b[propertySchema.rent][rentSchema.minRange]) - (a[propertySchema.rent][rentSchema.minRange]));
+            sortedProperties.sort((a, b) => (b.lowestPrice) - (a.lowestPrice));
             break;
         case 'Rent Low To High':
-            sortedProperties.sort((a, b) =>  (a[propertySchema.rent][rentSchema.minRange]) - (b[propertySchema.rent][rentSchema.minRange]) );
+            sortedProperties.sort((a, b) => (a.lowestPrice) - (b.lowestPrice));
             break;
         default:
             break;
     }
 
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+        });
+    };
 
     return (
         <>
@@ -53,11 +61,9 @@ const Properties = () => {
                 className={`fixed inset-0 bg-black/60 z-50 transition-opacity duration-200 ${sortIsOpen ? "opacity-100 visible" : "opacity-0 invisible"
                     }`}
                 onClick={() => setSortIsOpen(false)}
-            /> 
-            {sortedProperties.length < 1 ? (
-                <div>loading........</div>
-            ):(
-            <div className=' flex flex-col p-[30px] gap-4 h-full bg-white rounded-[20px] '>
+            />
+            
+            <div className=' flex flex-col p-[30px] gap-4  bg-white rounded-[20px] '>
                 <div className='relative flex justify-between items-center min-w-[1060ox] min-h-[48px] gap-5 '>
                     <p className='text-[14px] custom-poppins text-[#838383]'>Showing {sortedProperties.length} of {properties.length}</p>
                     <div className='flex items-center gap-5'>
@@ -89,48 +95,63 @@ const Properties = () => {
                 <div>
                 </div>
 
+            </div >
+
+            {loader && (
+                <div className=' flex items-center justify-center p-[30px] gap-4 h-full bg-white rounded-[20px] '>
+                    Loading.....
+                </div>
+            )}
+
+
+            {sortedProperties.length > 0 && !loader ? (
+
                 <div className="grid grid-cols-4 min-w-[1060px] space-x-4 space-y-4 overflow-y-scroll ">
 
                     {sortedProperties.map((item, key) => {
 
-                        const randomImageGetter = Math.floor(
-                            Math.random() *
-                            item[propertySchema.media][mediaSchema.images].length
-                        )
-                    
                         return (
                             <Link
-                                key={key || item[propertySchema.propertyId]}
-                                to={`/properties/${item[propertySchema.propertyId]}`}
+                                key={item[PropertiesSchema.id]}
+                                to={`/properties/${item[PropertiesSchema.id]}`}
                             >
                                 <div className='cursor-pointer relative min-w-[250px] min-h-[286px] rounded-[16px] border border-[#EEEDED] p-1.5 pb-4 flex flex-col gap-2.5'>
                                     <div >
-                                        <img src={item[propertySchema.media][mediaSchema.images][randomImageGetter]}
+                                        <img src={`/images/${item[PropertiesSchema.images][0]}`}
                                             className='object-cover rounded-[10px] w-full min-w-[238px] h-[120px]'
                                         />
                                     </div>
 
                                     <div className='flex flex-col gap-2.5 px-1.5'>
                                         <div className='flex justify-between items-center'>
-                                            <p className='text-[14px] custom-semibold'>{item[propertySchema.propertyName]}</p>
-                                            <p className='custom-semibold text-[14px]'>{item[propertySchema.rent][rentSchema.minRange]}<span className='custom-light text-[10px]'>/Mo</span></p>
+                                            <p className='text-[14px] custom-semibold'>{item[PropertiesSchema.title]}</p>
+                                            <p className='custom-semibold text-[14px]'>{item.lowestPrice}<span className='custom-light text-[10px]'>/Mo</span></p>
                                         </div>
-                                        <p className='text-[#838383] text-[12px] custom-poppins'>Listed on: {item[propertySchema.listedOn].split(",")[0]}</p>
+                                        <p className='text-[#838383] text-[12px] custom-poppins'>
+                                            Listed on: {formatDate(item[PropertiesSchema.created_at])}
+                                        </p>
+
 
                                         <div className="whitespace-nowrap ">
                                             <span className="inline-flex gap-2.5 pr-2.5">
-                                                {Object.values((item[propertySchema.rent][rentSchema.roomTypes])).map((rooms, key) => (
-                                                    <p key={key} className='bg-[#FFECDE] rounded-[20px] py-0.5 px-1.5 custom-poppins text-[10px] text-[#FF6A00]'>{rooms[roomTypesSchema.type]}</p>
+                                                {item[PropertiesSchema.Rent][0][rentSchema.room_types].map((room, i) => (
+                                                    <p
+                                                        key={i}
+                                                        className='bg-[#FFECDE] rounded-[20px] py-0.5 px-1.5 custom-poppins text-[10px] text-[#FF6A00]'
+                                                    >
+                                                        {room[roomTypesSchema.type]}
+                                                    </p>
                                                 ))}
                                             </span>
 
                                         </div>
+
                                         <div className="flex w-full items-center min-w-[158px] h-[18px] gap-[5px] ">
                                             <Address className="w-[18px] h-[18px] text-[#838383]" />
                                             <div className=" w-full overflow-hidden">
                                                 <p className="text-[#838383] text-[12px] custom-poppins whitespace-nowrap ">
-                                                    {item[propertySchema.locationDetails][locationDetailsSchema.locality]},
-                                                    {item[propertySchema.locationDetails][locationDetailsSchema.city]}
+                                                    {item[PropertiesSchema.Location][0][LocationSchema.locality]} ,
+                                                    {item[PropertiesSchema.Location][0][LocationSchema.city]}
                                                 </p>
                                             </div>
                                         </div>
@@ -168,8 +189,14 @@ const Properties = () => {
                     })}
 
                 </div>
-            </div >
+            ) : !loader && (
+                <div className=' flex items-center justify-center p-[30px] gap-4 h-full bg-white rounded-[20px] '>
+                    nothing to show
+                </div>
             )}
+
+
+
         </>
 
     )

@@ -9,7 +9,7 @@ import LeftArrow from '../../public/svg/LeftArrow.svg?react'
 import RightArrow from '../../public/svg/RightArrow.svg?react'
 import { newAdminSchema } from '../helpers/user_enum'
 import useAdminManagement from '../context/AdminManagementContext'
-import { handleExportCsv } from '../functions/ExportCsvHandler'
+// import { handleExportCsv } from '../functions/ExportCsvHandler'
 
 const AdminManagement = () => {
   const [search, setSearch] = useState('')
@@ -18,6 +18,7 @@ const AdminManagement = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const lastPostIndex = postPerPage * currentPage;
   const firstPostIndex = lastPostIndex - postPerPage
+
   const unparse = adminData.map((admin) => ({
     AdminID: admin[newAdminSchema.AdminId],
     FullName: admin[newAdminSchema.FullName],
@@ -40,7 +41,10 @@ const AdminManagement = () => {
           <button className='bg-[#00B806] custombutton' onClick={(adminToggle)}>+ Add New Admin</button>
           <button
             className='bg-[#FF6A00] custombutton'
-            onClick={() => handleExportCsv(adminData, unparse, "adminData.csv")}
+            onClick={() => {
+              handleExportCsv(adminData, unparse, "adminData.csv")
+              
+            }}
           >Export CSV</button>
         </div>
 
@@ -97,7 +101,7 @@ const AdminManagement = () => {
 
             <tbody className="bg-white">
               {data.map((admin) => (
-                <tr key={admin[newAdminSchema.AdminId]} className="h-[38px] border-[#EDEDED] text-black">
+                <tr key={admin.id} className="h-[38px] border-[#EDEDED] text-black">
                   <td className="text-[12px] p-2.5 pl-6">
                     #{admin[newAdminSchema.AdminId]}
                   </td>

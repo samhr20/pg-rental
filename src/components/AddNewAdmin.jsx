@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { newAdminSchema, rolesSchema } from "../helpers/user_enum";
 import useAdminManagement from "../context/AdminManagementContext";
+import { supabase } from "../call_handler/supabase-client";
 
 const AddNewAdmin = () => {
   const { newAdminOpen, adminToggle } = useAdminManagement();
@@ -41,16 +42,18 @@ const AddNewAdmin = () => {
     newAdmin[newAdminSchema.Status] = true
 
 
-
     try {
-      const res = await axios.post('http://localhost:3000/AdminData', newAdmin)
-      setAdminData([...adminData, res.data])
-      cancelButton()
-      navigate('/admin-management')
+      await supabase
+        .from('Admin Management')
+        .insert(newAdmin)
+
+      setAdminData([...adminData, newAdmin]);
+      cancelButton();
+      navigate('/admin-management');
 
     } catch (error) {
-      console.error(error);
-
+      console.error(error.message);
+      return;
     }
 
   };
@@ -80,7 +83,7 @@ const AddNewAdmin = () => {
           }`}
         onClick={cancelButton}
       />
-      
+
 
       {/* Right Drawer */}
       <div
@@ -192,12 +195,12 @@ const AddNewAdmin = () => {
                 >
                   <option value="">Select Role</option>
                   {allRoles && allRoles.length > 0 ? (
-                    allRoles.map((item , key) => (
+                    allRoles.map((item, key) => (
                       <option key={item[rolesSchema.id] || key} value={item[rolesSchema.role]}>
                         {item[rolesSchema.role]}
                       </option>
                     ))
-                  ) : ( 
+                  ) : (
                     <option disabled>No roles available</option>
                   )}
                 </select>

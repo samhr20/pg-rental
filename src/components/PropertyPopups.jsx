@@ -70,3 +70,4 @@ const PropertyPopups = ({
 }
 
 export default PropertyPopups
+

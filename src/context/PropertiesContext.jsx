@@ -11,16 +11,18 @@ export const PropertiesContextProvider = ({ children }) => {
     const location = useLocation()
     const [popup, setPopup] = useState({
         type: null,
-        isOpen: false
+        isOpen: false,
+        propertyId: null
     })
     const [propertyFilterIsOpen, setPropertyFilterIsOpen] = useState(false)
+    const [thisProperty, setThisProperty] = useState(null);
 
 
-    const openPopup = (type) => {
-        setPopup({ type, isOpen: true })
+    const openPopup = (type, propertyId) => {
+        setPopup({ type, isOpen: true, propertyId: propertyId })
     }
     const closePopup = () => {
-        setPopup({ type: null, isOpen: false })
+        setPopup({ type: null, isOpen: false, propertyId: null })
     }
 
 
@@ -49,6 +51,7 @@ export const PropertiesContextProvider = ({ children }) => {
                 });
 
                 setProperties(updated);
+                
                 setLoader(false)
             }
             else {
@@ -61,7 +64,7 @@ export const PropertiesContextProvider = ({ children }) => {
         getData();
         closePopup();
         setPropertyFilterIsOpen(false);
-       
+
 
     }, [location]);
 
@@ -78,7 +81,9 @@ export const PropertiesContextProvider = ({ children }) => {
             propertyFilterIsOpen,
             filteredProperties,
             setFilteredProperties,
-            loader
+            loader,
+            thisProperty,
+            setThisProperty
         }}>
             {children}
         </PropertiesContext.Provider>

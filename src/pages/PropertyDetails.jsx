@@ -15,8 +15,7 @@ import { LocationSchema, partnerInfoSchema, PropertiesSchema, rentSchema, roomTy
 const PropertyDetails = () => {
     const location = useLocation()
     const { propertyId } = useParams()
-    const { openPopup } = useProperties()
-    const [thisProperty, setThisProperty] = useState(null);
+    const { openPopup, thisProperty, setThisProperty } = useProperties()
     const [loader, setLoader] = useState(false)
 
     useEffect(() => {
@@ -35,6 +34,8 @@ const PropertyDetails = () => {
             } else {
                 setThisProperty(data);
                 setLoader(false)
+                console.log(data);
+                
             }
         };
 
@@ -47,7 +48,6 @@ const PropertyDetails = () => {
     const accountStatus =
         thisProperty?.Partner?.[partnerInfoSchema.account_status]
 
-    console.log(accountStatus);
 
     const accountStatusColor =
         accountStatus === 'Verified'
@@ -115,7 +115,7 @@ const PropertyDetails = () => {
                                         text={'Unblock'}
                                         bgColor={'#0022FF14'}
                                         iconColor={'#0022FF'}
-                                        onClick={() => openPopup('unblock')}
+                                        onClick={() => openPopup('unblock', propertyId)}
                                     />
                                 ) : (
 
@@ -124,7 +124,7 @@ const PropertyDetails = () => {
                                         text={'Block'}
                                         bgColor={'#FF000014'}
                                         iconColor={'#FF0000'}
-                                        onClick={() => openPopup('block')}
+                                        onClick={() => openPopup('block', propertyId)}
                                     />
                                 )}
 
@@ -134,7 +134,7 @@ const PropertyDetails = () => {
                                         text={'Verify'}
                                         bgColor={'#00B80614'}
                                         iconColor={'#00B806'}
-                                        onClick={() => openPopup('verify')}
+                                        onClick={() => openPopup('verify', propertyId)}
                                     />
                                 )}
 
@@ -143,7 +143,7 @@ const PropertyDetails = () => {
                                     text={'Delete'}
                                     bgColor={'#FF000014'}
                                     iconColor={'#FF0000'}
-                                    onClick={() => openPopup('delete')}
+                                    onClick={() => openPopup('delete', propertyId)}
                                 />
                             </div>
                         </div>

@@ -24,7 +24,7 @@ const Properties = () => {
     }
 
 
-    const sortedProperties = [...properties]
+    const sortedProperties = filteredProperties.length > 0 ? [...filteredProperties] : [...properties]
     switch (sortBy) {
         case 'Newest First':
             sortedProperties.sort((a, b) => new Date(b[PropertiesSchema.created_at]) - new Date(a[PropertiesSchema.created_at]));
@@ -134,14 +134,22 @@ const Properties = () => {
 
                                         <div className="whitespace-nowrap ">
                                             <span className="inline-flex gap-2.5 pr-2.5">
-                                                {item[PropertiesSchema.Rent][0][rentSchema.room_types].map((room, i) => (
+                                                {item[PropertiesSchema.Rent].map((item )=>(
+                                                     <p
+                                                        key={item.id}
+                                                        className='bg-[#FFECDE] rounded-[20px] py-0.5 px-1.5 custom-poppins text-[10px] text-[#FF6A00]'
+                                                    >
+                                                        {item.room_type}
+                                                    </p>
+                                                ))}
+                                                {/* {item[PropertiesSchema.Rent][0][rentSchema.room_types].map((room, i) => (
                                                     <p
                                                         key={i}
                                                         className='bg-[#FFECDE] rounded-[20px] py-0.5 px-1.5 custom-poppins text-[10px] text-[#FF6A00]'
                                                     >
                                                         {room[roomTypesSchema.type]}
                                                     </p>
-                                                ))}
+                                                ))} */}
                                             </span>
 
                                         </div>

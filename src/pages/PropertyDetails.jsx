@@ -35,7 +35,7 @@ const PropertyDetails = () => {
                 setThisProperty(data);
                 setLoader(false)
                 console.log(data);
-                
+
             }
         };
 
@@ -239,13 +239,14 @@ const PropertyDetails = () => {
 
                                 <DetailCard title={'Rent & Price'}>
 
-                                    {thisProperty?.Rent?.[0]?.[rentSchema.room_types].map((item, key) => (
+                                    {thisProperty?.Rent.map((item) => (
                                         <DetailRow
-                                            key={key}
-                                            label={item[roomTypesSchema.type]}
-                                            value={item[roomTypesSchema.price]}
+                                            key={item.id}
+                                            label={item.room_type}
+                                            value={item.price}
                                         />
                                     ))}
+
                                 </DetailCard>
 
                                 <DetailCard title={'Engagement Metrics'}>

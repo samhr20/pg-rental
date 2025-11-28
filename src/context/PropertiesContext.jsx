@@ -34,24 +34,27 @@ export const PropertiesContextProvider = ({ children }) => {
 
             const { data: propertiesData, error: propertiesError } = await supabase
                 .from('Properties')
-                .select('title, created_at,id, images, Rent(room_types), Location(locality, city)')
+                .select('title, created_at,id, images,Rent(id , room_type , price) , Location(locality, city)')
 
             if (propertiesData) {
 
                 const updated = propertiesData.map(item => {
-                    const roomTypes = item.Rent?.[0]?.room_types || [];
-                    const lowestPrice = roomTypes.length
-                        ? Math.min(...roomTypes.map(r => Number(r.price)))
+                    const rents = item.Rent || [];
+
+                    const lowestPrice = rents.length
+                        ? Math.min(...rents.map(r => Number(r.price)))
                         : null;
 
                     return {
                         ...item,
-                        lowestPrice
+                        lowestPrice,
                     };
                 });
 
+                console.log(updated);
+
                 setProperties(updated);
-                
+
                 setLoader(false)
             }
             else {

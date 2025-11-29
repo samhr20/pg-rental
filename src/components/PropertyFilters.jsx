@@ -19,6 +19,9 @@ const PropertyFilters = () => {
   // supabase data
   const [cities, setCities] = useState([])
   const [localities, setLocalities] = useState([])
+  const [propertyTypes, setPropertyTypes] = useState([]);
+  const [furnishingTypes, setFurnishingTypes] = useState([]);
+
 
   // user-selected data
 
@@ -39,6 +42,14 @@ const PropertyFilters = () => {
     listedDate: {
       from: "",
       to: "",
+    },
+    propertyType: {
+      all: false,
+      values: []
+    },
+    furnishing: {
+      all: false,
+      values: []
     },
     rentRange: {
       min: '',
@@ -65,6 +76,28 @@ const PropertyFilters = () => {
 
     if (localityData) setLocalities(localityData)
   }
+
+  const getPropertyTypes = async () => {
+    const { data } = await supabase
+      .from("Properties")
+      .select("type");
+
+    if (data) {
+      const unique = [...new Set(data.map(item => item.type))];
+      setPropertyTypes(unique);
+    }
+  };
+  const getFurnishingTypes = async () => {
+    const { data } = await supabase
+      .from("Properties")
+      .select("furnishing");
+
+    if (data) {
+      const unique = [...new Set(data.map(item => item.furnishing))];
+      setFurnishingTypes(unique);
+    }
+  };
+
 
   // run when city changes
   useEffect(() => {
@@ -158,6 +191,16 @@ const PropertyFilters = () => {
 
     if (data.listedDate.from) query = query.gte("created_at", data.listedDate.from)
     if (data.listedDate.to) query = query.lte("created_at", data.listedDate.to)
+
+    // PROPERTY TYPE FILTER
+    if (!data.propertyType.all && data.propertyType.values.length > 0) {
+      query = query.in("type", data.propertyType.values);
+    }
+    // FURNISHING FILTER
+    if (!data.furnishing.all && data.furnishing.values.length > 0) {
+      query = query.in("furnishing", data.furnishing.values);
+    }
+
 
 
     // Rent range 
@@ -516,12 +559,20 @@ const PropertyFilters = () => {
             )}
           </div>
 
-          {/* --------------- Property Type FILTER ---------------- */}
+          {/* --------------- PROPERTY TYPE FILTER ---------------- */}
           <div className={`${activeFilter === "propertyType" ? "bg-[#F9F9F9] p-[10px] rounded-[10px]" : ""}`}>
+
             <div
-              onClick={() => toggleFilter("propertyType")}
+              onClick={() => {
+                const newState = activeFilter === "propertyType" ? null : "propertyType";
+                setActiveFilter(newState);
+
+                if (newState === "propertyType" && propertyTypes.length === 0) {
+                  getPropertyTypes();
+                }
+              }}
               className="bg-white w-full h-[44px] rounded-[14px] border p-[14px] flex items-center justify-between 
-              border-[#EEEDED] text-[#838383] text-[14px] cursor-pointer"
+    border-[#EEEDED] text-[#838383] text-[14px] cursor-pointer"
             >
               Property Type
               {activeFilter === "propertyType" ? <UpArrow /> : <DownArrow />}
@@ -530,56 +581,140 @@ const PropertyFilters = () => {
             {activeFilter === "propertyType" && (
               <div className="flex flex-col gap-[8px] px-2.5 mt-2 text-[#838383] text-[14px]">
 
-                {[
-                  { label: "All", key: "all" },
-                  { label: "Active", key: "active" },
-                  { label: "Inactive", key: "inactive" },
-                  { label: "Blocked", key: "blocked" }
-                ].map((item, index) => {
-                  const isSelected = data.status[item.key]
+                {/* ALL CHECKBOX */}
+                <div
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => {
+                    const allChecked = !data.propertyType.all;
+
+                    setData(prev => ({
+                      ...prev,
+                      propertyType: {
+                        all: allChecked,
+                        values: allChecked ? [...propertyTypes] : []
+                      }
+                    }));
+                  }}
+                >
+                  <input type="checkbox" readOnly checked={data.propertyType.all} />
+                  <label>All</label>
+                </div>
+
+                {/* DYNAMIC PROPERTY TYPES */}
+                {propertyTypes.map((type, i) => {
+                  const isSelected = data.propertyType.values.includes(type);
 
                   return (
                     <div
-                      key={index}
-                      className="flex items-center gap-2.5 cursor-pointer"
+                      key={i}
+                      className="flex items-center gap-2 cursor-pointer"
                       onClick={() => {
-                        const newStatus = {
-                          ...data.status,
-                          [item.key]: !isSelected,
-                        };
+                        let updatedValues = [];
 
-
-                        if (item.key === "all") {
-                          const makeAll = !isSelected;
-                          newStatus.all = makeAll;
-                          newStatus.active = makeAll;
-                          newStatus.inactive = makeAll;
-                          newStatus.blocked = makeAll;
+                        if (isSelected) {
+                          updatedValues = data.propertyType.values.filter(t => t !== type);
                         } else {
-
-                          const allSelected =
-                            newStatus.active &&
-                            newStatus.inactive &&
-                            newStatus.blocked;
-
-                          newStatus.all = allSelected;
+                          updatedValues = [...data.propertyType.values, type];
                         }
 
                         setData(prev => ({
                           ...prev,
-                          status: newStatus
+                          propertyType: {
+                            all: updatedValues.length === propertyTypes.length,
+                            values: updatedValues
+                          }
                         }));
                       }}
                     >
                       <input type="checkbox" readOnly checked={isSelected} />
-                      <label>{item.label}</label>
+                      <label>{type}</label>
                     </div>
-                  )
+                  );
+                })}
+              </div>
+            )}
+
+          </div>
+
+          {/* --------------- FURNISHING FILTER ---------------- */}
+          <div className={`${activeFilter === "furnishing" ? "bg-[#F9F9F9] p-[10px] rounded-[10px]" : ""}`}>
+
+            <div
+              onClick={() => {
+                const newState = activeFilter === "furnishing" ? null : "furnishing";
+                setActiveFilter(newState);
+
+                if (newState === "furnishing" && furnishingTypes.length === 0) {
+                  getFurnishingTypes();
+                }
+              }}
+              className="bg-white w-full h-[44px] rounded-[14px] border p-[14px] flex items-center justify-between 
+    border-[#EEEDED] text-[#838383] text-[14px] cursor-pointer"
+            >
+              Furnishing
+              {activeFilter === "furnishing" ? <UpArrow /> : <DownArrow />}
+            </div>
+
+            {activeFilter === "furnishing" && (
+              <div className="flex flex-col gap-[8px] px-2.5 mt-2 text-[#838383] text-[14px]">
+
+                {/* ALL CHECKBOX */}
+                <div
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => {
+                    const allChecked = !data.furnishing.all;
+
+                    setData(prev => ({
+                      ...prev,
+                      furnishing: {
+                        all: allChecked,
+                        values: allChecked ? [...furnishingTypes] : []
+                      }
+                    }));
+                  }}
+                >
+                  <input type="checkbox" readOnly checked={data.furnishing.all} />
+                  <label>All</label>
+                </div>
+
+                {/* DYNAMIC FURNISHING OPTIONS */}
+                {furnishingTypes.map((ftype, i) => {
+                  const isSelected = data.furnishing.values.includes(ftype);
+
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 cursor-pointer"
+                      onClick={() => {
+                        let updatedValues = [];
+
+                        if (isSelected) {
+                          updatedValues = data.furnishing.values.filter(f => f !== ftype);
+                        } else {
+                          updatedValues = [...data.furnishing.values, ftype];
+                        }
+
+                        setData(prev => ({
+                          ...prev,
+                          furnishing: {
+                            all: updatedValues.length === furnishingTypes.length,
+                            values: updatedValues
+                          }
+                        }));
+                      }}
+                    >
+                      <input type="checkbox" readOnly checked={isSelected} />
+                      <label>{ftype}</label>
+                    </div>
+                  );
                 })}
 
               </div>
             )}
+
           </div>
+
+
 
           {/* --------------- RENT RANGE FILTER ---------------- */}
 
